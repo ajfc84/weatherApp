@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Navigation -->
+    <string-array name="options_labels">
+        <item>Mediterranean</item>
+        <item>West Indies</item>
+        <item>North Atlantic</item>
+        <item>South Atlantic</item>
+        <item>North Pacific</item>
+        <item>South Pacific</item>
+        <item>Indian Ocean</item>
+        <item>Races and Regattas</item>
+    </string-array>
+    <array name="options_maps">
+        <item>@drawable/med</item>
+        <item>@drawable/westindies</item>
+        <item>@drawable/natlantic</item>
+        <item>@drawable/satlantic</item>
+        <item>@drawable/npacific</item>
+        <item>@drawable/spacific</item>
+        <item>@drawable/indian</item>
+        <item>@drawable/regatta</item>
+    </array>
+
+</resources>
