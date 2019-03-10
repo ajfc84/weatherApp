@@ -1,6 +1,7 @@
 package com.passageweather;
 
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,13 +16,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         Resources res = getResources();
-        mAdapter = new OceanAdapter(res.getIntArray(R.array.options_maps), res.getStringArray(R.array.options_labels));
+        TypedArray maps = res.obtainTypedArray(R.array.options_root_maps);
+        int [] mapsIds = new int[maps.length()];
+        for(int i = 0; i < maps.length(); i++)
+            mapsIds[i] = maps.getResourceId(i, 0);
+        maps.recycle(); /* Clean the TypedArray */
+        mAdapter = new OceanAdapter(mapsIds, res.getStringArray(R.array.options_root_labels));
         recyclerView.setAdapter(mAdapter);
     }
 }

@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Navigation -->
-    <string-array name="options_labels">
+    <string-array name="options_root_labels">
         <item>Mediterranean</item>
         <item>West Indies</item>
         <item>North Atlantic</item>
@@ -12,7 +12,7 @@
         <item>Indian Ocean</item>
         <item>Races and Regattas</item>
     </string-array>
-    <array name="options_maps">
+    <array name="options_root_maps">
         <item>@drawable/med</item>
         <item>@drawable/westindies</item>
         <item>@drawable/natlantic</item>
@@ -21,6 +21,245 @@
         <item>@drawable/spacific</item>
         <item>@drawable/indian</item>
         <item>@drawable/regatta</item>
+    </array>
+    <string-array name="options_mediterranean_labels">
+        <item>Mediterranean Sea</item>
+        <item>Western Mediterranean</item>
+        <item>Central Mediterranean</item>
+        <item>Eastern Mediterranean</item>
+        <item>Black Sea</item>
+        <item>Adriatic and Aegean</item>
+        <item>Strait of Gibraltar</item>
+        <item>Balearic Islands</item>
+        <item>Ligurian Sea</item>
+        <item>Corsica and Sardinia</item>
+        <item>Strait of Bonifacio</item>
+        <item>Western Mediterranean</item>
+        <item>Sicily and Malta</item>
+    </string-array>
+    <array name="options_mediterranean_maps">
+        <item>@drawable/med</item>
+        <item>@drawable/westmed</item>
+        <item>@drawable/centralmed</item>
+        <item>@drawable/eastmed</item>
+        <item>@drawable/blacksea</item>
+        <item>@drawable/adriatic</item>
+        <item>@drawable/tarifa</item>
+        <item>@drawable/baleares</item>
+        <item>@drawable/giraglia</item>
+        <item>@drawable/bonifacio</item>
+        <item>@drawable/bomballey</item>
+        <item>@drawable/middlesea</item>
+    </array>
+    <string-array name="options_west_indies_labels">
+        <item>Bermuda to W. Indies</item>
+        <item>South Florida</item>
+        <item>Florida to West Indies</item>
+        <item>Gulf of Mexico</item>
+        <item>Caribbean Sea</item>
+        <item>Virgin Islands to Dominica</item>
+        <item>Leeward Islands</item>
+        <item>Windward Islands</item>
+        <item>Approaches to Panama</item>
+    </string-array>
+    <array name="options_west_indies_maps">
+        <item>@drawable/westindies</item>
+        <item>@drawable/florida</item>
+        <item>@drawable/bahamas</item>
+        <item>@drawable/gulfmexico</item>
+        <item>@drawable/caribbean</item>
+        <item>@drawable/carib600</item>
+        <item>@drawable/leeward</item>
+        <item>@drawable/windward</item>
+        <item>@drawable/panama</item>
+    </array>
+    <string-array name="options_north_atlantic_labels">
+        <item>North Atlantic Ocean</item>
+        <item>Tropical Atlantic Ocean</item>
+        <item>No. Transatlantic</item>
+        <item>So. Transatlantic</item>
+        <item>Med. to Caribbean</item>
+        <item>Azores to Med</item>
+        <item>No. Europe to Iceland</item>
+        <item>Baltic Sea</item>
+        <item>North Sea</item>
+        <item>British Isles</item>
+        <item>Ireland to Eng. Channel</item>
+        <item>English Channel</item>
+        <item>Bay of Biscay</item>
+        <item>Portugal to Gibraltar</item>
+        <item>Strait of Gibraltar</item>
+        <item>Canary Islands</item>
+        <item>Labrador and Greenland</item>
+        <item>N. Scotia and Newfoundland</item>
+        <item>New England</item>
+        <item>Chesapeak and Delaware</item>
+        <item>Cape Hatteras to Florida</item>
+        <item>Newport to Bermuda</item>
+        <item>Bermuda to W. Indies</item>
+        <item>South Florida</item>
+        <item>Golf of Mexico</item>
+        <item>Great Lakes</item>
+    </string-array>
+    <array name="options_north_atlantic_maps">
+        <item>@drawable/natlantic</item>
+        <item>@drawable/tropatlantic</item>
+        <item>@drawable/transatlantic</item>
+        <item>@drawable/arc</item>
+        <item>@drawable/medtocarib</item>
+        <item>@drawable/azores</item>
+        <item>@drawable/neurope</item>
+        <item>@drawable/baltic</item>
+        <item>@drawable/northsea</item>
+        <item>@drawable/britisles</item>
+        <item>@drawable/fastnet</item>
+        <item>@drawable/engchannel</item>
+        <item>@drawable/biscay</item>
+        <item>@drawable/gibraltar</item>
+        <item>@drawable/tarifa</item>
+        <item>@drawable/canaries</item>
+        <item>@drawable/labrador</item>
+        <item>@drawable/novascotia</item>
+        <item>@drawable/newengland</item>
+        <item>@drawable/chesdel</item>
+        <item>@drawable/hatteras</item>
+        <item>@drawable/bermuda</item>
+        <item>@drawable/westindies</item>
+        <item>@drawable/florida</item>
+        <item>@drawable/mexico</item>
+        <item>@drawable/greatlakes</item>
+    </array>
+    <string-array name="options_south_atlantic_labels">
+        <item>South Atlantic</item>
+        <item>Tropical Atlantic Ocean</item>
+        <item>Cape Town to Rio de Janeiro</item>
+        <item>B. Aires to Rio de Janeiro</item>
+        <item>Drake Passage</item>
+        <item>So. Africa to Seychelles</item>
+    </string-array>
+    <array name="options_south_atlantic_maps">
+        <item>@drawable/satlantic</item>
+        <item>@drawable/tropatlantic</item>
+        <item>@drawable/capebahia</item>
+        <item>@drawable/bario</item>
+        <item>@drawable/capehorn</item>
+        <item>@drawable/safrica</item>
+    </array>
+    <string-array name="options_north_pacific_labels">
+        <item>North Pacific Ocean</item>
+        <item>Gulf of Alaska</item>
+        <item>California to Hawaii</item>
+        <item>Hawaii</item>
+        <item>Usa West Coast</item>
+        <item>Strait of Juan de Fuca</item>
+        <item>Southern California</item>
+        <item>California to Mexico</item>
+        <item>Baja California</item>
+        <item>Mexico to Panama</item>
+        <item>Panama to the Galapagos</item>
+        <item>N. America to Polynesia</item>
+        <item>Sea of Japan</item>
+        <item>Japan to Micronesia</item>
+        <item>Strait of Malacca</item>
+        <item>South China Sea</item>
+    </string-array>
+    <array name="options_north_pacific_maps">
+        <item>@drawable/npacific</item>
+        <item>@drawable/alaska</item>
+        <item>@drawable/transpac</item>
+        <item>@drawable/hawaii</item>
+        <item>@drawable/usawest</item>
+        <item>@drawable/puget</item>
+        <item>@drawable/socal</item>
+        <item>@drawable/mexico</item>
+        <item>@drawable/baja</item>
+        <item>@drawable/panama</item>
+        <item>@drawable/galapagos</item>
+        <item>@drawable/tahiti</item>
+        <item>@drawable/japan</item>
+        <item>@drawable/micronesia</item>
+        <item>@drawable/malacca</item>
+        <item>@drawable/chinasea</item>
+    </array>
+    <string-array name="options_south_pacific_labels">
+        <item>South Pacific Ocean</item>
+        <item>N. America to Polynesia</item>
+        <item>Panama to the Galapagos</item>
+        <item>Oceania</item>
+        <item>Fiji to Marquesas</item>
+        <item>NE Australia and Coral Sea</item>
+        <item>Southeast Australia</item>
+        <item>Southwest Australia</item>
+        <item>Tasman Sea</item>
+        <item>New Zealand</item>
+        <item>Drake Passage</item>
+    </string-array>
+    <array name="options_south_pacific_maps">
+        <item>@drawable/spacific</item>
+        <item>@drawable/tahiti</item>
+        <item>@drawable/galapagos</item>
+        <item>@drawable/oceania</item>
+        <item>@drawable/marquesas</item>
+        <item>@drawable/coralsea</item>
+        <item>@drawable/hobart</item>
+        <item>@drawable/leeuwin</item>
+        <item>@drawable/tasman</item>
+        <item>@drawable/newzealand</item>
+        <item>@drawable/capehorn</item>
+    </array>
+    <string-array name="options_indian_labels">
+        <item>No. Indian Ocean</item>
+        <item>So. Indian Ocean</item>
+        <item>So. Africa and Seychelles</item>
+        <item>Red and Arabian Seas</item>
+        <item>Strait of Mallaca</item>
+        <item>South China Sea</item>
+        <item>Southwest Australia</item>
+    </string-array>
+    <array name="options_indian_maps">
+        <item>@drawable/indian</item>
+        <item>@drawable/sindian</item>
+        <item>@drawable/safrica</item>
+        <item>@drawable/arabian</item>
+        <item>@drawable/malacca</item>
+        <item>@drawable/chinasea</item>
+        <item>@drawable/leeuwin</item>
+    </array>
+    <string-array name="options_regattas_labels">
+        <item>Atlantic Rally (ARC)</item>
+        <item>Cabo San Lucas Race</item>
+        <item>Cape to Rio Race</item>
+        <item>China Sea Race</item>
+        <item>Giraglia Race</item>
+        <item>Marion-Bermuda Race</item>
+        <item>Middle Sea Race</item>
+        <item>Montego Bay Race</item>
+        <item>Newport Bermuda Race</item>
+        <item>Pacific Cup</item>
+        <item>Rolex Fastnet Race</item>
+        <item>RORC Caribbean 600</item>
+        <item>RORC Transatlantic Race</item>
+        <item>Sydney Hobart Race</item>
+        <item>Transatlantic Race</item>
+        <item>Transpac Race</item>
+    </string-array>
+    <array name="options_regattas_maps">
+        <item>@drawable/arc</item>
+        <item>@drawable/baja</item>
+        <item>@drawable/capebahia</item>
+        <item>@drawable/chinasea</item>
+        <item>@drawable/giraglia</item>
+        <item>@drawable/bermuda</item>
+        <item>@drawable/middlesea</item>
+        <item>@drawable/bahamas</item>
+        <item>@drawable/bermuda</item>
+        <item>@drawable/transpac</item>
+        <item>@drawable/fastnet</item>
+        <item>@drawable/carib600</item>
+        <item>@drawable/arc</item>
+        <item>@drawable/hobart</item>
+        <item>@drawable/transatlantic</item>
+        <item>@drawable/transpac</item>
     </array>
 
 </resources>

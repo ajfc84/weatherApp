@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Passage Weather</string>
 
+    <string name="map_icon_description">Area map icon</string>
 </resources>

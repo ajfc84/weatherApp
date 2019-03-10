@@ -7,11 +7,12 @@
     <ImageView
         android:id="@+id/iv_option"
         style="@style/NavOptionImageStyle"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/map_icon_description"
         tools:src="@drawable/med" />
 
     <TextView
