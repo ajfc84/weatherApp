@@ -1,18 +1,22 @@
 package com.passageweather;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.passageweather.utils.Constants;
+
 public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHolder> {
     private int [][] mMapIds;
     private String [][] mLabels;
     private int mLevel;
+    private Context mContext;
 
     static class OceanViewHolder extends RecyclerView.ViewHolder {
         ImageView mImage;
@@ -26,9 +30,11 @@ public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHol
 
     }
 
-    OceanAdapter(int [][] mapIds, String [][] labels) {
+    OceanAdapter(int [][] mapIds, String [][] labels, Context context) {
         mMapIds = mapIds;
         mLabels = labels;
+        mContext = context;
+        mLevel = 0;
     }
 
     @NonNull
@@ -42,13 +48,17 @@ public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHol
 
     @Override
     public void onBindViewHolder(@NonNull OceanAdapter.OceanViewHolder holder, int position) {
+        if(mLevel > 0) {
+            showMap("");
+            return;
+        }
         holder.mImage.setImageResource(mMapIds[mLevel][position]);
         holder.mText.setText(mLabels[mLevel][position]);
         holder.itemView.setId(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLevel(v.getId());
+                raiseLevel();
             }
         });
     }
@@ -59,9 +69,26 @@ public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHol
         return mLabels.length;
     }
 
-    private void setLevel(int level) {
-        mLevel = level;
-        notifyDataSetChanged();
+    /*
+    *   Raise the level of the Menu
+    *   Level 0 = root menu
+    *   Level 1 = sub menu
+    *
+     */
+    private void raiseLevel() {
+        mLevel = 1;
+    }
+
+    /*
+    * Call the map Activity
+    *
+    * @param name - map path name to show
+     */
+
+    void showMap(String name) {
+        Intent intent = new Intent(mContext, MapActivity.class);
+        intent.putExtra(Constants.INTENT_MAP_KEY, name);
+        mContext.startActivity(intent);
     }
 
 }
