@@ -7,11 +7,10 @@ import java.net.URL;
 
 public class NetUtils {
 
-    public static URL buildURL(String region, String variable) {
+    public static URL buildURL(String path) {
         Uri uri = Uri.parse(Constants.BASE_URL)
                 .buildUpon()
-                .appendPath(region)
-                .appendPath(variable)
+                .appendPath(path)
                 .build();
         URL url = null;
         try {
@@ -22,4 +21,7 @@ public class NetUtils {
         return url;
     }
 
+    public static URL buildURL(String region, String variable) {
+        return buildURL(region + "/" + variable);
+    }
 }

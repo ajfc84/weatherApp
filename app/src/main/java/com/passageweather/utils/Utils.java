@@ -2,8 +2,12 @@ package com.passageweather.utils;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.net.Uri;
 
 import com.passageweather.R;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Utils {
 
