@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/b1"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_one"
+        android:drawableLeft="@drawable/med" />
+    <Button
+        android:id="@+id/b2"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_two"
+        android:drawableLeft="@drawable/westindies"
+        app:layout_constraintTop_toBottomOf="@+id/b1" />
+    <Button
+        android:id="@+id/b3"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_three"
+        android:drawableLeft="@drawable/natlantic"
+        app:layout_constraintTop_toBottomOf="@+id/b2" />
+    <Button
+        android:id="@+id/b4"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_four"
+        android:drawableLeft="@drawable/satlantic"
+        app:layout_constraintTop_toBottomOf="@+id/b3" />
+    <Button
+        android:id="@+id/b5"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_five"
+        android:drawableLeft="@drawable/npacific"
+        app:layout_constraintTop_toBottomOf="@+id/b4" />
+    <Button
+        android:id="@+id/b6"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_six"
+        android:drawableLeft="@drawable/spacific"
+        app:layout_constraintTop_toBottomOf="@+id/b5" />
+    <Button
+        android:id="@+id/b7"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_seven"
+        android:drawableLeft="@drawable/indian"
+        app:layout_constraintTop_toBottomOf="@+id/b6" />
+    <Button
+        android:id="@+id/b8"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_eight"
+        android:drawableLeft="@drawable/regatta"
+        app:layout_constraintTop_toBottomOf="@+id/b7" />
+    <Button
+        android:id="@+id/b9"
+        android:background="@drawable/gradient_button"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="buildPath"
+        android:text="@string/button_nine"
+        android:drawableLeft="@drawable/regatta"
+        app:layout_constraintTop_toBottomOf="@+id/b8" />
+
+</android.support.constraint.ConstraintLayout>
