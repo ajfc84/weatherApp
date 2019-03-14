@@ -17,21 +17,10 @@ public final class Constants {
 
     /* Intents */
     public static final String INTENT_MAP_KEY = "map_key";
-
+    public static final String INTENT_REGION_KEY = "region";
+    public static final String INTENT_VARIABLE_KEY = "variable";
 
     /* passageWeather */
-    // TODO eliminate enum map
-    enum map {
-        MEDITERRANEAN_SEA_WIND_GFS,
-        MEDITERRANEAN_SEA_WIND_COAMPS,
-        MEDITERRANEAN_SEA_WIND_WRF,
-        MEDITERRANEAN_SEA_SURFACE_PRESSURE,
-        MEDITERRANEAN_SEA_WAVES,
-        MEDITERRANEAN_SEA_VISIBILITY,
-        MEDITERRANEAN_SEA_PRECIPITATION,
-        MEDITERRANEAN_SEA_CLOUD_COVER
-    }
-
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
     /* URL Path Elements */
     public static final String VAR_WIND_GFS = "m_gfs";

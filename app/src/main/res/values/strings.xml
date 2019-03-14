@@ -10,8 +10,29 @@
     <string name="button_six">South Pacific</string>
     <string name="button_seven">Indian Ocean</string>
     <string name="button_eight">Races and Ragattas</string>
-    <string name="button_nine">About...</string>
 
+    <string name="med">Mediterranean</string>
+    <string name="wind">West Indies</string>
+    <string name="natl">North Atlantic</string>
+    <string name="satl">South Atlantic</string>
+    <string name="npac">North Pacific</string>
+    <string name="spac">South Pacific</string>
+    <string name="ioce">Indian Ocean</string>
+    <string name="rr">Races and Regattas</string>
+
+    <string name="medsea">Mediterranean Sea</string>
+    <string name="westmed">Western Mediterranean</string>
+    <string name="cntrlmed">Central Mediterranean</string>
+    <string name="eastmed">Eastern Mediterranean</string>
+    <string name="blksea">Black Sea</string>
+    <string name="adrag">Adriatic and Aegean</string>
+    <string name="stgib">Strait of Gibraltar</string>
+    <string name="balisld">Balearic Islands</string>
+    <string name="lsea">Ligurian Sea</string>
+    <string name="corsar">Corsica and Sardinia</string>
+    <string name="strbon">Strait of Bonifacio</string>
+    <string name="sicmal">Sicily and Malta</string>
 
     <string name="map_description">Area map</string>
+
 </resources>
