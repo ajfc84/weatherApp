@@ -2,17 +2,9 @@
     <string name="app_name">Passage Weather</string>
 
     <string name="map_icon_description">Area map icon</string>
-    <string name="button_one">Mediterranean</string>
-    <string name="button_two">West Indies</string>
-    <string name="button_three">North Atlantic</string>
-    <string name="button_four">South Atlantic</string>
-    <string name="button_five">North Pacific</string>
-    <string name="button_six">South Pacific</string>
-    <string name="button_seven">Indian Ocean</string>
-    <string name="button_eight">Races and Ragattas</string>
 
     <string name="med">Mediterranean</string>
-    <string name="wind">West Indies</string>
+    <string name="west">West Indies</string>
     <string name="natl">North Atlantic</string>
     <string name="satl">South Atlantic</string>
     <string name="npac">North Pacific</string>

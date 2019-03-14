@@ -12,4 +12,7 @@
         <color name="gray300">#E0E0E0</color>
         <color name="gray400">#BDBDBD</color>
         <color name="gray700">#616161</color>
+        <color name="indigo900">#1A237E</color>
+        <color name="blue900">#0D47A1</color>
+
 </resources>

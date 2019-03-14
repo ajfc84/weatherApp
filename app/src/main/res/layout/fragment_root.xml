@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<!--<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    >-->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/ll_root"
         >
 
         <Button
             android:id="@+id/b1"
-            android:text="@string/button_one"
+            android:text="@string/med"
             android:drawableLeft="@drawable/med"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b2"
-            android:text="@string/button_two"
+            android:text="@string/west"
             android:drawableLeft="@drawable/westindies"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b3"
-            android:text="@string/button_three"
+            android:text="@string/natl"
             android:drawableLeft="@drawable/natlantic"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b4"
-            android:text="@string/button_four"
+            android:text="@string/satl"
             android:drawableLeft="@drawable/satlantic"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b5"
-            android:text="@string/button_five"
+            android:text="@string/npac"
             android:drawableLeft="@drawable/npacific"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b6"
-            android:text="@string/button_six"
+            android:text="@string/spac"
             android:drawableLeft="@drawable/spacific"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b7"
-            android:text="@string/button_seven"
+            android:text="@string/ioce"
             android:drawableLeft="@drawable/indian"
             style="@style/NavOptionButton"
             />
         <Button
             android:id="@+id/b8"
             android:drawableLeft="@drawable/regatta"
-            android:text="@string/button_eight"
+            android:text="@string/rr"
             style="@style/NavOptionButton"
             />
 
     </LinearLayout>
-</ScrollView>
+<!--</ScrollView>
