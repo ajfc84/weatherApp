@@ -59,29 +59,39 @@ public class MainActivity extends AppCompatActivity {
         int layoutId = view.getRootView().getId();
         switch (layoutId) {
             case R.id.ll_root:
+            break;
 */
                 switch (view.getId()) {
                     case R.id.b1:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_MEDITERRANEAN_INDEX);
+                        break;
                     case R.id.b2:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_WEST_INDIES_INDEX);
+                        break;
                     case R.id.b3:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_ATLANTIC_INDEX);
+                        break;
                     case R.id.b4:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_ATLANTIC_INDEX);
+                        break;
                     case R.id.b5:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_PACIFIC_INDEX);
+                        break;
                     case R.id.b6:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_PACIFIC_INDEX);
+                        break;
                     case R.id.b7:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_INDIAN_INDEX);
+                        break;
                     case R.id.b8:
                         medFragment = NavMenuFragment.newInstance(Constants.OPTION_REGATTA_INDEX);
+                        break;
                 }
 /*
             default:
                 medFragment = new NavMenuFragment();
-        }
+                break;
+            }
 */
         fragmentManager.beginTransaction()
                 .replace(R.id.fl_fragment_main,
@@ -107,24 +117,31 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             if(getArguments() != null && getArguments().containsKey(Constants.INTENT_REGION_KEY)) {
-                Toast.makeText(getActivity(), "here", Toast.LENGTH_LONG).show();
                 switch (getArguments().getInt(Constants.INTENT_REGION_KEY)) {
                     case Constants.OPTION_MEDITERRANEAN_INDEX:
                         inflater.inflate(R.layout.fragment_mediterranean, container);
+                        break;
                     case Constants.OPTION_WEST_INDIES_INDEX:
                         inflater.inflate(R.layout.fragment_west_indies, container);
+                        break;
                     case Constants.OPTION_NORTH_ATLANTIC_INDEX:
                         inflater.inflate(R.layout.fragment_north_atlantic, container);
+                        break;
                     case Constants.OPTION_SOUTH_ATLANTIC_INDEX:
                         inflater.inflate(R.layout.fragment_south_atlantic, container);
+                        break;
                     case Constants.OPTION_NORTH_PACIFIC_INDEX:
                         inflater.inflate(R.layout.fragment_north_pacific, container);
+                        break;
                     case Constants.OPTION_SOUTH_PACIFIC_INDEX:
                         inflater.inflate(R.layout.fragment_south_pacific, container);
+                        break;
                     case Constants.OPTION_INDIAN_INDEX:
                         inflater.inflate(R.layout.fragment_indian, container);
+                        break;
                     case Constants.OPTION_REGATTA_INDEX:
                         inflater.inflate(R.layout.fragment_race_regata, container);
+                        break;
                 }
             }
             else {
