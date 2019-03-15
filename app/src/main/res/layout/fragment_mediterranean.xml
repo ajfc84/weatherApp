@@ -51,7 +51,7 @@
             />
         <Button
             android:id="@+id/region7"
-            android:text="@string/tarifa2"
+            android:text="@string/straitgbt"
             android:drawableLeft="@drawable/tarifa"
             style="@style/NavRegionButton"
             />
@@ -63,25 +63,25 @@
             />
         <Button
             android:id="@+id/region9"
-            android:text="@string/giraglia"
+            android:text="@string/ligurians"
             android:drawableLeft="@drawable/giraglia"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region10"
-            android:text="@string/bonifacio"
+            android:text="@string/corsar"
             android:drawableLeft="@drawable/bonifacio"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region11"
-            android:text="@string/bomballey"
+            android:text="@string/straitbfc"
             android:drawableLeft="@drawable/bomballey"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region12"
-            android:text="@string/malta"
+            android:text="@string/smalta"
             android:drawableLeft="@drawable/middlesea"
             style="@style/NavRegionButton"
             />

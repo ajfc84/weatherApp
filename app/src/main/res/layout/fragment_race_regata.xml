@@ -15,97 +15,97 @@
 
         <Button
             android:id="@+id/region1"
-            android:text="@string/arc2"
+            android:text="@string/atlantr"
             android:drawableLeft="@drawable/arc"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region2"
-            android:text="@string/baja2"
+            android:text="@string/cabosl"
             android:drawableLeft="@drawable/baja"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region3"
-            android:text="@string/capebahia2"
+            android:text="@string/rjrc"
             android:drawableLeft="@drawable/capebahia"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region4"
-            android:text="@string/chinasea3"
+            android:text="@string/chinarc"
             android:drawableLeft="@drawable/chinasea"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region5"
-            android:text="@string/giraglia2"
+            android:text="@string/giragliarc"
             android:drawableLeft="@drawable/giraglia"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region6"
-            android:text="@string/bermuda2"
+            android:text="@string/bermudarc"
             android:drawableLeft="@drawable/bermuda"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region7"
-            android:text="@string/middlesea2"
+            android:text="@string/middlerc"
             android:drawableLeft="@drawable/middlesea"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region8"
-            android:text="@string/bahamas2"
+            android:text="@string/montegorc"
             android:drawableLeft="@drawable/bahamas"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region9"
-            android:text="@string/bermuda3"
+            android:text="@string/npbermudarc"
             android:drawableLeft="@drawable/bermuda"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region10"
-            android:text="@string/transpac2"
+            android:text="@string/mpaccup"
             android:drawableLeft="@drawable/transpac"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region11"
-            android:text="@string/fastnet2"
+            android:text="@string/fastnetrc"
             android:drawableLeft="@drawable/fastnet"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region12"
-            android:text="@string/carib6002"
+            android:text="@string/caribrc"
             android:drawableLeft="@drawable/carib600"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region13"
-            android:text="@string/arc3"
+            android:text="@string/transatrc"
             android:drawableLeft="@drawable/arc"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region14"
-            android:text="@string/hobart2"
+            android:text="@string/sydneyrc"
             android:drawableLeft="@drawable/hobart"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region15"
-            android:text="@string/transatlantic2"
+            android:text="@string/transatlantrc"
             android:drawableLeft="@drawable/transatlantic"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region16"
-            android:text="@string/transpac3"
+            android:text="@string/transparc"
             android:drawableLeft="@drawable/transpac"
             style="@style/NavRegionButton"
             />

@@ -34,7 +34,7 @@
             android:id="@+id/region4"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/arc"
-            android:text="@string/arc" />
+            android:text="@string/stransat" />
 
         <Button
             android:id="@+id/region5"
@@ -76,7 +76,7 @@
             android:id="@+id/region11"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/fastnet"
-            android:text="@string/fastnet" />
+            android:text="@string/IreltoEngl" />
 
         <Button
             android:id="@+id/region12"
@@ -100,13 +100,13 @@
             android:id="@+id/region15"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/tarifa"
-            android:text="@string/tarifa" />
+            android:text="@string/straitgbt" />
 
         <Button
             android:id="@+id/region16"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/canaries"
-            android:text="@string/canaries" />
+            android:text="@string/canary" />
 
         <Button
             android:id="@+id/region17"
@@ -142,31 +142,31 @@
             android:id="@+id/region22"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/bermuda"
-            android:text="@string/bermuda" />
+            android:text="@string/nportober" />
 
         <Button
             android:id="@+id/region23"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/westindies"
-            android:text="@string/westindies" />
+            android:text="@string/bertoind" />
 
         <Button
             android:id="@+id/region24"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/florida"
-            android:text="@string/florida" />
+            android:text="@string/sflor" />
 
         <Button
             android:id="@+id/region25"
             style="@style/NavRegionButton"
             android:drawableLeft="@drawable/gulfmexico"
-            android:text="@string/gulfmexico" />
+            android:text="@string/gulfmex" />
 
         <Button
             android:id="@+id/option11"
             style="@style/NavOptionButton"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/greatlakes"
-            android:text="@string/greatlakes" />
+            android:text="@string/greatlks" />
     </LinearLayout>
 </ScrollView>
