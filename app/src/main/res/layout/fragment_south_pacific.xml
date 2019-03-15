@@ -21,13 +21,13 @@
             />
         <Button
             android:id="@+id/region2"
-            android:text="@string/tahiti2"
+            android:text="@string/amertopol"
             android:drawableLeft="@drawable/tahiti"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region3"
-            android:text="@string/galapagos2"
+            android:text="@string/pantogala"
             android:drawableLeft="@drawable/galapagos"
             style="@style/NavRegionButton"
             />
@@ -39,25 +39,25 @@
             />
         <Button
             android:id="@+id/region5"
-            android:text="@string/marquesas"
+            android:text="@string/fijtomarq"
             android:drawableLeft="@drawable/marquesas"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region6"
-            android:text="@string/coralsea"
+            android:text="@string/austcoral"
             android:drawableLeft="@drawable/coralsea"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region7"
-            android:text="@string/hobart"
+            android:text="@string/seaust"
             android:drawableLeft="@drawable/hobart"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region8"
-            android:text="@string/leeuwin2"
+            android:text="@string/swaust"
             android:drawableLeft="@drawable/leeuwin"
             style="@style/NavRegionButton"
             />
@@ -75,7 +75,7 @@
             />
         <Button
             android:id="@+id/region11"
-            android:text="@string/capehorn2"
+            android:text="@string/drakepass"
             android:drawableLeft="@drawable/capehorn"
             style="@style/NavRegionButton"
             />

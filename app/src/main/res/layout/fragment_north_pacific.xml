@@ -27,7 +27,7 @@
             />
         <Button
             android:id="@+id/region3"
-            android:text="@string/transpac"
+            android:text="@string/caltohaw"
             android:drawableLeft="@drawable/transpac"
             style="@style/NavRegionButton"
             />
@@ -45,7 +45,7 @@
             />
         <Button
             android:id="@+id/region6"
-            android:text="@string/puget"
+            android:text="@string/straitjf"
             android:drawableLeft="@drawable/puget"
             style="@style/NavRegionButton"
             />
@@ -57,7 +57,7 @@
             />
         <Button
             android:id="@+id/region8"
-            android:text="@string/mexico"
+            android:text="@string/mex"
             android:drawableLeft="@drawable/mexico"
             style="@style/NavRegionButton"
             />
@@ -69,19 +69,19 @@
             />
         <Button
             android:id="@+id/region10"
-            android:text="@string/panama"
+            android:text="@string/mextopan"
             android:drawableLeft="@drawable/panama"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region11"
-            android:text="@string/galapagos"
+            android:text="@string/pantogala"
             android:drawableLeft="@drawable/galapagos"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region12"
-            android:text="@string/tahiti"
+            android:text="@string/amertopol"
             android:drawableLeft="@drawable/tahiti"
             style="@style/NavRegionButton"
             />
@@ -99,13 +99,13 @@
             />
         <Button
             android:id="@+id/region15"
-            android:text="@string/malacca2"
+            android:text="@string/malacca"
             android:drawableLeft="@drawable/malacca"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region16"
-            android:text="@string/chinasea2"
+            android:text="@string/chinasea"
             android:drawableLeft="@drawable/chinasea"
             style="@style/NavRegionButton"
             />
