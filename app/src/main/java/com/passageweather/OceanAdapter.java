@@ -1,3 +1,4 @@
+/*
 package com.passageweather;
 
 import android.content.Context;
@@ -69,21 +70,25 @@ public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHol
         return mLabels.length;
     }
 
-    /*
+    */
+/*
     *   Raise the level of the Menu
     *   Level 0 = root menu
     *   Level 1 = sub menu
     *
-     */
+     *//*
+
     private void raiseLevel() {
         mLevel = 1;
     }
 
-    /*
+    */
+/*
     * Call the map Activity
     *
     * @param name - map path name to show
-     */
+     *//*
+
 
     void showMap(String name) {
         Intent intent = new Intent(mContext, MapActivity.class);
@@ -92,3 +97,4 @@ public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHol
     }
 
 }
+*/

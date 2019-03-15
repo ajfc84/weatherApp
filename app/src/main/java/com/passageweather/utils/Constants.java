@@ -17,6 +17,7 @@ public final class Constants {
 
     /* Intents */
     public static final String INTENT_MAP_KEY = "map_key";
+    public static final String INTENT_OPTION_KEY = "option";
     public static final String INTENT_REGION_KEY = "region";
     public static final String INTENT_VARIABLE_KEY = "variable";
 

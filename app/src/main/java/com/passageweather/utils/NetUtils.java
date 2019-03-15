@@ -7,10 +7,15 @@ import java.net.URL;
 
 public class NetUtils {
 
-    public static URL buildURL(String path) {
+    public static URL buildMapURL(String region) {
+        return buildMapURL(region, Constants.VAR_WIND_GFS);
+    }
+
+    public static URL buildMapURL(String region, String variable) {
         Uri uri = Uri.parse(Constants.BASE_URL)
                 .buildUpon()
-                .appendPath(path)
+                .appendPath(region)
+                .appendPath(variable)
                 .build();
         URL url = null;
         try {
@@ -19,9 +24,5 @@ public class NetUtils {
             e.printStackTrace();
         }
         return url;
-    }
-
-    public static URL buildURL(String region, String variable) {
-        return buildURL(region + "/" + variable);
     }
 }

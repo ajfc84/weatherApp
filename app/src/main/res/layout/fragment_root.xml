@@ -10,53 +10,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/ll_root"
         >
 
         <Button
-            android:id="@+id/b1"
+            android:id="@+id/option1"
             android:text="@string/med"
             android:drawableLeft="@drawable/med"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b2"
+            android:id="@+id/option2"
             android:text="@string/west"
             android:drawableLeft="@drawable/westindies"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b3"
+            android:id="@+id/option3"
             android:text="@string/natl"
             android:drawableLeft="@drawable/natlantic"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b4"
+            android:id="@+id/option4"
             android:text="@string/satl"
             android:drawableLeft="@drawable/satlantic"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b5"
+            android:id="@+id/option5"
             android:text="@string/npac"
             android:drawableLeft="@drawable/npacific"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b6"
+            android:id="@+id/option6"
             android:text="@string/spac"
             android:drawableLeft="@drawable/spacific"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b7"
+            android:id="@+id/option7"
             android:text="@string/ioce"
             android:drawableLeft="@drawable/indian"
             style="@style/NavOptionButton"
             />
         <Button
-            android:id="@+id/b8"
+            android:id="@+id/option8"
             android:drawableLeft="@drawable/regatta"
             android:text="@string/rr"
             style="@style/NavOptionButton"

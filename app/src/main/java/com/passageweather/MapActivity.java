@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.Volley;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.MapClient;
 import com.passageweather.utils.NetUtils;
@@ -20,7 +17,7 @@ import com.passageweather.utils.NetUtils;
 import java.net.URL;
 
 public class MapActivity extends AppCompatActivity {
-    private String map;
+    private String region;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +25,13 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
         if(savedInstanceState != null && savedInstanceState.containsKey(Constants.INTENT_MAP_KEY)) {
-            map = savedInstanceState.getString(Constants.INTENT_MAP_KEY);
-            getMap(map);
+            region = savedInstanceState.getString(Constants.INTENT_REGION_KEY);
+            getMap(region);
         };
     }
 
-    public void getMap(String path) {
-        URL url = NetUtils.buildURL(path);
+    public void getMap(String region) {
+        URL url = NetUtils.buildMapURL(region);
         RequestQueue queue = MapClient.getInstance(this.getApplicationContext()).getRequestQueue();
         ImageRequest imageRequest = new ImageRequest(
                 url.toString(),
