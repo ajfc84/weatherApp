@@ -19,6 +19,7 @@ public final class Constants {
     public static final String INTENT_MAP_KEY = "map_key";
     public static final String INTENT_OPTION_KEY = "option";
     public static final String INTENT_REGION_KEY = "region";
+    public static final String INTENT_SUBREGION_KEY = "subregion";
     public static final String INTENT_VARIABLE_KEY = "variable";
 
     /* passageWeather */
@@ -57,6 +58,7 @@ public final class Constants {
     public static final String REGION_APPROACHES_TO_PANAMA = "panama";
     public static final String REGION_NORTH_ATLANTIC_OCEAN = "natlantic";
     public static final String REGION_TROPICAL_ATLANTIC_OCEAN = "tropatlantic";
+    public static final String REGION_NORTH_TRANSATLANTIC = "transatlantic";
     public static final String REGION_SOUTH_TRANSATLANTIC = "arc";
     public static final String REGION_MEDITERRANEAN_TO_CARIBBEAN = "medtocarib";
     public static final String REGION_AZORES_TO_MEDITERRANEAN = "azores";
@@ -73,7 +75,7 @@ public final class Constants {
     public static final String REGION_NOVA_SCOTIA_AND_NEWFOUNDLAND = "novascotia";
     public static final String REGION_NEW_ENGLAND = "newengland";
     public static final String REGION_CHESAPEAKE_AND_DELAWERE = "chesdel";
-    public static final String REGION_CAPE_HATTERAS_TO_FLORODA = "hatteras";
+    public static final String REGION_CAPE_HATTERAS_TO_FLORIDA = "hatteras";
     public static final String REGION_NEWPORT_TO_BERMUDA = "bermuda";
     public static final String REGION_GREAT_LAKES = "greatLakes";
     public static final String REGION_LAKE_SUPERIOR = "superior";

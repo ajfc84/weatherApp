@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.passageweather.utils.Constants;
 
@@ -59,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
             return fragment;
         }
 
-        public static NavMenuFragment newInstance(String region) {
+        public static NavMenuFragment newInstance(String subRegion) {
             NavMenuFragment fragment = new NavMenuFragment();
             Bundle args = new Bundle();
-            args.putString(Constants.INTENT_REGION_KEY, region);
+            args.putString(Constants.INTENT_SUBREGION_KEY, subRegion);
             fragment.setArguments(args);
 
             return fragment;
@@ -72,19 +71,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             if(getArguments() != null) {
-                if(getArguments().containsKey(Constants.INTENT_REGION_KEY)){
-                    Intent intent = new Intent(getActivity(), MapActivity.class);
-                    intent.putExtra(Constants.INTENT_REGION_KEY, getArguments().getString(Constants.INTENT_REGION_KEY));
-                    startActivity(intent);
+                if(getArguments().containsKey(Constants.INTENT_SUBREGION_KEY)){
+                    inflater.inflate(R.layout.fragment_great_lake, container);
                 }
-                else if(getArguments().containsKey(Constants.INTENT_OPTION_KEY)){
+                if(getArguments().containsKey(Constants.INTENT_OPTION_KEY)){
                         switch (getArguments().getInt(Constants.INTENT_OPTION_KEY)) {
                             case Constants.OPTION_MEDITERRANEAN_INDEX:
                                 inflater.inflate(R.layout.fragment_mediterranean, container);
                                 break;
                             case Constants.OPTION_WEST_INDIES_INDEX:
                                 inflater.inflate(R.layout.fragment_west_indies, container);
-                                Toast.makeText(getActivity(), "hello", Toast.LENGTH_SHORT).show();
                                 break;
                             case Constants.OPTION_NORTH_ATLANTIC_INDEX:
                                 inflater.inflate(R.layout.fragment_north_atlantic, container);
@@ -116,84 +112,448 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickOption(View view) {
-        NavMenuFragment fragment = null;
+        NavMenuFragment regionFragment = null;
         switch (view.getId()) {
             case R.id.option1:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_MEDITERRANEAN_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_MEDITERRANEAN_INDEX);
                 break;
             case R.id.option2:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_WEST_INDIES_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_WEST_INDIES_INDEX);
                 break;
             case R.id.option3:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_ATLANTIC_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_ATLANTIC_INDEX);
                 break;
             case R.id.option4:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_ATLANTIC_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_ATLANTIC_INDEX);
                 break;
             case R.id.option5:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_PACIFIC_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_PACIFIC_INDEX);
                 break;
             case R.id.option6:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_PACIFIC_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_PACIFIC_INDEX);
                 break;
             case R.id.option7:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_INDIAN_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_INDIAN_INDEX);
                 break;
             case R.id.option8:
-                fragment = NavMenuFragment.newInstance(Constants.OPTION_REGATTA_INDEX);
+                regionFragment = NavMenuFragment.newInstance(Constants.OPTION_REGATTA_INDEX);
+                break;
+            case R.id.option11:
+                regionFragment = NavMenuFragment.newInstance(Constants.REGION_GREAT_LAKES);
                 break;
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.fl_fragment_main,
-                        fragment)
+                        regionFragment)
                 .addToBackStack(null)
                 .commit();
     }
 
     public void onClickRegion(View v) {
-        NavMenuFragment fragment = null;
-        switch (v.getId()) {
-            case R.id.region1:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_MEDITERRANEAN_SEA);
-                break;
-            case R.id.region2:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_WESTERN_MEDITERRANEAN);
-                break;
-            case R.id.region3:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_CENTRAL_MEDITERRANEAN);
-                break;
-            case R.id.region4:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_EASTERN_MEDITERRANEAN);
-                break;
-            case R.id.region5:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_BLACK_SEA);
-                break;
-            case R.id.region6:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_ADRIATIC_AND_AEGEAN);
-                break;
-            case R.id.region7:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_STRAIT_OF_GIBRALTAR);
-                break;
-            case R.id.region8:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_BALEARIC_ISLANDS);
-                break;
-            case R.id.region9:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_LIGURIAN_SEA);
-                break;
-            case R.id.region10:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_COSICA_AND_SARDINIA);
-                break;
-            case R.id.region11:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_STRAIT_OF_BONIFACIO);
-                break;
-            case R.id.region12:
-                fragment = NavMenuFragment.newInstance(Constants.REGION_SICILY_AND_MALTA);
-                break;
+        Intent intent = new Intent(this, MapActivity.class);
+        if(findViewById(R.id.ll_mediterranean) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MEDITERRANEAN_SEA);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_WESTERN_MEDITERRANEAN);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CENTRAL_MEDITERRANEAN);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_EASTERN_MEDITERRANEAN);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BLACK_SEA);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ADRIATIC_AND_AEGEAN);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_GIBRALTAR);
+                    break;
+                case R.id.region8:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BALEARIC_ISLANDS);
+                    break;
+                case R.id.region9:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LIGURIAN_SEA);
+                    break;
+                case R.id.region10:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_COSICA_AND_SARDINIA);
+                    break;
+                case R.id.region11:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_GIBRALTAR);
+                    break;
+                case R.id.region12:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SICILY_AND_MALTA);
+                    break;
+            }
         }
-        fragmentManager.beginTransaction()
-                .replace(R.id.fl_fragment_main,
-                        fragment)
-                .commit();
+        else if(findViewById(R.id.ll_west_indies) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BERMUDA_TO_WEST_INDIES);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_FLORIDA);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_FLORIDA_TO_WEST_INDIES);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GULF_OF_MEXICO);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CARIBBEAN_SEA);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_VERGIN_ISLANDS_TO_DOMINICA);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LEEWARD_ISLANDS);
+                    break;
+                case R.id.region8:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_WINDWARD_ISLANDS);
+                    break;
+                case R.id.region9:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_APPROACHES_TO_PANAMA);
+                    break;
+            }
+        }
+        else if(findViewById(R.id.ll_north_atlantic) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_ATLANTIC_OCEAN);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TROPICAL_ATLANTIC_OCEAN);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_TRANSATLANTIC);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_TRANSATLANTIC);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MEDITERRANEAN_TO_CARIBBEAN);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_AZORES_TO_MEDITERRANEAN);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_EUROPE_TO_ICELAND);
+                    break;
+                case R.id.region8:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BALTIC_SEA);
+                    break;
+                case R.id.region9:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_SEA);
+                    break;
+                case R.id.region10:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BRITISH_ISLES);
+                    break;
+                case R.id.region11:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_IRELAND_TO_ENGLISH_CHANNEL);
+                    break;
+                case R.id.region12:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ENGLISH_CHANNNEL);
+                    break;
+                case R.id.region13:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BAY_OF_BISCAY);
+                    break;
+                case R.id.region14:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_PORTUGAL_TO_GIBRALTAR);
+                    break;
+                case R.id.region15:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_GIBRALTAR);
+                    break;
+                case R.id.region16:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CANARY_ISLANDS);
+                    break;
+                case R.id.region17:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LABRADOR_AND_GREENLAND);
+                    break;
+                case R.id.region18:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NOVA_SCOTIA_AND_NEWFOUNDLAND);
+                    break;
+                case R.id.region19:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CHESAPEAKE_AND_DELAWERE);
+                    break;
+                case R.id.region20:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_HATTERAS_TO_FLORIDA);
+                    break;
+                case R.id.region21:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEWPORT_TO_BERMUDA);
+                    break;
+                case R.id.region22:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BERMUDA_TO_WEST_INDIES);
+                    break;
+                case R.id.region23:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_FLORIDA);
+                    break;
+                case R.id.region24:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GULF_OF_MEXICO);
+                    break;
+            }
+        }
+        else if(findViewById(R.id.ll_south_atlantic) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_ATLANTIC_OCEAN);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TROPICAL_ATLANTIC_OCEAN);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_TOWN_TO_RIO_DE_JANEIRO);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BUENOS_AIRES_TO_RIO_DE_JANEIRO);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_DRAKE_PASSAGE);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_AFRICA_TO_SEYCHELLES);
+                    break;
+            }
+        }
+        else if(findViewById(R.id.ll_north_pacific) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_PACIFIC_OCEAN);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GULF_OF_ALASKA);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CALIFORNIA_TO_HAWAII);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_HAWAII);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_USA_WEST_COAST);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_JUAN_DE_FUCA);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTHERN_CALIFORNIA);
+                    break;
+                case R.id.region8:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CALIFORNIA_TO_MEXICO);
+                    break;
+                case R.id.region9:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BAJA_CALIFORNIA);
+                    break;
+                case R.id.region10:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MEXICO_TO_PANAMA);
+                    break;
+                case R.id.region11:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_PANAMA_TO_THE_GALAPAGOS);
+                    break;
+                case R.id.region12:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_AMERICA_TO_POLYNESIA);
+                    break;
+                case R.id.region14:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SEA_OF_JAPAN);
+                    break;
+                case R.id.region15:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_JAPAN_TO_MICRONESIA);
+                    break;
+                case R.id.region16:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_MALACCA);
+                    break;
+                case R.id.region17:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_CHINA_SEA);
+                    break;
+            }
+        }
+        else if(findViewById(R.id.ll_south_pacific) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_PACIFIC_OCEAN);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_AMERICA_TO_POLYNESIA);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_PANAMA_TO_THE_GALAPAGOS);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_OCEANIA);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_FIJI_TO_MARQUESAS);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTHEAST_AUSTRALIA_AND_CORALSEA);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTHEAST_AUSTRALIA);
+                    break;
+                case R.id.region8:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTHWEST_AUSTRALIA);
+                    break;
+                case R.id.region9:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TASMAN_SEA);
+                    break;
+                case R.id.region10:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TASMAN_SEA);
+                    break;
+                case R.id.region11:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_DRAKE_PASSAGE);
+                    break;
+            }
+        }
+        else if(findViewById(R.id.ll_indian_ocean) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_INDIAN_OCEAN);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_INDIAN_OCEAN);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_AFRICA_TO_SEYCHELLES);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_RED_AND_ARABIAN_SEAS);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_MALACCA);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_CHINA_SEA);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTHWEST_AUSTRALIA);
+                    break;
+            }
+        }
+        else if(findViewById(R.id.ll_race_regata) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ATLANTIC_RALLY);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CABO_SAN_LUCAS_RACE);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_TO_RIO_RACE);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CHINA_SEA_RACE);
+                    break;
+                case R.id.region5:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GIRAGLIA_RACE);
+                    break;
+                case R.id.region6:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MARION_BERMUDA_RACE);
+                    break;
+                case R.id.region7:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MIDDLE_SEA_RACE);
+                    break;
+                case R.id.region8:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MONTEGO_BAY_RACE);
+                    break;
+                case R.id.region9:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEWPORT_BERMUDA_RACE);
+                    break;
+                case R.id.region10:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_PACIFIC_CUP);
+                    break;
+                case R.id.region11:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ROLEX_FASTNET_RACE);
+                    break;
+                case R.id.region12:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_RORC_CARIBBEAN_600);
+                    break;
+                case R.id.region13:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
+                    break;
+                case R.id.region14:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SYDNEY_HOBART_RACE);
+                    break;
+                case R.id.region15:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
+                    break;
+                case R.id.region16:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSPAC_RACE);
+                    break;
+            }
+        else if(findViewById(R.id.ll_race_regata) != null) {
+                switch (v.getId()) {
+                    case R.id.region1:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ATLANTIC_RALLY);
+                        break;
+                    case R.id.region2:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CABO_SAN_LUCAS_RACE);
+                        break;
+                    case R.id.region3:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_TO_RIO_RACE);
+                        break;
+                    case R.id.region4:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CHINA_SEA_RACE);
+                        break;
+                    case R.id.region5:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GIRAGLIA_RACE);
+                        break;
+                    case R.id.region6:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MARION_BERMUDA_RACE);
+                        break;
+                    case R.id.region7:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MIDDLE_SEA_RACE);
+                        break;
+                    case R.id.region8:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MONTEGO_BAY_RACE);
+                        break;
+                    case R.id.region9:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEWPORT_BERMUDA_RACE);
+                        break;
+                    case R.id.region10:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_PACIFIC_CUP);
+                        break;
+                    case R.id.region11:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ROLEX_FASTNET_RACE);
+                        break;
+                    case R.id.region12:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_RORC_CARIBBEAN_600);
+                        break;
+                    case R.id.region13:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
+                        break;
+                    case R.id.region14:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SYDNEY_HOBART_RACE);
+                        break;
+                    case R.id.region15:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
+                        break;
+                    case R.id.region16:
+                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSPAC_RACE);
+                        break;
+                }
+        }
+        else if(findViewById(R.id.ll_great_lake) != null) {
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GREAT_LAKES);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_SUPERIOR);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_MICHIGAN_AND_HURON);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_ONTARIO_AND_ERIE);
+                    break;
+            }
+        }
+        startActivity(intent);
     }
 
 }
