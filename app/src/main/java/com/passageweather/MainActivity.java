@@ -409,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_indian_ocean) != null) {
+        else if(findViewById(R.id.ll_indian) != null) {
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_INDIAN_OCEAN);
@@ -485,57 +485,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSPAC_RACE);
                     break;
             }
-        else if(findViewById(R.id.ll_race_regata) != null) {
-                switch (v.getId()) {
-                    case R.id.region1:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ATLANTIC_RALLY);
-                        break;
-                    case R.id.region2:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CABO_SAN_LUCAS_RACE);
-                        break;
-                    case R.id.region3:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_TO_RIO_RACE);
-                        break;
-                    case R.id.region4:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CHINA_SEA_RACE);
-                        break;
-                    case R.id.region5:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GIRAGLIA_RACE);
-                        break;
-                    case R.id.region6:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MARION_BERMUDA_RACE);
-                        break;
-                    case R.id.region7:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MIDDLE_SEA_RACE);
-                        break;
-                    case R.id.region8:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MONTEGO_BAY_RACE);
-                        break;
-                    case R.id.region9:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEWPORT_BERMUDA_RACE);
-                        break;
-                    case R.id.region10:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_PACIFIC_CUP);
-                        break;
-                    case R.id.region11:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ROLEX_FASTNET_RACE);
-                        break;
-                    case R.id.region12:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_RORC_CARIBBEAN_600);
-                        break;
-                    case R.id.region13:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
-                        break;
-                    case R.id.region14:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SYDNEY_HOBART_RACE);
-                        break;
-                    case R.id.region15:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
-                        break;
-                    case R.id.region16:
-                        intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSPAC_RACE);
-                        break;
-                }
         }
         else if(findViewById(R.id.ll_great_lake) != null) {
             switch (v.getId()) {

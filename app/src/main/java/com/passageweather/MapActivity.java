@@ -3,6 +3,7 @@ package com.passageweather;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class MapActivity extends AppCompatActivity {
 
     public void getMap(String region) {
         URL url = NetUtils.buildMapURL(region);
+        Log.d(MapActivity.class.getName(), "using URL -> " + url.toString());
         RequestQueue queue = MapClient.getInstance(this.getApplicationContext()).getRequestQueue();
         ImageRequest imageRequest = new ImageRequest(
                 url.toString(),
