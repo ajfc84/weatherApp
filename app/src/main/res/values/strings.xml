@@ -12,18 +12,28 @@
     <string name="ioce">Indian Ocean</string>
     <string name="rr">Races and Regattas</string>
 
-    <string name="medsea">Mediterranean Sea</string>
+    <string name="meds">Mediterranean Sea</string>
     <string name="westmed">Western Mediterranean</string>
-    <string name="cntrlmed">Central Mediterranean</string>
+    <string name="ctlmed">Central Mediterranean</string>
     <string name="eastmed">Eastern Mediterranean</string>
     <string name="blksea">Black Sea</string>
-    <string name="adrag">Adriatic and Aegean</string>
-    <string name="stgib">Strait of Gibraltar</string>
-    <string name="balisld">Balearic Islands</string>
-    <string name="lsea">Ligurian Sea</string>
-    <string name="corsar">Corsica and Sardinia</string>
-    <string name="strbon">Strait of Bonifacio</string>
-    <string name="sicmal">Sicily and Malta</string>
+    <string name="adriatic">Adriatic and Aegean</string>
+    <string name="tarifa2">Strait of Gibraltar</string>
+    <string name="baleares">Balearic Islands</string>
+    <string name="giraglia">Ligurian Sea</string>
+    <string name="bonifacio">Corsica and Sardinia</string>
+    <string name="bomballey">Strait of Bonifacio</string>
+    <string name="malta">Sicily and Malta</string>
+
+    <string name="westindies2">Bermuda to W. Indies</string>
+    <string name="florida2">South Florida</string>
+    <string name="bahamas">Florida to West Indies</string>
+    <string name="gulfmexico2">Gulf of Mexico</string>
+    <string name="caribbean">Caribbean Sea</string>
+    <string name="carib600">Virgin Islands to Dominica</string>
+    <string name="leeward">Leeward Islands</string>
+    <string name="windward">Windward Islands</string>
+    <string name="panama2">Approaches to Panama</string>
 
     <string name="natlantic">North Atlantic Ocean</string>
     <string name="tropatlantic">Tropical Atlantic Ocean</string>
@@ -52,6 +62,13 @@
     <string name="gulfmexico">Gulf of Mexico</string>
     <string name="greatlakes">Great Lakes</string>
 
+    <string name="satlantic">South Atlantic Ocean</string>
+    <string name="tropatlantic2">Tropical Atlantic Ocean</string>
+    <string name="capebahia">Cape Town to Rio de Janeiro</string>
+    <string name="bario">B. Aires to Rio de Janiero</string>
+    <string name="capehorn">Drake Passage</string>
+    <string name="safrica2">So. Africa to Seychelles</string>
+
     <string name="npacific">North Pacific Ocean</string>
     <string name="alaska">Gulf of Alaska</string>
     <string name="transpac">California to Hawaii</string>
@@ -66,16 +83,49 @@
     <string name="tahiti">N. America to Polynesia</string>
     <string name="japan">Sea of Japan</string>
     <string name="micronesia">Japan to Micronesia</string>
-    <string name="malacca">Strait of Malacca</string>
-    <string name="chinasea">South China Sea</string>
+    <string name="malacca2">Strait of Malacca</string>
+    <string name="chinasea2">South China Sea</string>
 
-    <string name="indian"> No. Indian Ocean</string>
+    <string name="spacific">South Pacific Ocean</string>
+    <string name="tahiti2">N. America to Polynesia</string>
+    <string name="galapagos2">Panama to the Galapagos</string>
+    <string name="oceania">Oceania</string>
+    <string name="marquesas">Fiji to the Marquesas</string>
+    <string name="coralsea">NE Australia and Coral Sea</string>
+    <string name="hobart">Southeast Australia</string>
+    <string name="leeuwin2">Southwest Australia</string>
+    <string name="tasman">Tasman Sea</string>
+    <string name="newzealand">New Zealand</string>
+    <string name="capehorn2">Drake Passage</string>
+
+    <string name="indian">No. Indian Ocean</string>
     <string name="sindian">So. Indian Ocean</string>
     <string name="safrica">So. Africa to Seychelles</string>
     <string name="arabian">Red and Arabian Seas</string>
     <string name="malacca">Strait of Malacca</string>
     <string name="chinasea">South China Sea</string>
     <string name="leeuwin">Southwest Australia</string>
+
+    <string name="arc2">Atlantic Rally (ARC)</string>
+    <string name="baja2">Cabo San Lucas Race</string>
+    <string name="capebahia2">Cape to Rio Race</string>
+    <string name="chinasea3">China Sea Race</string>
+    <string name="giraglia2">Giraglia Race</string>
+    <string name="bermuda2">Marion-Bermuda Race</string>
+    <string name="middlesea2">Middle Sea Race</string>
+    <string name="bahamas2">Montego Bay Race</string>
+    <string name="bermuda3">Newport Bermuda Race</string>
+    <string name="transpac2">MPacific Cup</string>
+    <string name="fastnet2">Rolex Fastnet Race</string>
+    <string name="carib6002">RORC Caribbean 600</string>
+    <string name="arc3">RORC Transatlantic Race</string>
+    <string name="hobart2">Sydney Hobart Race</string>
+    <string name="transatlantic2">Transatlantic Race</string>
+    <string name="transpac3">Transpac Race</string>
+
+    <string name="superior">Lake Superior</string>
+    <string name="michuron">South China Sea</string>
+    <string name="onterie">Southwest Australia</string>
 
     <string name="map_description">Area map</string>
 
