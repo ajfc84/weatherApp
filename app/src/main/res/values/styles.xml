@@ -7,38 +7,18 @@
     </style>
 
     <!-- Navigation -->
-    <style name="NavOptionButton">
+    <style name="NavButton">
         <item name="android:background">@drawable/gradient_button</item>
         <item name="android:padding">10dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:onClick">onClick</item>
         <item name="android:layout_marginBottom">1dp</item>
-
     </style>
-    <style name="NavOptionLayoutStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">100dp</item>
-        <item name="android:background">@color/colorPrimaryLight</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginLeft">5dp</item>
-        <item name="android:layout_marginRight">5dp</item>
+    <style name="NavOptionButton" parent="NavButton">
+        <item name="android:onClick">onClickOption</item>
     </style>
-    <style name="NavOptionImageStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">44dp</item>
-        <item name="android:layout_marginLeft">44dp</item>
-        <item name="android:layout_marginTop">16dp</item>
+    <style name="NavRegionButton" parent="NavButton">
+        <item name="android:onClick">onClickRegion</item>
     </style>
-    <style name="NavOptionTextStyle">
-        <item name="android:textSize">18sp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">68dp</item>
-        <item name="android:layout_marginLeft">68dp</item>
-        <item name="android:textColor">@color/colorPrimaryText</item>
-    </style>
-
 
 </resources>
