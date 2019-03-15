@@ -99,13 +99,13 @@
             />
         <Button
             android:id="@+id/region15"
-            android:text="@string/malacca"
+            android:text="@string/malacca2"
             android:drawableLeft="@drawable/malacca"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region16"
-            android:text="@string/chinasea"
+            android:text="@string/chinasea2"
             android:drawableLeft="@drawable/chinasea"
             style="@style/NavRegionButton"
             />

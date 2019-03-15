@@ -15,7 +15,7 @@
 
         <Button
             android:id="@+id/region1"
-            android:text="@string/medsea"
+            android:text="@string/meds"
             android:drawableLeft="@drawable/med"
             style="@style/NavRegionButton"
             />
@@ -27,7 +27,7 @@
             />
         <Button
             android:id="@+id/region3"
-            android:text="@string/cntrlmed"
+            android:text="@string/ctlmed"
             android:drawableLeft="@drawable/centralmed"
             style="@style/NavRegionButton"
             />
@@ -45,43 +45,43 @@
             />
         <Button
             android:id="@+id/region6"
-            android:text="@string/adrag"
+            android:text="@string/adriatic"
             android:drawableLeft="@drawable/adriatic"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region7"
-            android:text="@string/stgib"
+            android:text="@string/tarifa2"
             android:drawableLeft="@drawable/tarifa"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region8"
-            android:text="@string/balisld"
+            android:text="@string/baleares"
             android:drawableLeft="@drawable/baleares"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region9"
-            android:text="@string/lsea"
+            android:text="@string/giraglia"
             android:drawableLeft="@drawable/giraglia"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region10"
-            android:text="@string/corsar"
+            android:text="@string/bonifacio"
             android:drawableLeft="@drawable/bonifacio"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region11"
-            android:text="@string/strbon"
+            android:text="@string/bomballey"
             android:drawableLeft="@drawable/bomballey"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region12"
-            android:text="@string/sicmal"
+            android:text="@string/malta"
             android:drawableLeft="@drawable/middlesea"
             style="@style/NavRegionButton"
             />

@@ -15,74 +15,56 @@
 
         <Button
             android:id="@+id/region1"
-            android:text="@string/medsea"
-            android:drawableLeft="@drawable/med"
+            android:text="@string/westindies2"
+            android:drawableLeft="@drawable/westindies"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region2"
-            android:text="@string/westmed"
-            android:drawableLeft="@drawable/westmed"
+            android:text="@string/florida2"
+            android:drawableLeft="@drawable/florida"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region3"
-            android:text="@string/cntrlmed"
-            android:drawableLeft="@drawable/centralmed"
+            android:text="@string/bahamas"
+            android:drawableLeft="@drawable/bahamas"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region4"
-            android:text="@string/satl"
-            android:drawableLeft="@drawable/satlantic"
+            android:text="@string/gulfmexico2"
+            android:drawableLeft="@drawable/gulfmexico"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region5"
-            android:text="@string/npac"
-            android:drawableLeft="@drawable/npacific"
+            android:text="@string/caribbean"
+            android:drawableLeft="@drawable/caribbean"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region6"
-            android:text="@string/spac"
-            android:drawableLeft="@drawable/spacific"
+            android:text="@string/carib600"
+            android:drawableLeft="@drawable/carib600"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region7"
-            android:text="@string/ioce"
-            android:drawableLeft="@drawable/indian"
+            android:text="@string/leeward"
+            android:drawableLeft="@drawable/leeward"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region8"
-            android:drawableLeft="@drawable/regatta"
-            android:text="@string/rr"
+            android:text="@string/windward"
+            android:drawableLeft="@drawable/windward"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region9"
-            android:text="@string/medsea"
-            android:drawableLeft="@drawable/med"
-            style="@style/NavRegionButton"
-            />
-        <Button
-            android:id="@+id/region10"
-            android:text="@string/westmed"
-            android:drawableLeft="@drawable/westmed"
-            style="@style/NavRegionButton"
-            />
-        <Button
-            android:id="@+id/region11"
-            android:text="@string/cntrlmed"
-            android:drawableLeft="@drawable/centralmed"
-            style="@style/NavRegionButton"
-            />
-        <Button
-            android:id="@+id/region12"
-            android:text="@string/satl"
-            android:drawableLeft="@drawable/satlantic"
+            android:text="@string/panama2"
+            android:drawableLeft="@drawable/panama"
             style="@style/NavRegionButton"
             />
 
