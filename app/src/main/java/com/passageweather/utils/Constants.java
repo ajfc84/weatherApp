@@ -24,6 +24,7 @@ public final class Constants {
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
+    public static final String IMAGE_EXTENSION = ".htm";
     /* URL Path Elements */
     public static final String VAR_WIND_GFS = "m_gfs";
     public static final String VAR_WIND_COAMPS = "m_coamps";

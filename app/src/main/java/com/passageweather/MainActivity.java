@@ -434,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_race_regata) != null) {
+        else if(findViewById(R.id.ll_race_regatta) != null) {
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ATLANTIC_RALLY);

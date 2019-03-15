@@ -1,5 +1,8 @@
 package com.passageweather;
 
+import com.passageweather.utils.Constants;
+import com.passageweather.utils.NetUtils;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,8 +13,10 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void test_buildURL() {
+//        assertThat(NetUtils.buildMapURL("test").equals(Constants.BASE_URL + "test/" + Constants.VAR_WIND_GFS));.isTrue();
     }
+
 }

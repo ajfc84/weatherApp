@@ -163,8 +163,8 @@
             android:text="@string/gulfmexico" />
 
         <Button
-            android:id="@+id/region26"
-            style="@style/NavRegionButton"
+            android:id="@+id/option11"
+            style="@style/NavOptionButton"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/greatlakes"
             android:text="@string/greatlakes" />
