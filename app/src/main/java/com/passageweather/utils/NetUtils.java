@@ -16,7 +16,7 @@ public class NetUtils {
                 .buildUpon()
                 .appendPath(region)
                 .appendPath(variable)
-                .appendPath(Constants.IMAGE_EXTENSION)
+                .appendPath(Constants.DEFAULT_MAP)
                 .build();
         URL url = null;
         try {

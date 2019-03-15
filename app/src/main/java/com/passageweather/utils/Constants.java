@@ -24,18 +24,18 @@ public final class Constants {
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
-    public static final String IMAGE_EXTENSION = ".htm";
+    public static final String DEFAULT_MAP = "000.png";
     /* URL Path Elements */
-    public static final String VAR_WIND_GFS = "m_gfs";
-    public static final String VAR_WIND_COAMPS = "m_coamps";
-    public static final String VAR_WIND_WRF = "m_wrf";
-    public static final String VAR_WIND_NAM = "m_nam";
-    public static final String VAR_SURFACE_PRESSURE = "m_pressure";
-    public static final String VAR_WAVES = "m_medwaves";
-    public static final String VAR_VISIBILITY = "m_visibility";
-    public static final String VAR_PRECIPITATION = "m_rain";
-    public static final String VAR_CLOUD_COVER = "m_clouds";
-    public static final String VAR_GULF_STREAM = "m_ncom";
+    public static final String VAR_WIND_GFS = "wind";
+    public static final String VAR_WIND_COAMPS = "coamps";
+    public static final String VAR_WIND_WRF = "wrf";
+    public static final String VAR_WIND_NAM = "nam";
+    public static final String VAR_SURFACE_PRESSURE = "press";
+    public static final String VAR_WAVES = "waves";
+    public static final String VAR_VISIBILITY = "visibility";
+    public static final String VAR_PRECIPITATION = "rain";
+    public static final String VAR_CLOUD_COVER = "clouds";
+    public static final String VAR_GULF_STREAM = "rtofs";
     public static final String REGION_MEDITERRANEAN_SEA = "med";
     public static final String REGION_WESTERN_MEDITERRANEAN = "westmed";
     public static final String REGION_CENTRAL_MEDITERRANEAN = "centralmed";

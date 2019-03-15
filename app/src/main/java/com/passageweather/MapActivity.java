@@ -1,5 +1,6 @@
 package com.passageweather;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,16 +25,15 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
-        if(savedInstanceState != null && savedInstanceState.containsKey(Constants.INTENT_MAP_KEY)) {
-            region = savedInstanceState.getString(Constants.INTENT_REGION_KEY);
+        Intent intent = getIntent();
+        if(intent != null && intent.hasExtra(Constants.INTENT_REGION_KEY)) {
+            region = intent.getStringExtra(Constants.INTENT_REGION_KEY);
             getMap(region);
         };
     }
 
     public void getMap(String region) {
         URL url = NetUtils.buildMapURL(region);
-        Log.d(MapActivity.class.getName(), "using URL -> " + url.toString());
         RequestQueue queue = MapClient.getInstance(this.getApplicationContext()).getRequestQueue();
         ImageRequest imageRequest = new ImageRequest(
                 url.toString(),
@@ -44,8 +44,8 @@ public class MapActivity extends AppCompatActivity {
                         view.setImageBitmap(response);
                     }
                 },
-                200,
-                200,
+                800,
+                600,
                 Bitmap.Config.ARGB_8888,
                 new Response.ErrorListener() {
                     @Override
