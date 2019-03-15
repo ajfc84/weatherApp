@@ -25,6 +25,58 @@
     <string name="strbon">Strait of Bonifacio</string>
     <string name="sicmal">Sicily and Malta</string>
 
+    <string name="natlantic">North Atlantic Ocean</string>
+    <string name="tropatlantic">Tropical Atlantic Ocean</string>
+    <string name="transatlantic">No. Transatlantic</string>
+    <string name="arc">So. Transatlantic</string>
+    <string name="medtocarib">Med to Caribbean</string>
+    <string name="azores"> Azores to Med</string>
+    <string name="neurope">No. Europe to Iceland</string>
+    <string name="baltic">Baltic Sea</string>
+    <string name="northsea">North Sea</string>
+    <string name="britisles">British Isles</string>
+    <string name="fastnet">Ireland to Eng. Channel</string>
+    <string name="engchannel">English Channel</string>
+    <string name="biscay">Bay of Biscay</string>
+    <string name="gibraltar">Portugal to Gibraltar</string>
+    <string name="tarifa">Strait of Gibraltar</string>
+    <string name="canaries">Canary Islands</string>
+    <string name="labrador">Labrador and Greenland</string>
+    <string name="novascotia">N. Scotia and Newfoundland</string>
+    <string name="newengland">New England</string>
+    <string name="chesdel">Chesapeake and Delaware</string>
+    <string name="hatteras">Cape Hatteras to Florida</string>
+    <string name="bermuda">Newport to Bermuda</string>
+    <string name="westindies">Bermuda to W. Indies</string>
+    <string name="florida">South Florida</string>
+    <string name="gulfmexico">Gulf of Mexico</string>
+    <string name="greatlakes">Great Lakes</string>
+
+    <string name="npacific">North Pacific Ocean</string>
+    <string name="alaska">Gulf of Alaska</string>
+    <string name="transpac">California to Hawaii</string>
+    <string name="hawaii">Hawaii</string>
+    <string name="usawest">USA West Coast</string>
+    <string name="puget">Strait of Juan de Fuca</string>
+    <string name="socal">Southern California</string>
+    <string name="mexico">California to Mexico</string>
+    <string name="baja">Baja California</string>
+    <string name="panama">Mexico to Panama</string>
+    <string name="galapagos">Panama to the Galapagos</string>
+    <string name="tahiti">N. America to Polynesia</string>
+    <string name="japan">Sea of Japan</string>
+    <string name="micronesia">Japan to Micronesia</string>
+    <string name="malacca">Strait of Malacca</string>
+    <string name="chinasea">South China Sea</string>
+
+    <string name="indian"> No. Indian Ocean</string>
+    <string name="sindian">So. Indian Ocean</string>
+    <string name="safrica">So. Africa to Seychelles</string>
+    <string name="arabian">Red and Arabian Seas</string>
+    <string name="malacca">Strait of Malacca</string>
+    <string name="chinasea">South China Sea</string>
+    <string name="leeuwin">Southwest Australia</string>
+
     <string name="map_description">Area map</string>
 
 </resources>

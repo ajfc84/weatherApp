@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ll_indian"
+        >
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/region1"
+            android:text="@string/indian"
+            android:drawableLeft="@drawable/indian"
+            style="@style/NavRegionButton"
+            />
+        <Button
+            android:id="@+id/region2"
+            android:text="@string/sindian"
+            android:drawableLeft="@drawable/sindian"
+            style="@style/NavRegionButton"
+            />
+        <Button
+            android:id="@+id/region3"
+            android:text="@string/safrica"
+            android:drawableLeft="@drawable/safrica"
+            style="@style/NavRegionButton"
+            />
+        <Button
+            android:id="@+id/region4"
+            android:text="@string/arabian"
+            android:drawableLeft="@drawable/arabian"
+            style="@style/NavRegionButton"
+            />
+        <Button
+            android:id="@+id/region5"
+            android:text="@string/malacca"
+            android:drawableLeft="@drawable/malacca"
+            style="@style/NavRegionButton"
+            />
+        <Button
+            android:id="@+id/region6"
+            android:text="@string/chinasea"
+            android:drawableLeft="@drawable/chinasea"
+            style="@style/NavRegionButton"
+            />
+        <Button
+            android:id="@+id/region7"
+            android:text="@string/leeuwin"
+            android:drawableLeft="@drawable/leeuwin"
+            style="@style/NavRegionButton"
+            />
+
+    </LinearLayout>
+</ScrollView>
