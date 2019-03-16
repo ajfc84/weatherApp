@@ -36,43 +36,17 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         Intent intent = getIntent();
-        if(intent != null && intent.hasExtra(Constants.INTENT_REGION_KEY)) {
+        if (intent != null && intent.hasExtra(Constants.INTENT_REGION_KEY)) {
             region = intent.getStringExtra(Constants.INTENT_REGION_KEY);
-//            getMap(region);
             mPager = findViewById(R.id.vp_pager);
             pagerAdapter = new MapPagerAdapter(getSupportFragmentManager());
             mPager.setAdapter(pagerAdapter);
-        };
+            mPager.setPageTransformer(true, new DepthPageTransformer());
+        }
     }
 
-    public static String  getRegion() {
+    public static String getRegion() {
         return region;
     }
-
-/*
-    public void getMap(String region) {
-        URL url = NetUtils.buildMapURL(region);
-        RequestQueue queue = MapClient.getInstance(this.getApplicationContext()).getRequestQueue();
-        ImageRequest imageRequest = new ImageRequest(
-                url.toString(),
-                new Response.Listener<Bitmap>() {
-                    @Override
-                    public void onResponse(Bitmap response) {
-                        ImageView view = findViewById(R.id.iv_map);
-                        view.setImageBitmap(response);
-                    }
-                },
-                800,
-                600,
-                Bitmap.Config.ARGB_8888,
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MapActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-        MapClient.getInstance(this).addToRequestQueue(imageRequest);
-    }
-*/
 
 }

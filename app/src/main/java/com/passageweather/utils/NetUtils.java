@@ -10,8 +10,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
-import com.passageweather.MapActivity;
-import com.passageweather.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,7 +24,7 @@ public class NetUtils {
         return buildMapURL(region, variable, Constants.DEFAULT_MAP);
     }
     public static URL buildMapURL(String region, int forecastIndex) {
-        return buildMapURL(region, Constants.VAR_WIND_GFS, Constants.GENERAL_FORECAST_HOURS[forecastIndex]);
+        return buildMapURL(region, Constants.VAR_WIND_GFS, Constants.GFS_FORECAST_HOURS[forecastIndex]);
     }
 
     public static URL buildMapURL(String region, String variable, String forecast) {

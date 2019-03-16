@@ -3,6 +3,8 @@
 
     <string name="map_icon_description">Area map icon</string>
 
+    <string name="welcome_message">Please, choose a region!</string>
+
     <string name="med">Mediterranean</string>
     <string name="west">West Indies</string>
     <string name="natl">North Atlantic</string>

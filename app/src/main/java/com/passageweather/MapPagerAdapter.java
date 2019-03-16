@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.passageweather.utils.Constants;
 
 public class MapPagerAdapter extends FragmentStatePagerAdapter {
-    private static final int NUM_PAGES = Constants.GENERAL_FORECAST_HOURS.length;
+    private static final int NUM_PAGES = Constants.GFS_FORECAST_HOURS.length;
 
     public MapPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);

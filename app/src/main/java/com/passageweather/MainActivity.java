@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     rootFragment)
             .commit();
         }
+        Toast.makeText(this, R.string.welcome_message, Toast.LENGTH_SHORT).show();
     }
 
     public void onClickOption(View view) {
