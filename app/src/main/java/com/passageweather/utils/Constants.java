@@ -21,10 +21,18 @@ public final class Constants {
     public static final String INTENT_REGION_KEY = "region";
     public static final String INTENT_SUBREGION_KEY = "subregion";
     public static final String INTENT_VARIABLE_KEY = "variable";
+    public static final String INTENT_FORECAST_KEY = "forecast";
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
-    public static final String DEFAULT_MAP = "000.png";
+    public static final String [] GENERAL_FORECAST_HOURS = {
+            "000", "003", "006", "009", "012", "015", "018", "021",
+            "024", "027", "030", "033", "036", "039", "042", "045",
+            "048", "054", "060", "066", "072", "084", "096", "108",
+            "120", "132", "144", "156", "168", "180"
+    };
+    public static final String MAP_EXT = ".png";
+    public static final String DEFAULT_MAP = "000";
     /* URL Path Elements */
     public static final String VAR_WIND_GFS = "wind";
     public static final String VAR_WIND_COAMPS = "coamps";

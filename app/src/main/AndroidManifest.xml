@@ -22,6 +22,8 @@
         </activity>
         <activity
             android:name=".MapActivity"
+            android:theme="@style/AppFullScreenTheme"
+            android:screenOrientation="landscape"
             >
         </activity>
     </application>

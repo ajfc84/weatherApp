@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.v4.view.ViewPager
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vp_pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapActivity"
-    android:layout_gravity="center"
     >
 
-    <ImageView
-        android:id="@+id/iv_map"
-        android:contentDescription="@string/map_description"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        tools:src="@drawable/mapexample"
-        />
-
-</FrameLayout>
+</android.support.v4.view.ViewPager>
