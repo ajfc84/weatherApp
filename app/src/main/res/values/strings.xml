@@ -5,6 +5,16 @@
 
     <string name="welcome_message">Please, choose a region!</string>
 
+    /* Menu items */
+    <string name="play">Play</string>
+    <string name="share">Share</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Surface Pressure</string>
+    <string name="waves">Waves</string>
+    <string name="visibility">Visibility</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="clouds">Cloud Cover</string>
+
     <string name="med">Mediterranean</string>
     <string name="west">West Indies</string>
     <string name="natl">North Atlantic</string>

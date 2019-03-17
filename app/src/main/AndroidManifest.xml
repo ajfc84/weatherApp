@@ -20,10 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+                    android:theme="@style/AppFullScreenTheme"
+                    android:screenOrientation="landscape"
+        -->
         <activity
             android:name=".MapActivity"
-            android:theme="@style/AppFullScreenTheme"
-            android:screenOrientation="landscape"
             >
         </activity>
     </application>

@@ -23,8 +23,13 @@ public class NetUtils {
     public static URL buildMapURL(String region, String variable) {
         return buildMapURL(region, variable, Constants.DEFAULT_MAP);
     }
+
     public static URL buildMapURL(String region, int forecastIndex) {
         return buildMapURL(region, Constants.VAR_WIND_GFS, Constants.GFS_FORECAST_HOURS[forecastIndex]);
+    }
+
+    public static URL buildMapURL(String region, String variable, int forecastIndex) {
+        return buildMapURL(region, variable, Constants.GFS_FORECAST_HOURS[forecastIndex]);
     }
 
     public static URL buildMapURL(String region, String variable, String forecast) {
