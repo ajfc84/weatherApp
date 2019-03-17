@@ -25,6 +25,7 @@ public final class Constants {
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
+    // TODO (1) CREATE ARRAYS OF FORECAST HOURS FOR OTHER VARIABLES
     public static final String [] GFS_FORECAST_HOURS = {
             "000", "003", "006", "009", "012", "015", "018", "021",
             "024", "027", "030", "033", "036", "039", "042", "045",

@@ -10,22 +10,20 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.passageweather.MapViewModel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
+
 public class NetUtils {
 
-    public static URL buildMapURL(String region) {
-        return buildMapURL(region, Constants.VAR_WIND_GFS, Constants.DEFAULT_MAP);
-    }
-
-    public static URL buildMapURL(String region, String variable) {
-        return buildMapURL(region, variable, Constants.DEFAULT_MAP);
-    }
-
-    public static URL buildMapURL(String region, int forecastIndex) {
-        return buildMapURL(region, Constants.VAR_WIND_GFS, Constants.GFS_FORECAST_HOURS[forecastIndex]);
+    public static URL buildMapURL(MapViewModel model, int forecastIndex) {
+        String region = model.getRegion().getValue();
+        String variable = model.getVariable().getValue();
+        return buildMapURL(region, variable, Constants.GFS_FORECAST_HOURS[forecastIndex]);
     }
 
     public static URL buildMapURL(String region, String variable, int forecastIndex) {

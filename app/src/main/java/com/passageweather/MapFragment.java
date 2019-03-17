@@ -1,9 +1,12 @@
 package com.passageweather;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +21,7 @@ import com.passageweather.utils.NetUtils;
 import java.net.URL;
 
 public class MapFragment extends Fragment {
+    private MapViewModel model;
 
     public static MapFragment newInstance(int forecastNumber) {
         MapFragment fragment = new MapFragment();
@@ -30,59 +34,42 @@ public class MapFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        model = ViewModelProviders.of(getActivity()).get(MapViewModel.class);
+//        model.setForecast(getArguments().getInt(Constants.INTENT_FORECAST_KEY));
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        URL url = NetUtils.buildMapURL(MapActivity.getRegion(), getArguments().getInt(Constants.INTENT_FORECAST_KEY));
-        NetUtils.showMap(getContext(), (ImageView) view.findViewById(R.id.iv_map), url);
+//        NetUtils.showMap(getContext(), view.findViewById(R.id.iv_map), model.getUrl().getValue());
+        model.getRegion().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String variable) {
+                NetUtils.showMap(getContext(),
+                        view.findViewById(R.id.iv_map),
+                        NetUtils.buildMapURL(
+                                model,
+                                getArguments().getInt(Constants.INTENT_FORECAST_KEY)
+                        )
+                );
+            }
+        });
+        model.getVariable().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String variable) {
+                NetUtils.showMap(getContext(),
+                        view.findViewById(R.id.iv_map),
+                        NetUtils.buildMapURL(
+                                model,
+                                getArguments().getInt(Constants.INTENT_FORECAST_KEY)
+                        )
+                );
+            }
+        });
         return view;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.map, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        ImageView imageView = getView().findViewById(R.id.iv_map);
-        String region = MapActivity.getRegion();
-        int forecast = getArguments().getInt(Constants.INTENT_FORECAST_KEY);
-        URL url = null;
-        switch (item.getItemId()) {
-            case R.id.wind:
-                url = NetUtils.buildMapURL(region, Constants.VAR_WIND_GFS , forecast);
-                break;
-            case R.id.pressure:
-                url = NetUtils.buildMapURL(region, Constants.VAR_SURFACE_PRESSURE , forecast);
-                break;
-            case R.id.waves:
-                url = NetUtils.buildMapURL(region, Constants.VAR_WAVES , forecast);
-                break;
-            case R.id.visibility:
-                url = NetUtils.buildMapURL(region, Constants.VAR_VISIBILITY , forecast);
-                break;
-            case R.id.precipitation:
-                url = NetUtils.buildMapURL(region, Constants.VAR_PRECIPITATION , forecast);
-                break;
-            case R.id.clouds:
-                url = NetUtils.buildMapURL(region, Constants.VAR_CLOUD_COVER , forecast);
-                break;
-            case R.id.play:
-                return true;
-            case R.id.share:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        NetUtils.showMap(getContext(), imageView, url);
-        return true;
     }
 
 }
