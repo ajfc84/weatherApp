@@ -16,12 +16,14 @@ public final class Constants {
 
 
     /* Intents */
-    public static final String INTENT_MAP_KEY = "map_key";
     public static final String INTENT_OPTION_KEY = "option";
     public static final String INTENT_REGION_KEY = "region";
     public static final String INTENT_SUBREGION_KEY = "subregion";
     public static final String INTENT_VARIABLE_KEY = "variable";
     public static final String INTENT_FORECAST_KEY = "forecast";
+
+    /* Instance State */
+    public static final String STATE_VARIABLE_KEY = "itemId";
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";

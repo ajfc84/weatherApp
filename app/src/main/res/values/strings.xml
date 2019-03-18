@@ -9,6 +9,10 @@
     <string name="play">Play</string>
     <string name="share">Share</string>
     <string name="wind">Wind</string>
+    <string name="gfs">GFS</string>
+    <string name="coamps">COAMPS</string>
+    <string name="wrf">WRF</string>
+    <string name="nam">NAM</string>
     <string name="pressure">Surface Pressure</string>
     <string name="waves">Waves</string>
     <string name="visibility">Visibility</string>

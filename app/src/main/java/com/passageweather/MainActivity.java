@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickRegion(View v) {
         Intent intent = new Intent(this, MapActivity.class);
         if(findViewById(R.id.ll_mediterranean) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_MEDITERRANEAN_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_MEDITERRANEAN_SEA);
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_west_indies) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_WEST_INDIES_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BERMUDA_TO_WEST_INDIES);
@@ -156,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_north_atlantic) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_ATLANTIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_ATLANTIC_OCEAN);
@@ -232,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_south_atlantic) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_SOUTH_ATLANTIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_ATLANTIC_OCEAN);
@@ -254,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_north_pacific) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_PACIFIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_PACIFIC_OCEAN);
@@ -306,6 +311,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_south_pacific) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_SOUTH_PACIFIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_PACIFIC_OCEAN);
@@ -343,6 +349,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_indian) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_INDIAN_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_INDIAN_OCEAN);
@@ -368,6 +375,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_race_regatta) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_REGATTA_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_ATLANTIC_RALLY);
@@ -420,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if(findViewById(R.id.ll_great_lake) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_ATLANTIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GREAT_LAKES);

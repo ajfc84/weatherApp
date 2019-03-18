@@ -84,9 +84,9 @@ public class OceanAdapter extends RecyclerView.Adapter<OceanAdapter.OceanViewHol
 
     */
 /*
-    * Call the map Activity
+    * Call the menu_map Activity
     *
-    * @param name - map path name to show
+    * @param name - menu_map path name to show
      *//*
 
 
