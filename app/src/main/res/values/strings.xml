@@ -14,6 +14,7 @@
     <string name="visibility">Visibility</string>
     <string name="precipitation">Precipitation</string>
     <string name="clouds">Cloud Cover</string>
+    <string name="gulfstream">Gulf Stream</string>
 
     <string name="med">Mediterranean</string>
     <string name="west">West Indies</string>

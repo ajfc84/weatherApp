@@ -23,11 +23,7 @@ public class NetUtils {
     public static URL buildMapURL(MapViewModel model, int forecastIndex) {
         String region = model.getRegion().getValue();
         String variable = model.getVariable().getValue();
-        return buildMapURL(region, variable, Constants.GFS_FORECAST_HOURS[forecastIndex]);
-    }
-
-    public static URL buildMapURL(String region, String variable, int forecastIndex) {
-        return buildMapURL(region, variable, Constants.GFS_FORECAST_HOURS[forecastIndex]);
+        return buildMapURL(region, variable, WeatherUtils.getForecastHours(model)[forecastIndex]);
     }
 
     public static URL buildMapURL(String region, String variable, String forecast) {

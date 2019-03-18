@@ -37,6 +37,11 @@
             android:title="@string/clouds"
             app:showAsAction="never"
             />
+        <item
+            android:id="@+id/gulfstream"
+            android:title="@string/gulfstream"
+            app:showAsAction="never"
+            />
     </group>
     <item
         android:id="@+id/share"

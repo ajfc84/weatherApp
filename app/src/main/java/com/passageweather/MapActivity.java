@@ -33,7 +33,7 @@ public class MapActivity extends AppCompatActivity {
             model = ViewModelProviders.of(this).get(MapViewModel.class);
             model.setRegion(intent.getStringExtra(Constants.INTENT_REGION_KEY));
             mPager = findViewById(R.id.vp_pager);
-            pagerAdapter = new MapPagerAdapter(getSupportFragmentManager());
+            pagerAdapter = new MapPagerAdapter(getSupportFragmentManager(), model);
             mPager.setAdapter(pagerAdapter);
             mPager.setPageTransformer(true, new DepthPageTransformer());
             model.getRegion().observe(this, new Observer<String>() {
