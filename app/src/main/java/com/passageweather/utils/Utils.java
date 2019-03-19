@@ -1,13 +1,16 @@
 package com.passageweather.utils;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.net.Uri;
 
+import com.passageweather.MapActivity;
+import com.passageweather.MapViewModel;
 import com.passageweather.R;
 
-import java.net.MalformedURLException;
 import java.net.URL;
+
+import androidx.lifecycle.ViewModelProviders;
 
 public class Utils {
 
@@ -74,6 +77,29 @@ public class Utils {
         labels[Constants.OPTION_INDIAN_INDEX]  = res.getStringArray(R.array.options_indian_labels);
         labels[Constants.OPTION_REGATTA_INDEX]  = res.getStringArray(R.array.options_regattas_labels);
         return labels;
+    }
+
+    public static void play(MapActivity activity) {
+        MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
+        URL url = null;
+        for (int i = model.getCurrentForecast(); i < WeatherUtils.getForecastHours(model).length; i++) {
+            url = NetUtils.buildMapURL(model, i);
+            try {
+                Thread.sleep(3000); // Do not do this in the UI Thread
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            NetUtils.showMap(activity, activity.findViewById(R.id.iv_map), url);
+        }
+    };
+
+    public static void shareMap(MapActivity activity) {
+        MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, NetUtils.buildCurrentMapUri(model)); // TODO (1) Share local file
+        shareIntent.setType("image/png");
+        activity.startActivity(Intent.createChooser(shareIntent, activity.getResources().getText(R.string.share_map)));
     }
 
 }

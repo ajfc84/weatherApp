@@ -5,6 +5,8 @@
 
     <string name="welcome_message">Please, choose a region!</string>
 
+    <string name="share_map">Share map to...</string>
+
     /* Menu items */
     <string name="play">Play</string>
     <string name="share">Share</string>
@@ -76,6 +78,10 @@
     <string name="sflor">South Florida</string>
     <string name="greatlks">Great Lakes</string>
 
+    <string name="lsup">Lake Superior</string>
+    <string name="lmichigan">Lake Michingan and Huron</string>
+    <string name="lontario">Lake Ontario and Erie</string>
+
     <string name="satlantic">South Atlantic Ocean</string>
     <string name="atlantocean">Tropical Atlantic Ocean</string>
     <string name="caperj">Cape Town to Rio de Janeiro</string>
@@ -131,9 +137,6 @@
     <string name="sydneyrc">Sydney Hobart Race</string>
     <string name="transatlantrc">Transatlantic Race</string>
     <string name="transparc">Transpac Race</string>
-
-    <string name="lsup">Lake Superior</string>
-    <string name="schina">South China Sea</string>
 
     <string name="map_description">Area map</string>
 

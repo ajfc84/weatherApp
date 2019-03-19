@@ -12,12 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.passageweather.utils.Constants;
+import com.passageweather.utils.Utils;
 
 public class MapActivity extends AppCompatActivity {
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
     private MapViewModel model;
-    private int variableSelectedId;
     private MenuItem variableSelected;
     private int menu_index;
 
@@ -47,13 +47,11 @@ public class MapActivity extends AppCompatActivity {
                 }
             });
         }
-        if(savedInstanceState != null && savedInstanceState.containsKey(Constants.STATE_VARIABLE_KEY)) variableSelectedId = savedInstanceState.getInt(Constants.STATE_VARIABLE_KEY);
-        else variableSelectedId = R.id.gfs; // Default selected menu variable on app start
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt(Constants.STATE_VARIABLE_KEY, variableSelectedId); // variableSelected needs to be Lifecycle proof
+//        savedInstanceState.putInt(Constants.STATE_VARIABLE_KEY, variableSelectedId); // variableSelected needs to be Lifecycle proof
         savedInstanceState.putInt(Constants.INTENT_OPTION_KEY, menu_index);
     }
 
@@ -121,7 +119,6 @@ public class MapActivity extends AppCompatActivity {
                 }
                 else if(region.equals(Constants.REGION_CAPE_HATTERAS_TO_FLORIDA) ||
                         region.equals(Constants.REGION_NEWPORT_TO_BERMUDA) ||
-                        region.equals(Constants.REGION_BERMUDA_TO_WEST_INDIES) ||
                         region.equals(Constants.REGION_SOUTH_FLORIDA) ||
                         region.equals(Constants.REGION_GULF_OF_MEXICO)) {
                     menu.findItem(R.id.wind).setVisible(false);
@@ -184,34 +181,45 @@ public class MapActivity extends AppCompatActivity {
         String variable = model.getVariable().getValue();
         switch (variable) {
             case Constants.VAR_WIND_GFS:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.gfs);
+                if(variableSelected == null) variableSelected = menu.findItem(R.id.wind); // gfs is wind when standalone
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WIND_COAMPS:
-                menu.findItem(R.id.coamps).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.coamps);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WIND_WRF:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.wrf);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WIND_NAM:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.nam);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_SURFACE_PRESSURE:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.pressure);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WAVES:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.waves);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_VISIBILITY:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.visibility);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_PRECIPITATION:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.precipitation);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_CLOUD_COVER:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.clouds);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_GULF_STREAM:
-                menu.findItem(R.id.gfs).setEnabled(false); // Set "selected" variable on menu
+                variableSelected = menu.findItem(R.id.gulfstream);
+                variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
         }
         return true;
@@ -221,6 +229,9 @@ public class MapActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.gfs:
+                model.setVariable(Constants.VAR_WIND_GFS);
+                break;
+            case R.id.wind: // gfs is wind when standalone
                 model.setVariable(Constants.VAR_WIND_GFS);
                 break;
             case R.id.coamps:
@@ -251,15 +262,21 @@ public class MapActivity extends AppCompatActivity {
                 model.setVariable(Constants.VAR_GULF_STREAM);
                 break;
             case R.id.play:
+/*
+                Utils.play(this);
+                pagerAdapter.notifyDataSetChanged();
+*/
                 return true;
             case R.id.share:
+/*
+                Utils.shareMap(this);
+*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-        if(variableSelected != null) variableSelected.setEnabled(true);
+        variableSelected.setEnabled(true);
         item.setEnabled(false);
-        variableSelectedId = item.getItemId();
         variableSelected = item;
         return true;
     }

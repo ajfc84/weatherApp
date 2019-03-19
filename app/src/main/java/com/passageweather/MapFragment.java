@@ -18,8 +18,6 @@ import android.widget.ImageView;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
 
-import java.net.URL;
-
 public class MapFragment extends Fragment {
     private MapViewModel model;
 
@@ -37,14 +35,13 @@ public class MapFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = ViewModelProviders.of(getActivity()).get(MapViewModel.class);
-//        model.setForecast(getArguments().getInt(Constants.INTENT_FORECAST_KEY));
+        model.setCurrentForecast(getArguments().getInt(Constants.INTENT_FORECAST_KEY));
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-//        NetUtils.showMap(getContext(), view.findViewById(R.id.iv_map), model.getUrl().getValue());
         model.getRegion().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String variable) {

@@ -3,6 +3,7 @@ package com.passageweather.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.passageweather.MapActivity;
 import com.passageweather.MapViewModel;
 
 import java.net.MalformedURLException;
@@ -27,12 +29,7 @@ public class NetUtils {
     }
 
     public static URL buildMapURL(String region, String variable, String forecast) {
-        Uri uri = Uri.parse(Constants.BASE_URL)
-                .buildUpon()
-                .appendPath(region)
-                .appendPath(variable)
-                .appendPath(forecast + Constants.MAP_EXT)
-                .build();
+        Uri uri = buildMapUri(region, variable, forecast);
         URL url = null;
         try {
             url = new URL(uri.toString());
@@ -40,6 +37,23 @@ public class NetUtils {
             e.printStackTrace();
         }
         return url;
+    }
+
+    public static Uri buildCurrentMapUri(MapViewModel model) {
+        String region = model.getRegion().getValue();
+        String variable = model.getVariable().getValue();
+        int currentForecast = model.getCurrentForecast();
+        return buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[currentForecast]);
+    }
+
+    public static Uri buildMapUri(String region, String variable, String forecast) {
+        Uri uri = Uri.parse(Constants.BASE_URL)
+                .buildUpon()
+                .appendPath(region)
+                .appendPath(variable)
+                .appendPath(forecast + Constants.MAP_EXT)
+                .build();
+        return uri;
     }
 
     public static void showMap(final Context context, final ImageView imageView, final URL url) {
@@ -58,7 +72,8 @@ public class NetUtils {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Unable to retrieve map!", Toast.LENGTH_LONG).show();
+                        Log.e(context.getClass().getName(), error.getMessage());
                     }
                 });
         MapClient.getInstance(context).addToRequestQueue(imageRequest);

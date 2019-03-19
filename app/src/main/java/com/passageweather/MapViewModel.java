@@ -1,9 +1,8 @@
 package com.passageweather;
 
-import com.passageweather.utils.Constants;
-import com.passageweather.utils.NetUtils;
+import android.view.MenuItem;
 
-import java.net.URL;
+import com.passageweather.utils.Constants;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 public class MapViewModel extends ViewModel {
     private MutableLiveData<String> mRegion;
     private MutableLiveData<String> mVariable;
+    private int currentForecast;
 
     public void setRegion(String region) {
         if(mRegion == null) mRegion = new MutableLiveData<>();
@@ -33,6 +33,14 @@ public class MapViewModel extends ViewModel {
             mVariable.setValue(Constants.VAR_WIND_GFS);
         }
         return mVariable;
+    }
+
+    public int getCurrentForecast() {
+        return currentForecast;
+    }
+
+    public void setCurrentForecast(int currentForecast) {
+        this.currentForecast = currentForecast;
     }
 
 }

@@ -6,13 +6,11 @@ import com.passageweather.MapViewModel;
 
 public class WeatherUtils {
 
-    public static void playForecast() {
-
-    };
-
-    public static void nextForecast() {
-
-    }
+    /**
+     * Get the Forecast Hours
+     * @param model - ViewModel of the Maps that contains the current forecast variable
+     * @return Array with the Forecast Hours for the selected forecast variable
+     */
 
     public static String [] getForecastHours(MapViewModel model) {
         String variable = model.getVariable().getValue();

@@ -13,25 +13,6 @@
         app:showAsAction="never"
         />
     <item
-        android:id="@+id/windvarious"
-        android:title="@string/wind"
-        app:showAsAction="never"
-        android:enabled="false"
-        >
-        <menu>
-            <item
-                android:id="@+id/gfs"
-                android:title="@string/gfs"
-                app:showAsAction="never"
-                />
-            <item
-                android:id="@+id/nam"
-                android:title="@string/nam"
-                app:showAsAction="never"
-                />
-        </menu>
-    </item>
-    <item
         android:id="@+id/pressure"
         android:title="@string/pressure"
         app:showAsAction="never"

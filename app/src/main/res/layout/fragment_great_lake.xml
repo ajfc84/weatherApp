@@ -28,13 +28,13 @@
             />
         <Button
             android:id="@+id/region5"
-            android:text="@string/schina"
+            android:text="@string/lmichigan"
             android:drawableLeft="@drawable/michuron"
             style="@style/NavRegionButton"
             />
         <Button
             android:id="@+id/region6"
-            android:text="@string/swaust"
+            android:text="@string/lontario"
             android:drawableLeft="@drawable/onterie"
             style="@style/NavRegionButton"
             />
