@@ -1,16 +1,23 @@
 package com.passageweather;
 
-import android.view.MenuItem;
-
 import com.passageweather.utils.Constants;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class MapViewModel extends ViewModel {
+//    private MapRepository repo;
+
     private MutableLiveData<String> mRegion;
     private MutableLiveData<String> mVariable;
     private int currentForecast;
+
+/*
+    @Inject
+    MapViewModel(MapRepository repository) {
+        this.repo = repository
+    }
+*/
 
     public void setRegion(String region) {
         if(mRegion == null) mRegion = new MutableLiveData<>();

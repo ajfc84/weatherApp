@@ -47,12 +47,36 @@ public class MapActivity extends AppCompatActivity {
                 }
             });
         }
+/*
+        if(savedInstanceState != null) {
+            if(savedInstanceState.containsKey(Constants.STATE_REGION_KEY))
+                model.setRegion(savedInstanceState.getString(Constants.STATE_REGION_KEY));
+            if(savedInstanceState.containsKey(Constants.STATE_VARIABLE_KEY))
+                model.setVariable(savedInstanceState.getString(Constants.STATE_VARIABLE_KEY));
+            if(savedInstanceState.containsKey(Constants.STATE_FORECAST_KEY))
+                model.setCurrentForecast(savedInstanceState.getInt(Constants.STATE_FORECAST_KEY));
+        }
+*/
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        savedInstanceState.putInt(Constants.STATE_VARIABLE_KEY, variableSelectedId); // variableSelected needs to be Lifecycle proof
         savedInstanceState.putInt(Constants.INTENT_OPTION_KEY, menu_index);
+        /* Unfortunately we need this in case of the process being destroyed on the stack
+        because the user as to many apps in the background and the system needs to free
+        resources. ViewModel survives configuration changes but not save and restore.
+         */
+/*
+        savedInstanceState.putString(Constants.STATE_REGION_KEY, model.getRegion().getValue());
+        savedInstanceState.putString(Constants.STATE_VARIABLE_KEY, model.getVariable().getValue());
+        savedInstanceState.putInt(Constants.STATE_FORECAST_KEY, model.getCurrentForecast());
+*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
     @Override

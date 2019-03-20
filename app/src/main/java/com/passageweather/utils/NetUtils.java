@@ -11,12 +11,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
-import com.passageweather.MapActivity;
 import com.passageweather.MapViewModel;
+import com.passageweather.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -68,6 +69,7 @@ public class NetUtils {
                 },
                 800,
                 600,
+                ImageView.ScaleType.CENTER, // <-
                 Bitmap.Config.ARGB_8888,
                 new Response.ErrorListener() {
                     @Override
@@ -77,6 +79,11 @@ public class NetUtils {
                     }
                 });
         MapClient.getInstance(context).addToRequestQueue(imageRequest);
+    }
+
+    public static void showMap2(Fragment fragment) {
+        ImageClient client = ImageClient.newInstance(MyApp.getAppContext());
+        client.makeUIRequest(fragment);
     }
 
 }

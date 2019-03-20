@@ -23,7 +23,9 @@ public final class Constants {
     public static final String INTENT_FORECAST_KEY = "forecast";
 
     /* Instance State */
-    public static final String STATE_VARIABLE_KEY = "itemId";
+    public static final String STATE_REGION_KEY = "region";
+    public static final String STATE_VARIABLE_KEY = "variable";
+    public static final String STATE_FORECAST_KEY = "forecast";
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
