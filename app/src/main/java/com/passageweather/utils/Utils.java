@@ -79,6 +79,7 @@ public class Utils {
         return labels;
     }
 
+/*
     public static void play(MapActivity activity) {
         MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
         URL url = null;
@@ -92,7 +93,9 @@ public class Utils {
             NetUtils.showMap(activity, activity.findViewById(R.id.iv_map), url);
         }
     };
+*/
 
+/*
     public static void shareMap(MapActivity activity) {
         MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
         Intent shareIntent = new Intent();
@@ -101,5 +104,6 @@ public class Utils {
         shareIntent.setType("image/png");
         activity.startActivity(Intent.createChooser(shareIntent, activity.getResources().getText(R.string.share_map)));
     }
+*/
 
 }
