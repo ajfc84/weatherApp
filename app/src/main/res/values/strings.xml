@@ -138,6 +138,8 @@
     <string name="transatlantrc">Transatlantic Race</string>
     <string name="transparc">Transpac Race</string>
 
+    <string name="menu">MENU</string>
+
     <string name="map_description">Area map</string>
 
 </resources>

@@ -4,15 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-    >
-
-    <ImageView
-        android:id="@+id/iv_map"
-        android:contentDescription="@string/map_description"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:src="@drawable/mapexample"
-        />
-
+        android:id="@+id/rl_button">
+        <ImageView
+            android:id="@+id/iv_map"
+            android:contentDescription="@string/map_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/mapexample"
+            android:background="@color/colorPrimary" />
+        <Button
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:background="@drawable/button_shape"
+            android:text="@string/menu"
+            android:textColor="#ffffff"
+            android:id="@+id/menu_button"
+            android:textSize="14sp"
+            style="@style/NavRegionButton"
+            android:layout_alignParentRight="true"
+            android:layout_margin="3dp"
+            android:fontFamily="sans-serif"/>
+    </RelativeLayout>
 </ScrollView>

@@ -3,8 +3,8 @@
     <color name="colorPrimary">#456d99</color>
     <color name="colorPrimaryLight">#4a7db9</color>
     <color name="colorPrimaryDark">#00295b</color>
-    <color name="colorSecondary">#ebebeb</color>
-    <color name="colorSecondaryLight">#ffffff</color>
+    <color name="colorSecondary">#DDDDDD</color>
+    <color name="colorSecondaryLight">#FFFFFF</color>
     <color name="colorSecondaryDark">#b9b9b9</color>
     <color name="colorAccent">#ffc107</color>
     <color name="colorPrimaryText">#212121</color>
@@ -12,10 +12,6 @@
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorTextIcons">#FFFFFF</color>
 
-        <color name="gray">#DDDDDD</color>
-        <color name="gray400">#BDBDBD</color>
-        <color name="gray700">#616161</color>
-        <color name="indigo900">#1A237E</color>
-        <color name="blue100">#BBDEFB</color>
-        <color name="white">#FFFFFF</color>
+
+
 </resources>
