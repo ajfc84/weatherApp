@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
-    <RelativeLayout
+    >
+
+    <ImageView
+        android:id="@+id/iv_map"
+        android:contentDescription="@string/map_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rl_button">
-        <ImageView
-            android:id="@+id/iv_map"
-            android:contentDescription="@string/map_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:src="@drawable/mapexample"
-            android:background="@color/colorPrimary" />
-        <Button
-            android:id="@+id/menu_button"
-            android:onClick="showPopupMenu"
-            android:layout_centerVertical=""
-            style="@style/NavMapButton"
-            />
-    </RelativeLayout>
-</ScrollView>
+        android:layout_height="match_parent"
+        tools:src="@drawable/mapexample"
+        />
+</FrameLayout>

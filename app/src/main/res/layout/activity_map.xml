@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.viewpager.widget.ViewPager
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/vp_pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     >
-</androidx.viewpager.widget.ViewPager>
+    <androidx.viewpager.widget.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vp_pager"
+        android:layout_width="460dp"
+        android:layout_height="match_parent"
+        />
 
+    <Button
+        android:id="@+id/menu_button"
+        android:onClick="showPopupMenu"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_shape"
+        android:text="@string/menu"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        style="@style/NavRegionButton"
+        android:layout_alignParentRight="true"
+        android:layout_margin="3dp"
+        android:fontFamily="sans-serif"
+        />
+</LinearLayout>
 

@@ -52,8 +52,7 @@ public class MapFragment extends Fragment {
         model.getVariable().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String variable) {
-                NetUtils.showMap2(fragment);
-/*
+//                NetUtils.showMap2(fragment);
                 NetUtils.showMap(getContext(),
                         view.findViewById(R.id.iv_map),
                         NetUtils.buildMapURL(
@@ -61,7 +60,6 @@ public class MapFragment extends Fragment {
                                 getArguments().getInt(Constants.INTENT_FORECAST_KEY)
                         )
                 );
-*/
             }
         });
         return view;
