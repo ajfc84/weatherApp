@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,16 +19,8 @@
         <Button
             android:id="@+id/menu_button"
             android:onClick="showPopupMenu"
-            android:layout_width="59dp"
-            android:layout_height="59dp"
-            android:background="@drawable/button_shape"
-            android:text="@string/menu"
-            android:textColor="#ffffff"
-            android:textSize="14sp"
-            style="@style/NavRegionButton"
-            android:layout_alignParentRight="true"
-            android:layout_margin="3dp"
-            android:fontFamily="sans-serif"
+            android:layout_centerVertical=""
+            style="@style/NavMapButton"
             />
     </RelativeLayout>
 </ScrollView>
