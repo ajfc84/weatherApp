@@ -14,6 +14,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">1dp</item>
     </style>
+    <style name="VarMenu">
+        <item name="android:background">@drawable/gradient_button</item>
+    </style>
     <style name="NavOptionButton" parent="NavButton">
         <item name="android:onClick">onClickOption</item>
     </style>

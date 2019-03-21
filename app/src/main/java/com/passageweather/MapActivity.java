@@ -2,6 +2,7 @@ package com.passageweather;
 
 import android.content.Intent;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.PagerAdapter;
@@ -17,7 +18,7 @@ import android.widget.PopupMenu;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.Utils;
 
-public class MapActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
     private MapViewModel model;
@@ -37,15 +38,17 @@ public class MapActivity extends AppCompatActivity implements PopupMenu.OnMenuIt
             pagerAdapter = new MapPagerAdapter(getSupportFragmentManager(), model);
             mPager.setAdapter(pagerAdapter);
             mPager.setPageTransformer(true, new DepthPageTransformer());
+/*
             model.getRegion().observe(this, new Observer<String>() {
                 @Override
                 public void onChanged(String region) {
                     pagerAdapter.notifyDataSetChanged();
                 }
             });
+*/
             model.getVariable().observe(this, new Observer<String>() {
                 @Override
-                public void onChanged(String region) {
+                public void onChanged(String variable) {
                     pagerAdapter.notifyDataSetChanged();
                 }
             });
@@ -60,6 +63,11 @@ public class MapActivity extends AppCompatActivity implements PopupMenu.OnMenuIt
                 model.setCurrentForecast(savedInstanceState.getInt(Constants.STATE_FORECAST_KEY));
         }
 */
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
     }
 
     @Override
