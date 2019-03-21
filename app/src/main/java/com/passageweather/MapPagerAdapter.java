@@ -24,4 +24,6 @@ public class MapPagerAdapter extends FragmentStatePagerAdapter {
         return numPages;
     }
 
+
+
 }

@@ -15,10 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
 import com.passageweather.utils.Constants;
+import com.passageweather.utils.NetUtils;
+import com.passageweather.utils.PlayForecast;
 import com.passageweather.utils.Utils;
+import com.passageweather.utils.WeatherUtils;
 
 public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
     private ViewPager mPager;
@@ -26,6 +30,9 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     private MapViewModel model;
     private MenuItem variableSelected;
     private int menu_index;
+    private boolean isPlaying = false;
+    private Thread taskPlay = null;
+    private PlayForecast playTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +95,21 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     }
 
     public void play(View v) {
+        isPlaying = !isPlaying;
+        if(isPlaying) {
+            ((ImageButton) v).setImageResource(R.drawable.ic_pause_white_24dp);
+            playTask = Utils.playForecast(this);
+        }
+        else {
+            ((ImageButton) v).setImageResource(R.drawable.ic_play_arrow_white_24dp);
+            if(playTask != null) {
+                playTask.stop();
+                //int cItem = model.getCurrentForecast();
+                pagerAdapter.notifyDataSetChanged();
+                //mPager.setCurrentItem(cItem);
+            }
 
+        }
     }
 
     public void share(View v) {

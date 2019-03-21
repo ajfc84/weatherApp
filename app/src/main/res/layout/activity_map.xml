@@ -26,19 +26,19 @@
             />
         <ImageButton
             android:id="@+id/menu_button2"
-            android:onClick="showVarMenu"
+            android:onClick="share"
             android:src="@drawable/ic_share_white_24dp"
             style="@style/NavMapButton"
             />
         <ImageButton
             android:id="@+id/menu_button3"
-            android:onClick="share"
+            android:onClick="showTimeMenu"
             android:src="@drawable/ic_access_time_white_24dp"
             style="@style/NavMapButton"
             />
         <ImageButton
             android:id="@+id/menu_button4"
-            android:onClick="showTimeMenu"
+            android:onClick="showVarMenu"
             android:src="@drawable/ic_more_vert_white_24dp"
             style="@style/NavMapButton"
             />

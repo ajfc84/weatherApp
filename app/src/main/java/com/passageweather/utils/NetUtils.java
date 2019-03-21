@@ -1,5 +1,6 @@
 package com.passageweather.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -40,13 +41,6 @@ public class NetUtils {
         return url;
     }
 
-    public static Uri buildCurrentMapUri(MapViewModel model) {
-        String region = model.getRegion().getValue();
-        String variable = model.getVariable().getValue();
-        int currentForecast = model.getCurrentForecast();
-        return buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[currentForecast]);
-    }
-
     public static Uri buildMapUri(String region, String variable, String forecast) {
         Uri uri = Uri.parse(Constants.BASE_URL)
                 .buildUpon()
@@ -55,6 +49,28 @@ public class NetUtils {
                 .appendPath(forecast + Constants.MAP_EXT)
                 .build();
         return uri;
+    }
+
+    public static Uri buildCurrentMapUri(MapViewModel model) {
+        String region = model.getRegion().getValue();
+        String variable = model.getVariable().getValue();
+        int currentForecast = model.getCurrentForecast();
+        return buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[currentForecast]);
+    }
+
+    public static URL buildNextForecastMapURL(MapViewModel model) {
+        String region = model.getRegion().getValue();
+        String variable = model.getVariable().getValue();
+        int currentForecast = model.getCurrentForecast();
+        Uri uri =  buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[++currentForecast]);
+        model.setCurrentForecast(++currentForecast);
+        URL url = null;
+        try {
+            url = new URL(uri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 
     public static void showMap(final Context context, final ImageView imageView, final URL url) {

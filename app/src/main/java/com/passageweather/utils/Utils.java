@@ -10,6 +10,7 @@ import com.passageweather.R;
 
 import java.net.URL;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 public class Utils {
@@ -79,21 +80,11 @@ public class Utils {
         return labels;
     }
 
-/*
-    public static void play(MapActivity activity) {
-        MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
-        URL url = null;
-        for (int i = model.getCurrentForecast(); i < WeatherUtils.getForecastHours(model).length; i++) {
-            url = NetUtils.buildMapURL(model, i);
-            try {
-                Thread.sleep(3000); // Do not do this in the UI Thread
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            NetUtils.showMap(activity, activity.findViewById(R.id.iv_map), url);
-        }
-    };
-*/
+    public static PlayForecast playForecast(FragmentActivity activity) {
+        PlayForecast playTask = PlayForecast.getInstance(activity);
+        new Thread(playTask, "t1").start();
+        return playTask;
+    }
 
 /*
     public static void shareMap(MapActivity activity) {
