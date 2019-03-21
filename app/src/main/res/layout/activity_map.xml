@@ -11,20 +11,34 @@
         android:layout_width="460dp"
         android:layout_height="match_parent"
         />
-
-    <Button
-        android:id="@+id/menu_button"
-        android:onClick="showPopupMenu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/button_shape"
-        android:text="@string/menu"
-        android:textColor="#ffffff"
-        android:textSize="14sp"
-        style="@style/NavRegionButton"
-        android:layout_alignParentRight="true"
-        android:layout_margin="3dp"
-        android:fontFamily="sans-serif"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical|center_horizontal"
+        >
+        <Button
+            android:id="@+id/menu_button1"
+            android:onClick="showPopupMenu"
+            style="@style/NavMapButton"
+            android:gravity="center"
+            />
+        <Button
+            android:id="@+id/menu_button2"
+            android:onClick="showPopupMenu"
+            style="@style/NavMapButton"
+            />
+        <Button
+            android:id="@+id/menu_button3"
+            android:onClick="showPopupMenu"
+            style="@style/NavMapButton"
+            />
+        <Button
+            android:id="@+id/menu_button4"
+            android:onClick="showPopupMenu"
+            style="@style/NavMapButton"
+            />
+    </LinearLayout>
 </LinearLayout>
 
