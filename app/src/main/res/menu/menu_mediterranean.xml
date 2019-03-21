@@ -4,10 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
-        android:id="@+id/play"
-        android:title="@string/play"
-        />
-    <item
         android:title="@string/wind"
         app:showAsAction="never"
         >
@@ -53,9 +49,5 @@
         android:id="@+id/clouds"
         android:title="@string/clouds"
         app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/share"
-        android:title="@string/share"
         />
 </menu>

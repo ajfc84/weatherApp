@@ -75,4 +75,9 @@ public class NavMenuFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().setTitle(R.string.app_name);
+    }
 }

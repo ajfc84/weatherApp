@@ -4,10 +4,6 @@
     >
 
     <item
-        android:id="@+id/play"
-        android:title="@string/play"
-        />
-    <item
         android:id="@+id/wind"
         android:title="@string/wind"
         app:showAsAction="never"
@@ -65,9 +61,4 @@
         android:title="@string/gulfstream"
         app:showAsAction="never"
         />
-    <item
-        android:id="@+id/share"
-        android:title="@string/share"
-        />
-
 </menu>

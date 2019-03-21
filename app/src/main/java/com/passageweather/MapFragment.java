@@ -44,11 +44,11 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-        Fragment fragment = this;
         /* Do not observe Region or we will have duplicate internet calls
         everytime a fragment starts, instead destroy MapActivity and create the
         new activity with the new chosen region
         */
+        Fragment fragment = this;
         model.getVariable().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String variable) {
@@ -66,5 +66,3 @@ public class MapFragment extends Fragment {
     }
 
 }
-
-

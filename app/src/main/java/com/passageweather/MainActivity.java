@@ -49,30 +49,39 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.option1:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_MEDITERRANEAN_INDEX);
+                setTitle(R.string.med);
                 break;
             case R.id.option2:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_WEST_INDIES_INDEX);
+                setTitle(R.string.west);
                 break;
             case R.id.option3:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_ATLANTIC_INDEX);
+                setTitle(R.string.natl);
                 break;
             case R.id.option4:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_ATLANTIC_INDEX);
+                setTitle(R.string.satl);
                 break;
             case R.id.option5:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_PACIFIC_INDEX);
+                setTitle(R.string.npac);
                 break;
             case R.id.option6:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_PACIFIC_INDEX);
+                setTitle(R.string.spac);
                 break;
             case R.id.option7:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_INDIAN_INDEX);
+                setTitle(R.string.ioce);
                 break;
             case R.id.option8:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_REGATTA_INDEX);
+                setTitle(R.string.rr);
                 break;
             case R.id.option11:
                 regionFragment = NavMenuFragment.newInstance(Constants.REGION_GREAT_LAKES);
+                setTitle(R.string.greatlks);
                 break;
         }
         fragmentManager.beginTransaction()

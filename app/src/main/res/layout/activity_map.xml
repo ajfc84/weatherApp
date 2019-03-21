@@ -18,25 +18,28 @@
         android:background="@color/colorPrimary"
         android:gravity="center_vertical|center_horizontal"
         >
-        <Button
+        <ImageButton
             android:id="@+id/menu_button1"
-            android:onClick="showPopupMenu"
+            android:onClick="play"
+            android:src="@drawable/ic_play_arrow_white_24dp"
             style="@style/NavMapButton"
-            android:gravity="center"
             />
-        <Button
+        <ImageButton
             android:id="@+id/menu_button2"
-            android:onClick="showPopupMenu"
+            android:onClick="showVarMenu"
+            android:src="@drawable/ic_share_white_24dp"
             style="@style/NavMapButton"
             />
-        <Button
+        <ImageButton
             android:id="@+id/menu_button3"
-            android:onClick="showPopupMenu"
+            android:onClick="share"
+            android:src="@drawable/ic_access_time_white_24dp"
             style="@style/NavMapButton"
             />
-        <Button
+        <ImageButton
             android:id="@+id/menu_button4"
-            android:onClick="showPopupMenu"
+            android:onClick="showTimeMenu"
+            android:src="@drawable/ic_more_vert_white_24dp"
             style="@style/NavMapButton"
             />
     </LinearLayout>
