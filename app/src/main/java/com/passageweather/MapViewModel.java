@@ -1,6 +1,7 @@
 package com.passageweather;
 
 import com.passageweather.utils.Constants;
+import com.passageweather.utils.WeatherUtils;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -58,6 +59,19 @@ public class MapViewModel extends ViewModel {
             isPlaying.setValue(false);
         }
         return isPlaying;
+    }
+
+    public int previousForecast() {
+        currentForecast -= 1;
+        if(currentForecast == -1) currentForecast = WeatherUtils.getNumberOfForecastHours(getVariable().getValue()) - 1;
+        return currentForecast;
+    }
+
+    public int nextForecast() {
+        currentForecast += 1;
+        int forecastHours = WeatherUtils.getNumberOfForecastHours(getVariable().getValue());
+        if(currentForecast == forecastHours) currentForecast = 0;
+        return currentForecast;
     }
 
 }

@@ -43,7 +43,8 @@ public class PagerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ViewPager mPager = view.findViewById(R.id.vp_pager);
         // inside a Fragment -> childFragmentManager, inside an Activity -> SupportFragmentManager
-        PagerAdapter pagerAdapter = new MapPagerAdapter(getChildFragmentManager(), model);
+        PagerAdapter pagerAdapter = new MapPagerAdapter(getChildFragmentManager(), model, mPager);
+//        mPager.setCurrentItem(1);
         mPager.setAdapter(pagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
         model.getVariable().observe(this, new Observer<String>() {
