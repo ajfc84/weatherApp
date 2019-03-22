@@ -62,8 +62,8 @@ public class NetUtils {
         String region = model.getRegion().getValue();
         String variable = model.getVariable().getValue();
         int currentForecast = model.getCurrentForecast();
-        Uri uri =  buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[++currentForecast]);
-        model.setCurrentForecast(++currentForecast);
+        Uri uri =  buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[currentForecast++]);
+        model.setCurrentForecast(currentForecast++);
         URL url = null;
         try {
             url = new URL(uri.toString());

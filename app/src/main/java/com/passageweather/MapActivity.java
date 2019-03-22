@@ -2,27 +2,23 @@ package com.passageweather;
 
 import android.content.Intent;
 
-import androidx.core.view.MotionEventCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
 import com.passageweather.utils.Constants;
-import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.PlayForecast;
 import com.passageweather.utils.Utils;
-import com.passageweather.utils.WeatherUtils;
 
 public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
     private ViewPager mPager;
@@ -30,15 +26,15 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     private MapViewModel model;
     private MenuItem variableSelected;
     private int menu_index;
-    private boolean isPlaying = false;
-    private Thread taskPlay = null;
     private PlayForecast playTask = null;
+    private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         Intent intent = getIntent();
+        fm = getSupportFragmentManager();
         if (intent != null && intent.hasExtra(Constants.INTENT_REGION_KEY)) {
             model = ViewModelProviders.of(this).get(MapViewModel.class);
             model.setRegion(intent.getStringExtra(Constants.INTENT_REGION_KEY));
@@ -95,20 +91,31 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     }
 
     public void play(View v) {
-        isPlaying = !isPlaying;
-        if(isPlaying) {
+        boolean play = !model.isPlaying().getValue();
+        model.isPlaying().setValue(play);
+        if(play) {
+            PlayMapFragment playFragment = PlayMapFragment.newInstance(model.getCurrentForecast());
+            fm.beginTransaction()
+                    .replace(R.id.fl_fragment_map,
+                            playFragment)
+                    .addToBackStack(null)
+                    .commit();
             ((ImageButton) v).setImageResource(R.drawable.ic_pause_white_24dp);
             playTask = Utils.playForecast(this);
+            model.isPlaying().observe(this, new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean isPlaying) {
+                    if(!isPlaying) {
+                        ((ImageButton) v).setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                        fm.beginTransaction().remove(playFragment).commit();
+                        model.isPlaying().removeObserver(this);
+                    }
+                }
+            });
         }
         else {
-            ((ImageButton) v).setImageResource(R.drawable.ic_play_arrow_white_24dp);
-            if(playTask != null) {
-                playTask.stop();
-                //int cItem = model.getCurrentForecast();
-                pagerAdapter.notifyDataSetChanged();
-                //mPager.setCurrentItem(cItem);
-            }
-
+            playTask.stop();
+            model.isPlaying().setValue(false);
         }
     }
 

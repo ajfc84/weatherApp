@@ -2,6 +2,7 @@ package com.passageweather;
 
 import com.passageweather.utils.Constants;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -11,6 +12,7 @@ public class MapViewModel extends ViewModel {
     private MutableLiveData<String> mRegion;
     private MutableLiveData<String> mVariable;
     private int currentForecast;
+    private MutableLiveData<Boolean> isPlaying;
 
 /*
     @Inject
@@ -48,6 +50,14 @@ public class MapViewModel extends ViewModel {
 
     public void setCurrentForecast(int currentForecast) {
         this.currentForecast = currentForecast;
+    }
+
+    public MutableLiveData<Boolean> isPlaying() {
+        if(isPlaying == null) {
+            this.isPlaying = new MutableLiveData<>();
+            isPlaying.setValue(false);
+        }
+        return isPlaying;
     }
 
 }

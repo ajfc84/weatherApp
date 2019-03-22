@@ -1,30 +1,26 @@
 package com.passageweather;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.passageweather.utils.Constants;
+import com.passageweather.utils.NetUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import com.passageweather.utils.Constants;
-import com.passageweather.utils.NetUtils;
-
-public class MapFragment extends Fragment {
+public class PlayMapFragment extends Fragment {
     private MapViewModel model;
 
-    public MapFragment() {};
+    public PlayMapFragment() {};
 
-    public static MapFragment newInstance(int forecastNumber) {
-        MapFragment fragment = new MapFragment();
+    public static PlayMapFragment newInstance(int forecastNumber) {
+        PlayMapFragment fragment = new PlayMapFragment();
         Bundle args = new Bundle();
 
         args.putInt(Constants.INTENT_FORECAST_KEY, forecastNumber);
@@ -45,12 +41,13 @@ public class MapFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_play_map, container, false);
         /* Do not observe Region or we will have duplicate internet calls
         everytime a fragment starts, instead destroy MapActivity and create the
         new activity with the new chosen region
         */
-        Fragment fragment = this;
+//        Fragment fragment = this;
+/*
         model.getVariable().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String variable) {
@@ -64,7 +61,9 @@ public class MapFragment extends Fragment {
                 );
             }
         });
+*/
         return view;
     }
+
 
 }

@@ -24,20 +24,21 @@ public class PlayForecast implements Runnable {
     public void run() {
         MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
         for(int i = model.getCurrentForecast(); !exit && i < WeatherUtils.getForecastHours(model).length; i++) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NetUtils.showMap(activity,
+                            activity.findViewById(R.id.iv_play_map),
+                            NetUtils.buildNextForecastMapURL(model));
+                }
+            });
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    NetUtils.showMap(activity,
-                            activity.findViewById(R.id.iv_map),
-                            NetUtils.buildNextForecastMapURL(model));
-                }
-            });
         }
+        model.isPlaying().postValue(false);
     }
 
     public void stop() {
