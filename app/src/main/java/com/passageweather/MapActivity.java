@@ -21,8 +21,6 @@ import com.passageweather.utils.PlayForecast;
 import com.passageweather.utils.Utils;
 
 public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
-    private ViewPager mPager;
-    private PagerAdapter pagerAdapter;
     private MapViewModel model;
     private MenuItem variableSelected;
     private int menu_index;
@@ -39,24 +37,11 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
             model = ViewModelProviders.of(this).get(MapViewModel.class);
             model.setRegion(intent.getStringExtra(Constants.INTENT_REGION_KEY));
             menu_index = intent.getIntExtra(Constants.INTENT_OPTION_KEY, 0);
-            mPager = findViewById(R.id.vp_pager);
-            pagerAdapter = new MapPagerAdapter(getSupportFragmentManager(), model);
-            mPager.setAdapter(pagerAdapter);
-            mPager.setPageTransformer(true, new DepthPageTransformer());
-/*
-            model.getRegion().observe(this, new Observer<String>() {
-                @Override
-                public void onChanged(String region) {
-                    pagerAdapter.notifyDataSetChanged();
-                }
-            });
-*/
-            model.getVariable().observe(this, new Observer<String>() {
-                @Override
-                public void onChanged(String variable) {
-                    pagerAdapter.notifyDataSetChanged();
-                }
-            });
+            PagerFragment pagerFragment = PagerFragment.newInstance();
+            fm.beginTransaction()
+                    .add(R.id.fl_map,
+                            pagerFragment)
+                    .commit();
         }
 /*
         if(savedInstanceState != null) {
@@ -94,20 +79,15 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         boolean play = !model.isPlaying().getValue();
         model.isPlaying().setValue(play);
         if(play) {
-            PlayMapFragment playFragment = PlayMapFragment.newInstance(model.getCurrentForecast());
-            fm.beginTransaction()
-                    .replace(R.id.fl_fragment_map,
-                            playFragment)
-                    .addToBackStack(null)
-                    .commit();
             ((ImageButton) v).setImageResource(R.drawable.ic_pause_white_24dp);
             playTask = Utils.playForecast(this);
             model.isPlaying().observe(this, new Observer<Boolean>() {
                 @Override
                 public void onChanged(Boolean isPlaying) {
                     if(!isPlaying) {
+                        ViewPager vp = findViewById(R.id.vp_pager);
+                        vp.setCurrentItem(model.getCurrentForecast());
                         ((ImageButton) v).setImageResource(R.drawable.ic_play_arrow_white_24dp);
-                        fm.beginTransaction().remove(playFragment).commit();
                         model.isPlaying().removeObserver(this);
                     }
                 }
