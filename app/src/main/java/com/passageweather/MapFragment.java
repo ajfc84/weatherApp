@@ -1,20 +1,20 @@
 package com.passageweather;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.passageweather.model.MapViewModel;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
 
@@ -50,18 +50,19 @@ public class MapFragment extends Fragment {
         everytime a fragment starts, instead destroy MapActivity and create the
         new activity with the new chosen region
         */
-        Fragment fragment = this;
+        LifecycleOwner owner = this;
         model.getVariable().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String variable) {
-//                NetUtils.showMap2(fragment);
-                NetUtils.showMap(getContext(),
-                        view.findViewById(R.id.iv_map),
-                        NetUtils.buildMapURL(
-                                model,
-                                getArguments().getInt(Constants.INTENT_FORECAST_KEY)
-                        )
-                );
+                // TODO (17) Activate ProgressBar
+                model.getCurrentForecastMap().observe(owner, new Observer<Bitmap>() {
+                    @Override
+                    public void onChanged(Bitmap map) {
+                        ImageView iv = view.findViewById(R.id.iv_map);
+                        iv.setImageBitmap(map);
+                        model.getCurrentForecastMap().removeObserver(this);
+                    }
+                });
             }
         });
         return view;

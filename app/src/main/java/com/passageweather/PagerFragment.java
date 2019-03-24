@@ -14,6 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.passageweather.model.MapViewModel;
+import com.passageweather.utils.DepthPageTransformer;
+import com.passageweather.utils.MapPagerAdapter;
+
 
 public class PagerFragment extends Fragment {
     private MapViewModel model;

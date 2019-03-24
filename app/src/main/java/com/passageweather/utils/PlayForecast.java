@@ -1,13 +1,12 @@
 package com.passageweather.utils;
 
-import com.passageweather.MapViewModel;
+import com.passageweather.model.MapViewModel;
 import com.passageweather.PlayMapFragment;
 import com.passageweather.R;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.viewpager.widget.ViewPager;
 
 public class PlayForecast implements Runnable {
     private volatile boolean exit = false;
@@ -33,7 +32,7 @@ public class PlayForecast implements Runnable {
                         playFragment)
                 .addToBackStack(null)
                 .commit();
-        for(int i = model.getCurrentForecast(); !exit && i < WeatherUtils.getForecastHours(model).length; i++) {
+        for(int i = model.getCurrentForecast(); !exit && i < WeatherUtils.getForecastNumbers(model).length; i++) {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

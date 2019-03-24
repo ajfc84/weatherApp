@@ -1,4 +1,4 @@
-package com.passageweather;
+package com.passageweather.model;
 
 import android.graphics.Bitmap;
 
@@ -10,35 +10,58 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import retrofit2.http.Url;
 
 public class MapViewModel extends ViewModel {
-    private MapRepository repo;
+    private MapRepository repo = new MapRepository();
 
     private MutableLiveData<String> mRegion;
     private MutableLiveData<String> mVariable;
     private int currentForecast;
+    private LiveData<Bitmap> currentForecastMap;
+    private LiveData<Bitmap> forecastMap;
     private MutableLiveData<Boolean> isPlaying;
 
     private LiveData<List<Bitmap>> forecastMaps;
 
+/*
     @Inject
-    MapViewModel(MapRepository repository) {
-        this.repo = repository;
+    public MapViewModel(MapRepository mapRepository) {
+        repo = mapRepository;
     }
+*/
 
     public void init() {
+        currentForecastMap = repo.getLiveForecastMap(NetUtils.buildMapURL(this, currentForecast));
+/*
         List<URL> urlList = new ArrayList<>();
-        for(int i = 0; i < WeatherUtils.getNumberOfForecastHours(mVariable.getValue()); i++)
+        for(int i = 0; i < WeatherUtils.getNumberOfForecasts(mVariable.getValue()); i++)
             urlList.add(NetUtils.buildMapURL(this, i));
         forecastMaps = repo.getForecastMaps(urlList);
+*/
     }
 
+    // Look out: currentForecast is updated by Map_Fragment before this
+    // so call getLiveForecastMap always before returning the map
+    public LiveData<Bitmap> getCurrentForecastMap() {
+        URL url = NetUtils.buildMapURL(this, currentForecast);
+        currentForecastMap = repo.getLiveForecastMap(url);
+        return currentForecastMap;
+    }
+
+    public void nextForecast() {
+        URL url = NetUtils.buildMapURL(this, ++currentForecast);
+        currentForecastMap = repo.getLiveForecastMap(url);
+    }
+
+    public void previousForecast() {
+        URL url = NetUtils.buildMapURL(this, --currentForecast);
+        currentForecastMap = repo.getLiveForecastMap(url);
+    }
+
+/*
     public LiveData<List<Bitmap>> getForecastMaps() {
         if(forecastMaps == null) {
             forecastMaps = new MutableLiveData<>();
@@ -47,6 +70,7 @@ public class MapViewModel extends ViewModel {
         return forecastMaps;
     }
 
+*/
     public void setRegion(String region) {
         if(mRegion == null) mRegion = new MutableLiveData<>();
         mRegion.setValue(region);
@@ -86,17 +110,31 @@ public class MapViewModel extends ViewModel {
         return isPlaying;
     }
 
-    public int previousForecast() {
+    public int previousForecastNumber() {
         currentForecast -= 1;
-        if(currentForecast == -1) currentForecast = WeatherUtils.getNumberOfForecastHours(getVariable().getValue()) - 1;
+        if(currentForecast == -1) currentForecast = WeatherUtils.getNumberOfForecasts(getVariable().getValue()) - 1;
         return currentForecast;
     }
 
-    public int nextForecast() {
+    public int nextForecastNumber() {
         currentForecast += 1;
-        int forecastHours = WeatherUtils.getNumberOfForecastHours(getVariable().getValue());
+        int forecastHours = WeatherUtils.getNumberOfForecasts(getVariable().getValue());
         if(currentForecast == forecastHours) currentForecast = 0;
         return currentForecast;
+    }
+
+    public LiveData<Bitmap> getForecastMap() {
+        if(forecastMap == null) forecastMap = new MutableLiveData<>();
+        return forecastMap;
+    }
+
+    public LiveData<Bitmap> getForecastMap(String label) {
+        forecastMap = repo.getForecastMap(label);
+        return forecastMap;
+    }
+
+    public static String [] getForecastMapsNames() {
+        return MapRepository.getForecastMapNames();
     }
 
 }

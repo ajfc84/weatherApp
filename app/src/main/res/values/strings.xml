@@ -6,6 +6,8 @@
     <string name="welcome_message">Please, choose a region!</string>
 
     <string name="share_map">Share map to...</string>
+    <string name="share_maps_dialog_title">What files would you like to share?</string>
+    <string name="cancel">Cancel</string>
 
     /* Menu items */
     <string name="play">Play</string>

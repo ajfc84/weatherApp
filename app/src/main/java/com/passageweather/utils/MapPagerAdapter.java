@@ -1,11 +1,11 @@
-package com.passageweather;
+package com.passageweather.utils;
 
-import com.passageweather.utils.WeatherUtils;
+import com.passageweather.MapFragment;
+import com.passageweather.model.MapViewModel;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 public class MapPagerAdapter extends FragmentStatePagerAdapter {
@@ -16,7 +16,7 @@ public class MapPagerAdapter extends FragmentStatePagerAdapter {
 
     public MapPagerAdapter(FragmentManager fragmentManager, MapViewModel mapModel, ViewPager viewPager) {
         super(fragmentManager);
-        numPages = WeatherUtils.getNumberOfForecastHours(mapModel) + 1;
+        numPages = WeatherUtils.getNumberOfForecasts(mapModel) + 1;
         model = mapModel;
         vp = viewPager;
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

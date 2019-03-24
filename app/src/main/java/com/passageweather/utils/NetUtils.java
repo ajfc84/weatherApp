@@ -1,6 +1,5 @@
 package com.passageweather.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,22 +11,20 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
-import com.passageweather.MapViewModel;
-import com.passageweather.R;
+import com.passageweather.model.MapViewModel;
+import com.passageweather.config.MyApp;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 public class NetUtils {
 
     public static URL buildMapURL(MapViewModel model, int forecastIndex) {
         String region = model.getRegion().getValue();
         String variable = model.getVariable().getValue();
-        return buildMapURL(region, variable, WeatherUtils.getForecastHours(model)[forecastIndex]);
+        return buildMapURL(region, variable, WeatherUtils.getForecastNumbers(model)[forecastIndex]);
     }
 
     public static URL buildMapURL(String region, String variable, String forecast) {
@@ -55,14 +52,14 @@ public class NetUtils {
         String region = model.getRegion().getValue();
         String variable = model.getVariable().getValue();
         int currentForecast = model.getCurrentForecast();
-        return buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[currentForecast]);
+        return buildMapUri(region, variable, WeatherUtils.getForecastNumbers(model)[currentForecast]);
     }
 
     public static URL buildNextForecastMapURL(MapViewModel model) {
         String region = model.getRegion().getValue();
         String variable = model.getVariable().getValue();
         int currentForecast = model.getCurrentForecast();
-        Uri uri =  buildMapUri(region, variable, WeatherUtils.getForecastHours(model)[currentForecast++]);
+        Uri uri =  buildMapUri(region, variable, WeatherUtils.getForecastNumbers(model)[currentForecast++]);
         model.setCurrentForecast(currentForecast++);
         URL url = null;
         try {
@@ -73,6 +70,7 @@ public class NetUtils {
         return url;
     }
 
+    @Deprecated
     public static void showMap(final Context context, final ImageView imageView, final URL url) {
         RequestQueue queue = MapClient.getInstance(context.getApplicationContext()).getRequestQueue();
         ImageRequest imageRequest = new ImageRequest(
@@ -95,11 +93,6 @@ public class NetUtils {
                     }
                 });
         MapClient.getInstance(context).addToRequestQueue(imageRequest);
-    }
-
-    public static void showMap2(Fragment fragment) {
-        ImageClient client = ImageClient.newInstance(MyApp.getAppContext());
-        client.makeUIRequest(fragment);
     }
 
 }

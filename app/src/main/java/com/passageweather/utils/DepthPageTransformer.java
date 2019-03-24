@@ -1,4 +1,4 @@
-package com.passageweather;
+package com.passageweather.utils;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;

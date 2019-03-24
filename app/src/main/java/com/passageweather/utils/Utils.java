@@ -1,20 +1,63 @@
 package com.passageweather.utils;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 
-import com.passageweather.MapActivity;
-import com.passageweather.MapViewModel;
 import com.passageweather.R;
+import com.passageweather.config.MyApp;
+import com.passageweather.model.MapViewModel;
 
-import java.net.URL;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 public class Utils {
 
+    public static PlayForecast playForecast(FragmentActivity activity) {
+        PlayForecast playTask = PlayForecast.getInstance(activity);
+        new Thread(playTask, "t1").start();
+        return playTask;
+    }
+
+    public static void saveForecastMap(Bitmap image, String name) {
+        Context context = MyApp.getAppContext();
+        OutputStream outS = null;
+        File file = null;
+        file = new File(context.getFilesDir(), name);
+        try {
+            outS = new FileOutputStream(file);
+            image.compress(Bitmap.CompressFormat.PNG, 90, outS);
+            outS.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Bitmap openForecastMap(String name) {
+        Context context = MyApp.getAppContext();
+        FileInputStream inS = null;
+        Bitmap image = null;
+        try {
+            inS = context.openFileInput(name);
+            image = BitmapFactory.decodeStream(inS);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    @Deprecated
     public static int [][] getMenuMapsIcons(Resources res) {
         int [][] mapIds = new int[Constants.OPTION_ARRAY_SIZE][];
         TypedArray rootArray = res.obtainTypedArray(R.array.options_root_maps);
@@ -66,6 +109,7 @@ public class Utils {
         return mapIds;
     }
 
+    @Deprecated
     public static String [][] getMenuMapsLabels(Resources res) {
         String [][] labels = new String[Constants.OPTION_ARRAY_SIZE][];
         labels[Constants.OPTION_ROOT_INDEX] = res.getStringArray(R.array.options_root_labels);
@@ -79,22 +123,5 @@ public class Utils {
         labels[Constants.OPTION_REGATTA_INDEX]  = res.getStringArray(R.array.options_regattas_labels);
         return labels;
     }
-
-    public static PlayForecast playForecast(FragmentActivity activity) {
-        PlayForecast playTask = PlayForecast.getInstance(activity);
-        new Thread(playTask, "t1").start();
-        return playTask;
-    }
-
-/*
-    public static void shareMap(MapActivity activity) {
-        MapViewModel model = ViewModelProviders.of(activity).get(MapViewModel.class);
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, NetUtils.buildCurrentMapUri(model)); // TODO (1) Share local file
-        shareIntent.setType("image/png");
-        activity.startActivity(Intent.createChooser(shareIntent, activity.getResources().getText(R.string.share_map)));
-    }
-*/
 
 }

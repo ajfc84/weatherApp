@@ -2,23 +2,33 @@ package com.passageweather;
 
 import android.content.Intent;
 
+import androidx.core.content.FileProvider;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
+import com.passageweather.model.MapViewModel;
 import com.passageweather.utils.Constants;
+import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.PlayForecast;
 import com.passageweather.utils.Utils;
+
+import java.io.File;
 
 public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
     private MapViewModel model;
@@ -29,6 +39,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         Intent intent = getIntent();
@@ -100,11 +111,45 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     }
 
     public void share(View v) {
+        DialogFragment dialog = new ShareMapsDialogFragment();
+        dialog.show(getSupportFragmentManager(), ShareMapsDialogFragment.class.getName());
+    }
 
+    public boolean shareItemClick(MenuItem m) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.setType("image/png");
+        File file = new File(getFilesDir(), m.getTitle().toString()); // TODO (10) Get filename from title
+        shareIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this.getApplicationContext(), "com.passageweather.fileprovider", file));
+        startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.share_map)));
+        return true;
     }
 
     public void showTimeMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        String [] list = MapViewModel.getForecastMapsNames();
+        String region = model.getRegion().getValue();
+        String variable = model.getVariable().getValue();
+        for(String n : list) {
+            if (n.startsWith("maps_" + region + "_" + variable)) {
+                popup.getMenu().add(n); // TODO (85) Make labels for users "day month year - hour"
+            }
+        }
+        popup.setOnMenuItemClickListener(this::onTimeMenuItemClick);
+        popup.show();
+    }
 
+    public boolean onTimeMenuItemClick(MenuItem m) {
+        model.getForecastMap(m.getTitle().toString()).observe(this, new Observer<Bitmap>() {
+            @Override
+            public void onChanged(Bitmap map) {
+                ImageView iv = findViewById(R.id.iv_map);
+                iv.setImageBitmap(map);
+                model.getForecastMap().removeObserver(this);
+            }
+        });
+        return true;
     }
 
     public void showVarMenu(View anchorView) {
@@ -145,7 +190,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 }
                 break;
             case Constants.OPTION_NORTH_ATLANTIC_INDEX:
-                // TODO (2) Check Great Lakes menu functionality
+                // TODO (90) Check Great Lakes menu functionality
                 popup.getMenuInflater().inflate(R.menu.menu_north_atlantic, menu);
                 if(region.equals(Constants.REGION_BALTIC_SEA) ||
                         region.equals(Constants.REGION_NORTH_SEA) ||
@@ -235,7 +280,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         switch (variable) {
             case Constants.VAR_WIND_GFS:
                 variableSelected = menu.findItem(R.id.gfs);
-                if(variableSelected == null) variableSelected = menu.findItem(R.id.wind); // gfs is wind when standalone
+                if(variableSelected == null) variableSelected = menu.findItem(R.id.wind); // gfs is wind when standalone -> TODO (88) remove R.id.gfs and always use R.id.wind can save lote of code
                 variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WIND_COAMPS:
