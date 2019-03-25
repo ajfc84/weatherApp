@@ -57,11 +57,15 @@ public class Utils {
 
     public static String [] getForecastMapsLabels(MapViewModel model) {
         String [] fileNames = model.getForecastMapsNames();
+        int [] forecastHours = WeatherUtils.getForecastHours(model.getVariable().getValue());
         String [] labels = new String[fileNames.length];
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
-        String date = dateFormat.format(new Date());
+        Date date = new Date();
         for (int i = 0; i < fileNames.length; i++) {
-            labels[i] = date + " - " + fileNames[i].substring(0, 3) + " UTC"; // TODO (3) replace fileNames[i].substring(0, 3) with hour UTC
+            if(forecastHours[i] == 0 && i > 0) {
+                date.setTime(date.getTime() + 86400000); // add one day
+            }
+            labels[i] = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
         }
         return labels;
     }

@@ -2,6 +2,8 @@ package com.passageweather.utils;
 
 import com.passageweather.model.MapViewModel;
 
+import java.util.Calendar;
+
 public class WeatherUtils {
 
     /**
@@ -39,6 +41,73 @@ public class WeatherUtils {
                 return Constants.RTOFS_GULF_STREAM_FORECAST_NUMBERS;
         }
         return null;
+    }
+
+    public static int [] getForecastHours(String variable) {
+        Calendar calendar = Calendar.getInstance();
+        float currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+        float currentMinutes = calendar.get(Calendar.MINUTE);
+        float decimalTime = currentHour + (currentMinutes / 60.0f);
+        int startingIndex = 0;
+        // Forecast hours(a: 8h52, b: 12h-16h15, c: 16h35-22h, d: 23:50)
+        if(decimalTime >= 8.5 && decimalTime < 14.5) // a
+            startingIndex = 0;
+        else if(decimalTime >= 12.0 && decimalTime < 16.5) // b
+            startingIndex = 1;
+        else if(decimalTime >= 16.5 && decimalTime < 22.5) // c
+            startingIndex = 2;
+        else if(decimalTime >= 22.5 && decimalTime < 8.5) // d
+            startingIndex = 3;
+        int firstHour = 0;
+        int [] forecastNumbers = null;
+        switch (variable) {
+            case Constants.VAR_WIND_GFS:
+                firstHour = Constants.GFS_PRESSURE_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.GFS_PRESSURE_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_WIND_COAMPS:
+                firstHour = Constants.COAMPS_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.COAMPS_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_WIND_WRF:
+                firstHour = Constants.WRF_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.WRF_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_WIND_NAM:
+                firstHour = Constants.NAM_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.NAM_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_SURFACE_PRESSURE:
+                firstHour = Constants.GFS_PRESSURE_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.GFS_PRESSURE_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_WAVES:
+                firstHour = Constants.WAVES_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.WRF_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_VISIBILITY:
+                firstHour = Constants.VISIBILITY_FIRST_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.VISIBILITY_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_PRECIPITATION:
+                firstHour = Constants.PRECIPITATON_FIRST_CLOUDS_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.PRECIPITATION_CLOUDS_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_CLOUD_COVER:
+                firstHour = Constants.PRECIPITATON_FIRST_CLOUDS_FORECAST_HOUR[startingIndex];
+                forecastNumbers = Constants.PRECIPITATION_CLOUDS_FORECAST_NUMBERS;
+                break;
+            case Constants.VAR_GULF_STREAM:
+                firstHour = Constants.RTOFS_GULF_STREAM_FORECAST_NUMBERS[startingIndex];
+                forecastNumbers = Constants.RTOFS_GULF_STREAM_FORECAST_NUMBERS;
+                break;
+        }
+        int [] forecastHours = new int[forecastNumbers.length];
+        for(int i = 0; i < forecastNumbers.length; i++) {
+            forecastHours[i] = (firstHour + forecastNumbers [i]) % 24;
+            if(forecastHours[i] == 24) forecastHours[i] = 0;
+        }
+        return forecastHours;
     }
 
     public static int getNumberOfForecasts(MapViewModel model) {

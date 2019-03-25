@@ -31,77 +31,87 @@ public final class Constants {
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
     // Forecast hours(a: 8h52, b: 12h-16h15, c: 16h35-22h, d: 23:50)
     // GFS, Surface Pressure
-    public static final int [] GFS_PRESSURE_FORECAST_HOURS = {
+    public static final int [] GFS_PRESSURE_FIRST_FORECAST_HOUR = {
             0, 6, 12, 18 // UTC - GFS 000
     };
-    public static final int [] VISIBILITY_FORECAST_HOURS = {
+    public static final int [] VISIBILITY_FIRST_FORECAST_HOUR = {
             3, 9, 15 // UTC - GFS 003
     };
     // Precipitation, Cloud Cover
-    public static final int [] PRECIPITATON__CLOUDS_FORECAST_HOURS = {
+    public static final int [] PRECIPITATON_FIRST_CLOUDS_FORECAST_HOUR = {
             3, 9, 15 // UTC - GFS 003
     };
-    public static final int [] COAMPS_FORECAST_HOURS = {
+    public static final int [] COAMPS_FIRST_FORECAST_HOUR = {
             0, 0, 12 // UTC - COAMPS 000
     };
-    public static final int [] NAM_FORECAST_HOURS = {
+    public static final int [] NAM_FIRST_FORECAST_HOUR = {
             6, 6, 12 // UTC - NAM 000
     };
-    public static final int [] WRF_FORECAST_HOURS = {
+    public static final int [] WRF_FIRST_FORECAST_HOUR = {
             6, 6, 18 // UTC - WRF 006
     };
-    public static final int [] WAVES_FORECAST_HOURS = {
+    public static final int [] WAVES_FIRST_FORECAST_HOUR = {
             0, 0, 12 // UTC - GFS 000
     };
     // Gulf Stream(RTOFS)
-    public static final int [] RTOFS_FORECAST_HOURS = {
+    public static final int [] RTOFS_FIRST_FORECAST_HOUR = {
             0, 0, 0, 0 // UTC - RTOFS 000
     };
     // ??? RTG SEA TEMPERATURE 00 UTC
 
     // GFS, Surface Pressure
     public static final int [] GFS_PRESSURE_FORECAST_NUMBERS = {
-            0, 3, 6, 9, 12, 15, 18, 21,
-            24, 27, 30, 33, 36, 39, 42, 45,
-            48, 54, 60, 66, 72, 84, 96, 108,
-            120, 132, 144, 156, 168, 180
+            0, 3, 6, 9, 12, 15, 18, 21, 24,
+            27, 30, 33, 36, 39, 42, 45, 48,
+            54, 60, 66, 72,
+            84, 96,
+            108, 120,
+            132, 144,
+            156, 168,
+            180
     };
     public static final int [] VISIBILITY_FORECAST_NUMBERS = {
-            3, 6, 9, 12, 15, 18, 21,
-            24, 27, 30, 33, 36, 39, 42, 45,
-            48, 54, 60, 66, 72, 84, 96, 108,
-            120, 132, 144, 156, 168
+            3, 6, 9, 12, 15, 18, 21, 24,
+            27, 30, 33, 36, 39, 42, 45, 48,
+            54, 60, 66, 72,
+            84, 96,
+            108, 120,
+            132, 144,
+            156, 168
     };
     // Precipitation, Cloud Cover
     public static final int [] PRECIPITATION_CLOUDS_FORECAST_NUMBERS = {
-            3, 6, 9, 12, 15, 18, 21,
-            24, 27, 30, 33, 36, 39, 42, 45,
-            48, 54, 60, 66, 72, 84, 96, 108,
-            120, 132, 144, 156, 168, 180
+            3, 6, 9, 12, 15, 18, 21, 24,
+            27, 30, 33, 36, 39, 42, 45, 48,
+            54, 60, 66, 72,
+            84, 96,
+            108, 120,
+            132, 144,
+            156, 168,
+            180
     };
     public static final int [] COAMPS_FORECAST_NUMBERS = {
-            0, 3, 6, 9, 12, 15, 18, 21,
-            24, 27, 30, 33, 36, 39, 42, 45,
-            48, 51, 54, 57, 60, 63, 66, 69,
-            72, 75, 78, 81, 84, 87, 90, 93,
-            96
+            0, 3, 6, 9, 12, 15, 18, 21, 24,
+            27, 30, 33, 36, 39, 42, 45, 48,
+            51, 54, 57, 60, 63, 66, 69, 72,
+            75, 78, 81, 84, 87, 90, 93, 96
     };
     public static final int [] NAM_FORECAST_NUMBERS = {
-            0, 3, 6, 9, 12, 15, 18, 21,
-            4, 27, 30, 33, 36, 39, 42, 45,
-            48, 51, 54, 57, 60, 63, 66, 69,
-            72, 75, 78, 81, 84
+            0, 3, 6, 9, 12, 15, 18, 21, 24,
+            27, 30, 33, 36, 39, 42, 45, 48,
+            51, 54, 57, 60, 63, 66, 69, 72,
+            75, 78, 81, 84
     };
     public static final int [] WRF_FORECAST_NUMBERS = {
             6, 9, 12, 15, 18, 21, 24,
-            27, 30, 33, 36, 39, 42, 45,
-            48, 51, 54, 57, 60, 63, 66,
-            69, 72
+            27, 30, 33, 36, 39, 42, 45, 48,
+            51, 54, 57, 60, 63, 66, 69, 72
     };
     public static final int [] WAVES_FORECAST_NUMBERS = {
-            0, 6, 12, 18, 24, 30, 36, 42,
-            48, 54, 60, 66, 72, 78, 84, 90,
-            96
+            0, 6, 12, 18, 24,
+            30, 36, 42, 48,
+            54, 60, 66, 72,
+            78, 84, 90, 96
     };
     // Gulf Stream(RTOFS)
     public static final int [] RTOFS_GULF_STREAM_FORECAST_NUMBERS = {
