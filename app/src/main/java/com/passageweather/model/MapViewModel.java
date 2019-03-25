@@ -137,4 +137,10 @@ public class MapViewModel extends ViewModel {
         return MapRepository.getForecastMapNames();
     }
 
+/*
+    public String [] getFilesByRegionAndVariable() {
+        return getFilesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
+    }
+*/
+
 }

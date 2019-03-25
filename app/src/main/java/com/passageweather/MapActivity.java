@@ -115,17 +115,6 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         dialog.show(getSupportFragmentManager(), ShareMapsDialogFragment.class.getName());
     }
 
-    public boolean shareItemClick(MenuItem m) {
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        shareIntent.setType("image/png");
-        File file = new File(getFilesDir(), m.getTitle().toString()); // TODO (10) Get filename from title
-        shareIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this.getApplicationContext(), "com.passageweather.fileprovider", file));
-        startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.share_map)));
-        return true;
-    }
-
     public void showTimeMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         String [] list = MapViewModel.getForecastMapsNames();
