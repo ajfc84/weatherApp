@@ -2,12 +2,9 @@ package com.passageweather;
 
 import android.content.Intent;
 
-import androidx.core.content.FileProvider;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
@@ -20,15 +17,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.passageweather.model.MapViewModel;
 import com.passageweather.utils.Constants;
-import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.PlayForecast;
 import com.passageweather.utils.Utils;
-
-import java.io.File;
 
 public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
     private MapViewModel model;
@@ -46,7 +39,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         fm = getSupportFragmentManager();
         if (intent != null && intent.hasExtra(Constants.INTENT_REGION_KEY)) {
             model = ViewModelProviders.of(this).get(MapViewModel.class);
-            model.setRegion(intent.getStringExtra(Constants.INTENT_REGION_KEY));
+            model.getRegion().setValue(intent.getStringExtra(Constants.INTENT_REGION_KEY));
             menu_index = intent.getIntExtra(Constants.INTENT_OPTION_KEY, 0);
             PagerFragment pagerFragment = PagerFragment.newInstance();
             fm.beginTransaction()
@@ -117,13 +110,9 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
 
     public void showTimeMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        String [] list = MapViewModel.getForecastMapsNames();
-        String region = model.getRegion().getValue();
-        String variable = model.getVariable().getValue();
-        for(String n : list) {
-            if (n.startsWith("maps_" + region + "_" + variable)) {
-                popup.getMenu().add(n); // TODO (85) Make labels for users "day month year - hour"
-            }
+        String [] fileLabels = Utils.getForecastMapsLabels(model);
+        for(String n : fileLabels) {
+            popup.getMenu().add(n);
         }
         popup.setOnMenuItemClickListener(this::onTimeMenuItemClick);
         popup.show();
@@ -317,37 +306,37 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.gfs:
-                model.setVariable(Constants.VAR_WIND_GFS);
+                model.getVariable().setValue(Constants.VAR_WIND_GFS);
                 break;
             case R.id.wind: // gfs is wind when standalone
-                model.setVariable(Constants.VAR_WIND_GFS);
+                model.getVariable().setValue(Constants.VAR_WIND_GFS);
                 break;
             case R.id.coamps:
-                model.setVariable(Constants.VAR_WIND_COAMPS);
+                model.getVariable().setValue(Constants.VAR_WIND_COAMPS);
                 break;
             case R.id.wrf:
-                model.setVariable(Constants.VAR_WIND_WRF);
+                model.getVariable().setValue(Constants.VAR_WIND_WRF);
                 break;
             case R.id.nam:
-                model.setVariable(Constants.VAR_WIND_NAM);
+                model.getVariable().setValue(Constants.VAR_WIND_NAM);
                 break;
             case R.id.pressure:
-                model.setVariable(Constants.VAR_SURFACE_PRESSURE);
+                model.getVariable().setValue(Constants.VAR_SURFACE_PRESSURE);
                 break;
             case R.id.waves:
-                model.setVariable(Constants.VAR_WAVES);
+                model.getVariable().setValue(Constants.VAR_WAVES);
                 break;
             case R.id.visibility:
-                model.setVariable(Constants.VAR_VISIBILITY);
+                model.getVariable().setValue(Constants.VAR_VISIBILITY);
                 break;
             case R.id.precipitation:
-                model.setVariable(Constants.VAR_PRECIPITATION);
+                model.getVariable().setValue(Constants.VAR_PRECIPITATION);
                 break;
             case R.id.clouds:
-                model.setVariable(Constants.VAR_CLOUD_COVER);
+                model.getVariable().setValue(Constants.VAR_CLOUD_COVER);
                 break;
             case R.id.gulfstream:
-                model.setVariable(Constants.VAR_GULF_STREAM);
+                model.getVariable().setValue(Constants.VAR_GULF_STREAM);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

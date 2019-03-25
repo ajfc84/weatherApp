@@ -7,13 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.passageweather.config.MyApp;
 import com.passageweather.model.MapViewModel;
+import com.passageweather.utils.Utils;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,17 +30,10 @@ public class ShareMapsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         model = ViewModelProviders.of(getActivity()).get(MapViewModel.class);
-        String region = model.getRegion().getValue();
-        String variable = model.getVariable().getValue();
-        List<String> list = new ArrayList<>();
-        String [] fileNames = model.getForecastMapsNames();
-        for(int i = 0 ; i < fileNames.length; i++)
-            if(fileNames[i].startsWith("maps_" + region + "_" + variable))
-                list.add(fileNames[i]);
-        String [] items = list.toArray(new String[list.size()]);
+        String [] fileLabels = Utils.getForecastMapsLabels(model); // Show friendly file labels to users
         List<Integer> selectedItems = new ArrayList<>();
         builder.setTitle(R.string.share_maps_dialog_title)
-                .setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
+                .setMultiChoiceItems(fileLabels, null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                         if(isChecked)
@@ -60,9 +52,9 @@ public class ShareMapsDialogFragment extends DialogFragment {
                         Context ctx = MyApp.getAppContext();
                         File file = null;
                         ArrayList<Uri> mapsToShare = new ArrayList<>();
+                        File [] files = model.getForecastMaps();
                         for(Integer i : selectedItems) {
-                            file = new File(ctx.getFilesDir(), items[i]); // TODO (10) Get filename from title
-                            mapsToShare.add(FileProvider.getUriForFile(ctx, "com.passageweather.fileprovider", file));
+                            mapsToShare.add(FileProvider.getUriForFile(ctx, "com.passageweather.fileprovider", files[i]));
                         }
                         shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, mapsToShare);
                         startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.share_map)));

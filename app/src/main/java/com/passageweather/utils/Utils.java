@@ -17,6 +17,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -32,7 +36,14 @@ public class Utils {
         Context context = MyApp.getAppContext();
         OutputStream outS = null;
         File file = null;
-        file = new File(context.getFilesDir(), name);
+        String [] relativePath = name.split("_");
+        String mapsDir = relativePath[0]; // maps
+        String regionDir = relativePath[1]; // {region}
+        String varDir = relativePath[2]; // {variable}
+        String filename = relativePath[3];
+        File path = new File(context.getFilesDir(), mapsDir + "/" + regionDir + "/" + varDir + "/");
+        if(!path.exists()) path.mkdirs();
+        file = new File(path, filename);
         try {
             outS = new FileOutputStream(file);
             image.compress(Bitmap.CompressFormat.PNG, 90, outS);
@@ -44,17 +55,15 @@ public class Utils {
         }
     }
 
-    public static Bitmap openForecastMap(String name) {
-        Context context = MyApp.getAppContext();
-        FileInputStream inS = null;
-        Bitmap image = null;
-        try {
-            inS = context.openFileInput(name);
-            image = BitmapFactory.decodeStream(inS);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public static String [] getForecastMapsLabels(MapViewModel model) {
+        String [] fileNames = model.getForecastMapsNames();
+        String [] labels = new String[fileNames.length];
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
+        String date = dateFormat.format(new Date());
+        for (int i = 0; i < fileNames.length; i++) {
+            labels[i] = date + " - " + fileNames[i].substring(0, 3) + " UTC"; // TODO (3) replace fileNames[i].substring(0, 3) with hour UTC
         }
-        return image;
+        return labels;
     }
 
     @Deprecated

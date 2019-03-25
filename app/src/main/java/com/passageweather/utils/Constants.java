@@ -29,7 +29,7 @@ public final class Constants {
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
-    // Forecast hours(a: 8h52, b: 12h-15h, c: 16h45-22h, d: 23:50)
+    // Forecast hours(a: 8h52, b: 12h-16h15, c: 16h35-22h, d: 23:50)
     // GFS, Surface Pressure
     public static final int [] GFS_PRESSURE_FORECAST_HOURS = {
             0, 6, 12, 18 // UTC - GFS 000
@@ -55,57 +55,57 @@ public final class Constants {
     };
     // Gulf Stream(RTOFS)
     public static final int [] RTOFS_FORECAST_HOURS = {
-            0, 0, 0 // UTC - RTOFS 000
+            0, 0, 0, 0 // UTC - RTOFS 000
     };
     // ??? RTG SEA TEMPERATURE 00 UTC
 
     // GFS, Surface Pressure
-    public static final String [] GFS_PRESSURE_FORECAST_NUMBERS = {
-            "000", "003", "006", "009", "012", "015", "018", "021",
-            "024", "027", "030", "033", "036", "039", "042", "045",
-            "048", "054", "060", "066", "072", "084", "096", "108",
-            "120", "132", "144", "156", "168", "180"
+    public static final int [] GFS_PRESSURE_FORECAST_NUMBERS = {
+            0, 3, 6, 9, 12, 15, 18, 21,
+            24, 27, 30, 33, 36, 39, 42, 45,
+            48, 54, 60, 66, 72, 84, 96, 108,
+            120, 132, 144, 156, 168, 180
     };
-    public static final String [] VISIBILITY_FORECAST_NUMBERS = {
-                   "003", "006", "009", "012", "015", "018", "021",
-            "024", "027", "030", "033", "036", "039", "042", "045",
-            "048", "054", "060", "066", "072", "084", "096", "108",
-            "120", "132", "144", "156", "168"
+    public static final int [] VISIBILITY_FORECAST_NUMBERS = {
+            3, 6, 9, 12, 15, 18, 21,
+            24, 27, 30, 33, 36, 39, 42, 45,
+            48, 54, 60, 66, 72, 84, 96, 108,
+            120, 132, 144, 156, 168
     };
     // Precipitation, Cloud Cover
-    public static final String [] PRECIPITATION_CLOUDS_FORECAST_NUMBERS = {
-                   "003", "006", "009", "012", "015", "018", "021",
-            "024", "027", "030", "033", "036", "039", "042", "045",
-            "048", "054", "060", "066", "072", "084", "096", "108",
-            "120", "132", "144", "156", "168", "180"
+    public static final int [] PRECIPITATION_CLOUDS_FORECAST_NUMBERS = {
+            3, 6, 9, 12, 15, 18, 21,
+            24, 27, 30, 33, 36, 39, 42, 45,
+            48, 54, 60, 66, 72, 84, 96, 108,
+            120, 132, 144, 156, 168, 180
     };
-    public static final String [] COAMPS_FORECAST_NUMBERS = {
-            "000", "003", "006", "009", "012", "015", "018", "021",
-            "024", "027", "030", "033", "036", "039", "042", "045",
-            "048", "051", "054", "057", "060", "063", "066", "069",
-            "072", "075", "078", "081", "084", "087", "090", "093",
-            "096"
+    public static final int [] COAMPS_FORECAST_NUMBERS = {
+            0, 3, 6, 9, 12, 15, 18, 21,
+            24, 27, 30, 33, 36, 39, 42, 45,
+            48, 51, 54, 57, 60, 63, 66, 69,
+            72, 75, 78, 81, 84, 87, 90, 93,
+            96
     };
-    public static final String [] NAM_FORECAST_NUMBERS = {
-            "000", "003", "006", "009", "012", "015", "018", "021",
-            "024", "027", "030", "033", "036", "039", "042", "045",
-            "048", "051", "054", "057", "060", "063", "066", "069",
-            "072", "075", "078", "081", "084"
+    public static final int [] NAM_FORECAST_NUMBERS = {
+            0, 3, 6, 9, 12, 15, 18, 21,
+            4, 27, 30, 33, 36, 39, 42, 45,
+            48, 51, 54, 57, 60, 63, 66, 69,
+            72, 75, 78, 81, 84
     };
-    public static final String [] WRF_FORECAST_NUMBERS = {
-            "006", "009", "012", "015", "018", "021", "024",
-            "027", "030", "033", "036", "039", "042", "045",
-            "048", "051", "054", "057", "060", "063", "066",
-            "069", "072"
+    public static final int [] WRF_FORECAST_NUMBERS = {
+            6, 9, 12, 15, 18, 21, 24,
+            27, 30, 33, 36, 39, 42, 45,
+            48, 51, 54, 57, 60, 63, 66,
+            69, 72
     };
-    public static final String [] WAVES_FORECAST_NUMBERS = {
-            "000", "006", "012", "018", "024", "030", "036", "042",
-            "048", "054", "060", "066", "072", "078", "084", "090",
-            "096"
+    public static final int [] WAVES_FORECAST_NUMBERS = {
+            0, 6, 12, 18, 24, 30, 36, 42,
+            48, 54, 60, 66, 72, 78, 84, 90,
+            96
     };
     // Gulf Stream(RTOFS)
-    public static final String [] RTOFS_GULF_STREAM_FORECAST_NUMBERS = {
-            "000", "024", "048", "072", "096", "120", "144"
+    public static final int [] RTOFS_GULF_STREAM_FORECAST_NUMBERS = {
+            0, 24, 48, 72, 96, 120, 144
     };
     public static final String MAP_EXT = ".png";
     public static final String DEFAULT_MAP = "000";

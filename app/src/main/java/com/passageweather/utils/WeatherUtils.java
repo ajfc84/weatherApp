@@ -10,12 +10,12 @@ public class WeatherUtils {
      * @return Array with the Forecast Hours for the selected forecast variable
      */
 
-    public static String [] getForecastNumbers(MapViewModel model) {
+    public static int [] getForecastNumbers(MapViewModel model) {
         String variable = model.getVariable().getValue();
         return getForecastNumbers(variable);
     }
 
-    public static String [] getForecastNumbers(String variable) {
+    public static int [] getForecastNumbers(String variable) {
         switch (variable) {
             case Constants.VAR_WIND_GFS:
                 return Constants.GFS_PRESSURE_FORECAST_NUMBERS;

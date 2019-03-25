@@ -12,12 +12,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.passageweather.config.MyApp;
+import com.passageweather.utils.Constants;
 import com.passageweather.utils.MapClient;
 import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.Utils;
 import com.passageweather.utils.WebService;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -73,6 +76,31 @@ public class MapRepository {
     }
 
 
+    public MutableLiveData<Bitmap> getForecastMap(String region, String variable, String label) {
+        MutableLiveData<Bitmap> data = new MutableLiveData<>();
+        String relativePath = "maps/" + region + "/" + variable + "/";
+        String [] values = label.split("-");
+        String forecast = values[1].substring(1, values[1].length() - 4);
+        File path = new File(MyApp.getAppContext().getFilesDir(), relativePath);
+        File file = new File(path, forecast);
+        if(file.exists()) {
+            FileInputStream inS = null;
+            Bitmap image = null;
+            try {
+                inS = new FileInputStream(relativePath + forecast + Constants.MAP_EXT);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            image = BitmapFactory.decodeStream(inS);
+            data.setValue(image);
+        }
+        else {
+            URL url = NetUtils.buildMapURL(region, variable, Integer.valueOf(forecast));
+            data = getLiveForecastMap(url);
+        }
+        return data;
+    }
+
 /*
     public MutableLiveData<Bitmap> getLiveForecastMap2(URL url) {
         Request request =  new Request.Builder()
@@ -95,24 +123,6 @@ public class MapRepository {
         return data;
     }
 */
-
-    public MutableLiveData<Bitmap> getForecastMap(String label) {
-        MutableLiveData<Bitmap> data = new MutableLiveData<>();
-        File file = new File(MyApp.getAppContext().getFilesDir(), label);
-        if(file.exists()) {
-            data.setValue(Utils.openForecastMap(label));
-        }
-        else {
-            String [] values = label.split("_");
-            String region = values[1];
-            String variable = values[2];
-            String forecast = values[3].substring(0, values[3].length() - 4);
-            URL url = NetUtils.buildMapURL(region, variable, forecast);
-            data = getLiveForecastMap(url);
-        }
-        return data;
-    }
-
 
 /*
     public LiveData<List<Bitmap>> getForecastMaps(List<URL> urls) {
@@ -144,9 +154,14 @@ public class MapRepository {
     }
 */
 
-    public static String [] getForecastMapNames() {
-        Context context = MyApp.getAppContext();
-        return context.fileList();
+    public static String [] getForecastMapNamesByRegionAndVariable(String region, String variable) {
+        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
+        return dir.list();
+    }
+
+    public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {
+        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
+        return dir.listFiles();
     }
 
 }

@@ -27,7 +27,7 @@ public class NetUtils {
         return buildMapURL(region, variable, WeatherUtils.getForecastNumbers(model)[forecastIndex]);
     }
 
-    public static URL buildMapURL(String region, String variable, String forecast) {
+    public static URL buildMapURL(String region, String variable, int forecast) {
         Uri uri = buildMapUri(region, variable, forecast);
         URL url = null;
         try {
@@ -38,14 +38,18 @@ public class NetUtils {
         return url;
     }
 
-    public static Uri buildMapUri(String region, String variable, String forecast) {
+    public static Uri buildMapUri(String region, String variable, int forecast) {
         Uri uri = Uri.parse(Constants.BASE_URL)
                 .buildUpon()
                 .appendPath(region)
                 .appendPath(variable)
-                .appendPath(forecast + Constants.MAP_EXT)
+                .appendPath(String.format("%03d%s", forecast, Constants.MAP_EXT))
                 .build();
         return uri;
+    }
+
+    public static String buildMapsRelativePath(String region, String variable) {
+        return "maps/" + region + "/" + variable + "/";
     }
 
     public static Uri buildCurrentMapUri(MapViewModel model) {

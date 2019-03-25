@@ -6,6 +6,7 @@ import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.WeatherUtils;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,19 +72,9 @@ public class MapViewModel extends ViewModel {
     }
 
 */
-    public void setRegion(String region) {
-        if(mRegion == null) mRegion = new MutableLiveData<>();
-        mRegion.setValue(region);
-    }
-
     public MutableLiveData<String> getRegion() {
         if(mRegion == null) mRegion = new MutableLiveData<>();
         return mRegion;
-    }
-
-    public void setVariable(String variable) {
-        if(mVariable == null) mVariable = new MutableLiveData<>();
-        mVariable.setValue(variable);
     }
 
     public MutableLiveData<String> getVariable() {
@@ -129,12 +120,16 @@ public class MapViewModel extends ViewModel {
     }
 
     public LiveData<Bitmap> getForecastMap(String label) {
-        forecastMap = repo.getForecastMap(label);
+        forecastMap = repo.getForecastMap(getRegion().getValue(), getVariable().getValue(), label);
         return forecastMap;
     }
 
-    public static String [] getForecastMapsNames() {
-        return MapRepository.getForecastMapNames();
+    public String [] getForecastMapsNames() {
+        return MapRepository.getForecastMapNamesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
+    }
+
+    public File[] getForecastMaps() {
+        return MapRepository.getForecastMapFilesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
     }
 
 /*
