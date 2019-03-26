@@ -1,7 +1,8 @@
-package com.passageweather.model;
+package com.passageweather.modelview;
 
 import android.graphics.Bitmap;
 
+import com.passageweather.model.MapRepository;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.WeatherUtils;
@@ -101,19 +102,6 @@ public class MapViewModel extends ViewModel {
         return isPlaying;
     }
 
-    public int previousForecastNumber() {
-        currentForecast -= 1;
-        if(currentForecast == -1) currentForecast = WeatherUtils.getNumberOfForecasts(getVariable().getValue()) - 1;
-        return currentForecast;
-    }
-
-    public int nextForecastNumber() {
-        currentForecast += 1;
-        int forecastHours = WeatherUtils.getNumberOfForecasts(getVariable().getValue());
-        if(currentForecast == forecastHours) currentForecast = 0;
-        return currentForecast;
-    }
-
     public LiveData<Bitmap> getForecastMap() {
         if(forecastMap == null) forecastMap = new MutableLiveData<>();
         return forecastMap;
@@ -131,11 +119,5 @@ public class MapViewModel extends ViewModel {
     public File[] getForecastMaps() {
         return MapRepository.getForecastMapFilesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
     }
-
-/*
-    public String [] getFilesByRegionAndVariable() {
-        return getFilesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
-    }
-*/
 
 }

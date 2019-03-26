@@ -11,13 +11,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
-import com.passageweather.model.MapViewModel;
-import com.passageweather.config.MyApp;
+import com.passageweather.modelview.MapViewModel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import androidx.fragment.app.Fragment;
 
 public class NetUtils {
 

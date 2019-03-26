@@ -6,6 +6,7 @@
     <item
         android:title="@string/wind"
         app:showAsAction="never"
+        android:icon="@drawable/ic_precipitation"
         >
         <menu>
             <item
@@ -29,25 +30,30 @@
         android:id="@+id/pressure"
         android:title="@string/pressure"
         app:showAsAction="never"
+        android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/waves"
         android:title="@string/waves"
         app:showAsAction="never"
+        android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/visibility"
         android:title="@string/visibility"
         app:showAsAction="never"
+        android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/precipitation"
         android:title="@string/precipitation"
         app:showAsAction="never"
+        android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/clouds"
         android:title="@string/clouds"
         app:showAsAction="never"
+        android:icon="@drawable/ic_cloud_cover"
         />
 </menu>

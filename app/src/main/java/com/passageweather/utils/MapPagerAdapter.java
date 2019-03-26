@@ -1,7 +1,7 @@
 package com.passageweather.utils;
 
 import com.passageweather.MapFragment;
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

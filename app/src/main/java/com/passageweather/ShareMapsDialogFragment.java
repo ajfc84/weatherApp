@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.passageweather.config.MyApp;
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 import com.passageweather.utils.Utils;
 
 import java.io.File;
@@ -30,7 +30,7 @@ public class ShareMapsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         model = ViewModelProviders.of(getActivity()).get(MapViewModel.class);
-        String [] fileLabels = Utils.getForecastMapsLabels(model); // Show friendly file labels to users
+        String [] fileLabels = Utils.getForecastFilesLabels(model); // TODO (71) Migrate this to getForecastMapsLabels
         List<Integer> selectedItems = new ArrayList<>();
         builder.setTitle(R.string.share_maps_dialog_title)
                 .setMultiChoiceItems(fileLabels, null, new DialogInterface.OnMultiChoiceClickListener() {
@@ -52,7 +52,7 @@ public class ShareMapsDialogFragment extends DialogFragment {
                         Context ctx = MyApp.getAppContext();
                         File file = null;
                         ArrayList<Uri> mapsToShare = new ArrayList<>();
-                        File [] files = model.getForecastMaps();
+                        File [] files = model.getForecastMaps(); // TODO (70) Upgrade getForecastMaps to download maps when they dont exist in the filesystem
                         for(Integer i : selectedItems) {
                             mapsToShare.add(FileProvider.getUriForFile(ctx, "com.passageweather.fileprovider", files[i]));
                         }

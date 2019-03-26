@@ -1,6 +1,6 @@
 package com.passageweather.utils;
 
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 import com.passageweather.PlayMapFragment;
 import com.passageweather.R;
 

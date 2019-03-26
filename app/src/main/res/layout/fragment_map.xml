@@ -13,4 +13,10 @@
         android:layout_height="match_parent"
         tools:src="@drawable/mapexample"
         />
+    <ProgressBar
+        android:id="@+id/pb_map_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        />
 </FrameLayout>

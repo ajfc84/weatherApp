@@ -14,9 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 import com.passageweather.utils.Constants;
-import com.passageweather.utils.NetUtils;
 
 public class MapFragment extends Fragment {
     private MapViewModel model;
@@ -54,10 +53,11 @@ public class MapFragment extends Fragment {
         model.getVariable().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String variable) {
-                // TODO (17) Activate ProgressBar
+//                view.findViewById(R.id.pb_map_loading).setVisibility(View.VISIBLE); // TODO (77) Change ProgressBar color
                 model.getCurrentForecastMap().observe(owner, new Observer<Bitmap>() {
                     @Override
                     public void onChanged(Bitmap map) {
+//                        view.findViewById(R.id.pb_map_loading).setVisibility(View.INVISIBLE);
                         ImageView iv = view.findViewById(R.id.iv_map);
                         iv.setImageBitmap(map);
                         model.getCurrentForecastMap().removeObserver(this);

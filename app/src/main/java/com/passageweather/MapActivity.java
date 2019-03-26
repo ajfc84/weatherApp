@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.PlayForecast;
 import com.passageweather.utils.Utils;
@@ -108,6 +109,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         dialog.show(getSupportFragmentManager(), ShareMapsDialogFragment.class.getName());
     }
 
+    // This function stoped working correctly after upgrade, we need to associate labels with filenames
     public void showTimeMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         String [] fileLabels = Utils.getForecastMapsLabels(model);
@@ -304,6 +306,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        ImageButton varButton = findViewById(R.id.menu_button4);
         switch (item.getItemId()) {
             case R.id.gfs:
                 model.getVariable().setValue(Constants.VAR_WIND_GFS);
@@ -322,6 +325,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 break;
             case R.id.pressure:
                 model.getVariable().setValue(Constants.VAR_SURFACE_PRESSURE);
+                varButton.setImageResource(R.drawable.ic_thermometer);
                 break;
             case R.id.waves:
                 model.getVariable().setValue(Constants.VAR_WAVES);
@@ -331,9 +335,11 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 break;
             case R.id.precipitation:
                 model.getVariable().setValue(Constants.VAR_PRECIPITATION);
+                varButton.setImageResource(R.drawable.ic_precipitation);
                 break;
             case R.id.clouds:
                 model.getVariable().setValue(Constants.VAR_CLOUD_COVER);
+                varButton.setImageResource(R.drawable.ic_cloud_cover);
                 break;
             case R.id.gulfstream:
                 model.getVariable().setValue(Constants.VAR_GULF_STREAM);

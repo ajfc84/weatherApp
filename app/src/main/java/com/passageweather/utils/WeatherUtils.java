@@ -1,6 +1,6 @@
 package com.passageweather.utils;
 
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 
 import java.util.Calendar;
 
@@ -49,14 +49,13 @@ public class WeatherUtils {
         float currentMinutes = calendar.get(Calendar.MINUTE);
         float decimalTime = currentHour + (currentMinutes / 60.0f);
         int startingIndex = 0;
-        // Forecast hours(a: 8h52, b: 12h-16h15, c: 16h35-22h, d: 23:50)
-        if(decimalTime >= 8.5 && decimalTime < 14.5) // a
+        if(decimalTime >= 4.5 && decimalTime < 10.5) // a
             startingIndex = 0;
-        else if(decimalTime >= 12.0 && decimalTime < 16.5) // b
+        else if(decimalTime >= 10.5 && decimalTime < 16.5) // b
             startingIndex = 1;
         else if(decimalTime >= 16.5 && decimalTime < 22.5) // c
             startingIndex = 2;
-        else if(decimalTime >= 22.5 && decimalTime < 8.5) // d
+        else if(decimalTime >= 22.5 && decimalTime < 4.5) // d
             startingIndex = 3;
         int firstHour = 0;
         int [] forecastNumbers = null;

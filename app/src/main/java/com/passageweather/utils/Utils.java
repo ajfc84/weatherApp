@@ -1,30 +1,44 @@
 package com.passageweather.utils;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 
 import com.passageweather.R;
 import com.passageweather.config.MyApp;
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
+import com.passageweather.receiver.BootReceiver;
+import com.passageweather.receiver.ForecastReceiver;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
 import androidx.fragment.app.FragmentActivity;
 
 public class Utils {
+
+    public static void creatForecastAlarm() {
+        Context context = MyApp.getAppContext();
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, ForecastReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 4);
+        calendar.set(Calendar.MINUTE, 30);
+        manager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 6 * 60 * 60 * 1000, alarmIntent);
+
+    }
 
     public static PlayForecast playForecast(FragmentActivity activity) {
         PlayForecast playTask = PlayForecast.getInstance(activity);
@@ -55,13 +69,27 @@ public class Utils {
         }
     }
 
-    public static String [] getForecastMapsLabels(MapViewModel model) {
+    public static String [] getForecastFilesLabels(MapViewModel model) {
         String [] fileNames = model.getForecastMapsNames();
         int [] forecastHours = WeatherUtils.getForecastHours(model.getVariable().getValue());
         String [] labels = new String[fileNames.length];
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
         Date date = new Date();
         for (int i = 0; i < fileNames.length; i++) {
+            if(forecastHours[i] == 0 && i > 0) {
+                date.setTime(date.getTime() + 86400000); // add one day
+            }
+            labels[i] = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
+        }
+        return labels;
+    }
+
+    public static String [] getForecastMapsLabels(MapViewModel model) {
+        int [] forecastHours = WeatherUtils.getForecastHours(model.getVariable().getValue());
+        String [] labels = new String[forecastHours.length];
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
+        Date date = new Date();
+        for (int i = 0; i < forecastHours.length; i++) {
             if(forecastHours[i] == 0 && i > 0) {
                 date.setTime(date.getTime() + 86400000); // add one day
             }

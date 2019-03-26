@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.passageweather.model.MapViewModel;
+import com.passageweather.modelview.MapViewModel;
 import com.passageweather.utils.Constants;
 
 import androidx.annotation.NonNull;

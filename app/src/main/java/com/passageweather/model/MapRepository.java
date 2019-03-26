@@ -76,23 +76,31 @@ public class MapRepository {
     }
 
 
+    // TODO (9) Label does not have the filename anymore, needs to be updated
     public MutableLiveData<Bitmap> getForecastMap(String region, String variable, String label) {
-        MutableLiveData<Bitmap> data = new MutableLiveData<>();
+        MutableLiveData<Bitmap> data;
         String relativePath = "maps/" + region + "/" + variable + "/";
         String [] values = label.split("-");
         String forecast = values[1].substring(1, values[1].length() - 4);
         File path = new File(MyApp.getAppContext().getFilesDir(), relativePath);
         File file = new File(path, forecast);
         if(file.exists()) {
-            FileInputStream inS = null;
-            Bitmap image = null;
-            try {
-                inS = new FileInputStream(relativePath + forecast + Constants.MAP_EXT);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            image = BitmapFactory.decodeStream(inS);
-            data.setValue(image);
+            MutableLiveData<Bitmap> fileData = new MutableLiveData<>();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    FileInputStream inS = null;
+                    Bitmap image = null;
+                    try {
+                        inS = new FileInputStream(relativePath + forecast + Constants.MAP_EXT);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    image = BitmapFactory.decodeStream(inS);
+                    fileData.postValue(image);
+                }
+            }).start();
+            data = fileData;
         }
         else {
             URL url = NetUtils.buildMapURL(region, variable, Integer.valueOf(forecast));
