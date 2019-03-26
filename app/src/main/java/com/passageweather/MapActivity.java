@@ -310,18 +310,23 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         switch (item.getItemId()) {
             case R.id.gfs:
                 model.getVariable().setValue(Constants.VAR_WIND_GFS);
+                varButton.setImageResource(R.drawable.ic_wind);
                 break;
             case R.id.wind: // gfs is wind when standalone
                 model.getVariable().setValue(Constants.VAR_WIND_GFS);
+                varButton.setImageResource(R.drawable.ic_wind);
                 break;
             case R.id.coamps:
                 model.getVariable().setValue(Constants.VAR_WIND_COAMPS);
+                varButton.setImageResource(R.drawable.ic_wind);
                 break;
             case R.id.wrf:
                 model.getVariable().setValue(Constants.VAR_WIND_WRF);
+                varButton.setImageResource(R.drawable.ic_wind);
                 break;
             case R.id.nam:
                 model.getVariable().setValue(Constants.VAR_WIND_NAM);
+                varButton.setImageResource(R.drawable.ic_wind);
                 break;
             case R.id.pressure:
                 model.getVariable().setValue(Constants.VAR_SURFACE_PRESSURE);
@@ -329,9 +334,11 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 break;
             case R.id.waves:
                 model.getVariable().setValue(Constants.VAR_WAVES);
+                varButton.setImageResource(R.drawable.ic_waves);
                 break;
             case R.id.visibility:
                 model.getVariable().setValue(Constants.VAR_VISIBILITY);
+                varButton.setImageResource(R.drawable.ic_visibility);
                 break;
             case R.id.precipitation:
                 model.getVariable().setValue(Constants.VAR_PRECIPITATION);
@@ -343,6 +350,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 break;
             case R.id.gulfstream:
                 model.getVariable().setValue(Constants.VAR_GULF_STREAM);
+                varButton.setImageResource(R.drawable.ic_waves);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
