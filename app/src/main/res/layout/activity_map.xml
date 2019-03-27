@@ -39,7 +39,7 @@
         <ImageButton
             android:id="@+id/menu_button4"
             android:onClick="showVarMenu"
-            android:src="@drawable/ic_more_vert_white_24dp"
+            android:src="@drawable/ic_wind"
             style="@style/NavMapButton"
             />
     </LinearLayout>
