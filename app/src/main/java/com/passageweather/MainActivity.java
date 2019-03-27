@@ -1,15 +1,20 @@
 package com.passageweather;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.passageweather.utils.Constants;
+import com.passageweather.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 /*
@@ -23,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(preferences.getBoolean(getString(R.string.auto_download_key), getResources().getBoolean(R.bool.auto_download_default)))
+            Utils.createForecastAlarm();
 //        recyclerView = findViewById(R.id.my_recycler_view);
 //        recyclerView.setHasFixedSize(true);
 //
@@ -37,11 +45,27 @@ public class MainActivity extends AppCompatActivity {
             }
             NavMenuFragment rootFragment = new NavMenuFragment();
             fragmentManager.beginTransaction()
-            .add(R.id.fl_fragment_main,
+            .replace(R.id.fl_fragment_main,
                     rootFragment)
             .commit();
         }
         Toast.makeText(this, R.string.welcome_message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public void onSettings(MenuItem m) {
+        fragmentManager
+                .beginTransaction()
+                .add(R.id.fl_fragment_main,
+                        new AppSettingsFragment())
+                .addToBackStack(null)
+                .commit();
+        setTitle(R.string.app_settings);
     }
 
     public void onClickOption(View view) {

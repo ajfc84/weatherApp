@@ -9,6 +9,11 @@
     <string name="share_maps_dialog_title">What files would you like to share?</string>
     <string name="cancel">Cancel</string>
 
+    /* Shared preferences */
+    <string name="app_settings">Settings</string>
+    <string name="auto_download_title">Allow automatic downloads</string>
+    <string name="auto_download_key" translatable="false">auto_download</string>
+
     /* Menu items */
     <string name="play">Play</string>
     <string name="share">Share</string>

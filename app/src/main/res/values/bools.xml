@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    /* Shared Preferences - Settings */
+    <bool name="auto_download_default">false</bool>
+
+</resources>

@@ -2,8 +2,10 @@ package com.passageweather.utils;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -27,17 +29,41 @@ import androidx.fragment.app.FragmentActivity;
 
 public class Utils {
 
-    public static void creatForecastAlarm() {
+    public static void createForecastAlarm() {
         Context context = MyApp.getAppContext();
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP); // enabling BootReceiver survives reboots
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, ForecastReceiver.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(context,
+                Constants.FORECAST_RECEIVER_INTENT_REQUEST_CODE,
+                intent,
+                0);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 4);
         calendar.set(Calendar.MINUTE, 30);
         manager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 6 * 60 * 60 * 1000, alarmIntent);
 
+    }
+
+    public static void removeForecastAlarm() {
+        Context context = MyApp.getAppContext();
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, ForecastReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(context,
+                Constants.FORECAST_RECEIVER_INTENT_REQUEST_CODE,
+                intent,
+                0);
+        manager.cancel(alarmIntent);
     }
 
     public static PlayForecast playForecast(FragmentActivity activity) {

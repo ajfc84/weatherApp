@@ -1,59 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
         android:title="@string/wind"
-        app:showAsAction="never"
         android:icon="@drawable/ic_precipitation"
         >
         <menu>
             <item
                 android:id="@+id/gfs"
                 android:title="@string/gfs"
-                app:showAsAction="never"
                 />
             <item
                 android:id="@+id/coamps"
                 android:title="@string/coamps"
-                app:showAsAction="never"
                 />
             <item
                 android:id="@+id/wrf"
                 android:title="@string/wrf"
-                app:showAsAction="never"
                 />
         </menu>
     </item>
     <item
         android:id="@+id/pressure"
         android:title="@string/pressure"
-        app:showAsAction="never"
         android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/waves"
         android:title="@string/waves"
-        app:showAsAction="never"
         android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/visibility"
         android:title="@string/visibility"
-        app:showAsAction="never"
         android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/precipitation"
         android:title="@string/precipitation"
-        app:showAsAction="never"
         android:icon="@drawable/ic_precipitation"
         />
     <item
         android:id="@+id/clouds"
         android:title="@string/clouds"
-        app:showAsAction="never"
         android:icon="@drawable/ic_cloud_cover"
         />
 </menu>

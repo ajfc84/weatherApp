@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <SwitchPreference
+        android:key="@string/auto_download_key"
+        android:title="@string/auto_download_title"
+        android:defaultValue="@bool/auto_download_default"
+        />
+
+</PreferenceScreen>
