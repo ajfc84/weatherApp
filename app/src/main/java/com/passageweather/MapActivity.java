@@ -112,7 +112,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
     // This function stoped working correctly after upgrade, we need to associate labels with filenames
     public void showTimeMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        String [] fileLabels = Utils.getForecastMapsLabels(model);
+        String [] fileLabels = Utils.getForecastFilesLabels(model); // TODO (1) change back to MapsLabels
         for(String n : fileLabels) {
             popup.getMenu().add(n);
         }

@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,6 +43,7 @@ public class Utils {
                 Constants.FORECAST_RECEIVER_INTENT_REQUEST_CODE,
                 intent,
                 0);
+        // passageweather forecast update hours, set the forecast alarm to 4h30m and repeat it every 6hs
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 4);
@@ -72,16 +74,15 @@ public class Utils {
         return playTask;
     }
 
-    public static void saveForecastMap(Bitmap image, String name) {
+    public static void saveForecastMap(Bitmap image, URL url) {
         Context context = MyApp.getAppContext();
         OutputStream outS = null;
         File file = null;
-        String [] relativePath = name.split("_");
-        String mapsDir = relativePath[0]; // maps
-        String regionDir = relativePath[1]; // {region}
-        String varDir = relativePath[2]; // {variable}
-        String filename = relativePath[3];
-        File path = new File(context.getFilesDir(), mapsDir + "/" + regionDir + "/" + varDir + "/");
+        String [] relativePath = NetUtils.parseMapsPath(url);
+        String regionDir = relativePath[0]; // {region}
+        String varDir = relativePath[1]; // {variable}
+        String filename = relativePath[2];
+        File path = new File(context.getFilesDir(), NetUtils.buildMapsRelativePath(regionDir, varDir));
         if(!path.exists()) path.mkdirs();
         file = new File(path, filename);
         try {

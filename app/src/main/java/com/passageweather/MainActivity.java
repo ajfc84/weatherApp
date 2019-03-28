@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(preferences.getBoolean(getString(R.string.auto_download_key), getResources().getBoolean(R.bool.auto_download_default)))
+        if(preferences.getBoolean(getString(R.string.sp_auto_download_key), getResources().getBoolean(R.bool.auto_download_default)))
             Utils.createForecastAlarm();
 //        recyclerView = findViewById(R.id.my_recycler_view);
 //        recyclerView.setHasFixedSize(true);

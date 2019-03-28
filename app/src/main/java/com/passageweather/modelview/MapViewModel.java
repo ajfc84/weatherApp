@@ -2,14 +2,11 @@ package com.passageweather.modelview;
 
 import android.graphics.Bitmap;
 
-import com.passageweather.model.MapRepository;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
-import com.passageweather.utils.WeatherUtils;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -17,7 +14,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class MapViewModel extends ViewModel {
-    private MapRepository repo = new MapRepository();
+    private MapRepository repo = MapRepository.newInstance();
 
     private MutableLiveData<String> mRegion;
     private MutableLiveData<String> mVariable;

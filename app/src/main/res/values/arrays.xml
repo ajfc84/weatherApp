@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Settings -->
+    <string-array name="settings_variable_labels">
+        <item>Wind - GFS</item>
+        <item>Wind - COAMPS</item>
+        <item>Wind - WRF</item>
+        <item>Wind - NAM</item>
+        <item>Surface Pressure</item>
+        <item>Waves</item>
+        <item>Visibility</item>
+        <item>Precipitation</item>
+        <item>Cloud Cover</item>
+        <item>Gulf Stream</item>
+    </string-array>
+
+    <array name="settings_variable_values">
+        <item>gfs</item>
+        <item>coamps</item>
+        <item>wrf</item>
+        <item>nam</item>
+        <item>pressure</item>
+        <item>waves</item>
+        <item>visibility</item>
+        <item>precipitation</item>
+        <item>clouds</item>
+        <item>gstream</item>
+    </array>
 
     <!-- Navigation -->
     <string-array name="options_root_labels">

@@ -45,8 +45,37 @@ public class NetUtils {
         return uri;
     }
 
+    public static Uri buildArchiveUri(String region, String variable, String archive) {
+        Uri uri = Uri.parse(Constants.BASE_URL)
+                .buildUpon()
+                .appendPath(region)
+                .appendPath(variable)
+                .appendPath(archive + Constants.COMPRESSED_EXT)
+                .build();
+        return uri;
+    }
+
+    /**
+     * Builds the url map relative path
+     * @param region forecast region
+     * @param variable forecast variable
+     * @return returns a relative path of the form "maps/{region}/{variable}/"
+     */
+
     public static String buildMapsRelativePath(String region, String variable) {
-        return "maps/" + region + "/" + variable + "/";
+        return Constants.MAPS_DIR + region + "/" + variable + "/";
+    }
+
+    /**
+     * Converts a Map Url to an array of map information values
+     * @param url The url of the map
+     * @return returns an array with the region, the variable and the filename of the map
+     */
+
+    public static String [] parseMapsPath(URL url) {
+        String [] tmp = Uri.parse(url.toString()).getEncodedPath().split("/"); // maps {region} {variable} {forecastnumber}.png
+        String [] values = {tmp[2], tmp[3], tmp[4]};
+        return values;
     }
 
     public static Uri buildCurrentMapUri(MapViewModel model) {

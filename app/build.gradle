@@ -9,6 +9,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -19,6 +25,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 }
 
@@ -43,4 +52,7 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.21'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
     implementation 'androidx.preference:preference:1.1.0-alpha04'
+    implementation 'androidx.room:room-runtime:2.1.0-alpha04'
+    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha04'
+    testImplementation 'androidx.room:room-testing:2.1.0-alpha04'
 }

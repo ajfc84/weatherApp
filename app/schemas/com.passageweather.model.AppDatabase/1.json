@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "1a7a3e25b6e1cf2ecb1b16110d170120",
+    "entities": [
+      {
+        "tableName": "maps",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `filename` TEXT, `forecast_time` TEXT NOT NULL, `region` TEXT NOT NULL, `variable` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "mid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "filename",
+            "columnName": "filename",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "forecastTime",
+            "columnName": "forecast_time",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "variable",
+            "columnName": "variable",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_maps_region_variable",
+            "unique": true,
+            "columnNames": [
+              "region",
+              "variable"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_maps_region_variable` ON `${TABLE_NAME}` (`region`, `variable`)"
+          },
+          {
+            "name": "index_maps_filename",
+            "unique": false,
+            "columnNames": [
+              "filename"
+            ],
+            "createSql": "CREATE  INDEX `index_maps_filename` ON `${TABLE_NAME}` (`filename`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1a7a3e25b6e1cf2ecb1b16110d170120\")"
+    ]
+  }
+}

@@ -6,13 +6,16 @@
     <string name="welcome_message">Please, choose a region!</string>
 
     <string name="share_map">Share map to...</string>
-    <string name="share_maps_dialog_title">What files would you like to share?</string>
+    <string name="share_maps_dialog_title">What maps would you like to share?</string>
     <string name="cancel">Cancel</string>
 
     /* Shared preferences */
     <string name="app_settings">Settings</string>
-    <string name="auto_download_title">Allow automatic downloads</string>
-    <string name="auto_download_key" translatable="false">auto_download</string>
+    <string name="sp_auto_download_title">Allow automatic downloads</string>
+    <string name="sp_auto_download_key" translatable="false">auto_download</string>
+    <string name="pc_variable_key" translatable="false">variable_category</string>
+    <string name="pc_variable_title">Variables</string>
+    <string name="mp_wind_key" translatable="false">wind</string>
 
     /* Menu items */
     <string name="play">Play</string>

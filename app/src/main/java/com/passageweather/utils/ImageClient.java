@@ -46,7 +46,7 @@ public class ImageClient {
                         data.add(image);
 /*
                         try {
-                            File file = new File(context.getFilesDir(), "pw_" + ".png");
+                            Map file = new Map(context.getFilesDir(), "pw_" + ".png");
                             OutputStream outputStream = new FileOutputStream(file);
                             image.compress(Bitmap.CompressFormat.PNG, 90, outputStream);
                             outputStream.flush();

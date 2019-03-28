@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
     <SwitchPreference
-        android:key="@string/auto_download_key"
-        android:title="@string/auto_download_title"
+        android:key="@string/sp_auto_download_key"
+        android:title="@string/sp_auto_download_title"
         android:defaultValue="@bool/auto_download_default"
         />
+    <PreferenceCategory
+        android:key="@string/pc_variable_key"
+        android:title="@string/pc_variable_title"
+        >
+        <MultiSelectListPreference
+            android:key="@string/mp_wind_key"
+            android:entries="@array/settings_variable_labels"
+            android:entryValues="@array/settings_variable_values"
+            android:defaultValue="@string/wind"
+            />
+    </PreferenceCategory>
 
 </PreferenceScreen>

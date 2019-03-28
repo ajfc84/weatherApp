@@ -121,7 +121,31 @@ public final class Constants {
     public static final int [] RTOFS_GULF_STREAM_FORECAST_NUMBERS = {
             0, 24, 48, 72, 96, 120, 144
     };
+    public static final String ARCHIVE_WIND_GFS = "wind";
+    public static final String ARCHIVE_WIND_COAMPS = "coamps-wind";
+    public static final String ARCHIVE_WIND_WRF = "wrf-wind";
+    public static final String ARCHIVE_WIND_NAM = "nam-wind";
+    public static final String ARCHIVE_PRESSURE = "pressure";
+    public static final String ARCHIVE_WAVES = "waves";
+    public static final String ARCHIVE_VISIBILITY = "visibility";
+    public static final String ARCHIVE_PRECIPITATION = "rain";
+    public static final String ARCHIVE_CLOUD_COVER = "clouds";
+    public static final String ARCHIVE_GULF_STREAM = "gulfstream";
+    public static final String [] FORECAST_ARCHIVES = {
+            ARCHIVE_WIND_GFS,
+            ARCHIVE_WIND_COAMPS,
+            ARCHIVE_WIND_WRF,
+            ARCHIVE_WIND_NAM,
+            ARCHIVE_PRESSURE,
+            ARCHIVE_WAVES,
+            ARCHIVE_VISIBILITY,
+            ARCHIVE_PRECIPITATION,
+            ARCHIVE_CLOUD_COVER,
+            ARCHIVE_GULF_STREAM,
+    };
+    public static final String COMPRESSED_EXT = ".zip";
     public static final String MAP_EXT = ".png";
+    public static final String MAPS_DIR = "maps/";
     public static final String DEFAULT_MAP = "000";
     /* URL Path Elements */
     public static final String VAR_WIND_GFS = "wind";
