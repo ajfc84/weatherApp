@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.passageweather.config.MyApp;
@@ -26,7 +27,11 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import okhttp3.OkHttpClient;
 
@@ -36,6 +41,7 @@ public class MapRepository {
     private OkHttpClient client = new OkHttpClient();
     private AppDatabase db;
     private MapDao mapDao;
+    private ForecastThreadPoolManager mThreadManager;
 
 
 /*
@@ -46,9 +52,14 @@ public class MapRepository {
     }
 */
 
+    static {
+
+    }
+
     private MapRepository(){
         db = AppDatabase.newInstance();
         mapDao = db.mapDao();
+        mThreadManager = ForecastThreadPoolManager.newInstance();
     }
 
     public static synchronized MapRepository newInstance() {
@@ -56,31 +67,19 @@ public class MapRepository {
         return instance;
     }
 
-    // TODO (3) This is running on the UiThread, move everything to a BgThread
-    public MutableLiveData<Bitmap> getLiveForecastMap(URL url) {
-        MutableLiveData<Bitmap> data = new MutableLiveData<>();
+    private class Wrapper<T> {
+        public T obj;
+    }
+
+    private Bitmap openVolleyConnection(URL url) {
+        final Wrapper<Bitmap> data = new Wrapper();
         RequestQueue queue = MapClient.getInstance(MyApp.getAppContext()).getRequestQueue();
         ImageRequest imageRequest = new ImageRequest(
                 url.toString(),
-                new com.android.volley.Response.Listener<Bitmap>() {
+                new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
-                        data.postValue(response);
-                        String [] mapInfo = NetUtils.parseMapsPath(url);
-                        Map map = new Map();
-                        map.onDisk = Utils.saveForecastMap(response, url);
-                        map.name = mapInfo[2];
-                        map.region = mapInfo[0];
-                        map.variable = mapInfo[1];
-                        int forecastNumber = Integer.valueOf(map.name.substring(0, map.name.length() - 4));
-                        map.forecastDate = WeatherUtils.convertForecastNumber2Date(map.variable, forecastNumber);
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mapDao.updateMaps(map);
-                            }
-                        }).start();
-
+                        data.obj = response;
                     }
                 },
                 800,
@@ -90,54 +89,67 @@ public class MapRepository {
                 new com.android.volley.Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //Toast.makeText(context, "Unable to retrieve map!", Toast.LENGTH_LONG).show(); // TODO (15) Give user a warning
+                        //Toast.makeText(context, "Connection failure!", Toast.LENGTH_LONG).show(); // TODO (99) Give user a warning
                         Log.e(this.getClass().getName(), error.getMessage());
                     }
                 });
         MapClient.getInstance(MyApp.getAppContext()).addToRequestQueue(imageRequest);
-        return data;
+        return data.obj;
     }
 
+    public MutableLiveData<Bitmap> getLiveForecastMap(URL url) {
+        MutableLiveData map = new MutableLiveData();
+        mThreadManager.addRunnable(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap image = openVolleyConnection(url);
+                map.postValue(image);
+                String [] mapInfo = NetUtils.parseMapsPath(url);
+                Map map = new Map();
+                map.onDisk = Utils.saveForecastMap(image, url);
+                map.name = mapInfo[2];
+                map.region = mapInfo[0];
+                map.variable = mapInfo[1];
+                int forecastNumber = Integer.valueOf(map.name.substring(0, map.name.length() - 4));
+                map.forecastDate = WeatherUtils.convertForecastNumber2Date(map.variable, forecastNumber);
+                mapDao.updateMaps(map);
+            }
+        });
+        return map;
+    }
 
     public MutableLiveData<Bitmap> getForecastMap(String region, String variable, String label) {
         final MutableLiveData<Bitmap> data = new MutableLiveData<>();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String relativePath = NetUtils.buildMapsRelativePath(region, variable);
-                        File path = new File(MyApp.getAppContext().getFilesDir(), relativePath);
-                        Map map = mapDao.getMapByRegionAndVariableAndDate(region, variable, label);
-                        String forecast = null;
-                        File file = null;
-                        if (map != null) {//        else forecast = WeatherUtils.convertDate2ForecastNumber(label);
-                            forecast = WeatherUtils.convertMapName2ForecastNumber(map.name);
-                            file = new File(path, map.name);
-                            if (file.exists()) {
-                                final String forecastNumber = forecast;
-                                FileInputStream inS = null;
-                                Bitmap image = null;
-                                try {
-                                    inS = new FileInputStream(relativePath + forecastNumber + Constants.MAP_EXT);
-                                } catch (FileNotFoundException e) {
-                                    e.printStackTrace();
-                                }
-                                image = BitmapFactory.decodeStream(inS);
-                                data.postValue(image);
-                            }
-                        }
+        mThreadManager.addRunnable(new Runnable() {
+            @Override
+            public void run() {
+                String relativePath = NetUtils.buildMapsRelativePath(region, variable);
+                File path = new File(MyApp.getAppContext().getFilesDir(), relativePath);
+                Map map = mapDao.getMapByRegionAndVariableAndDate(region, variable, label);
+                File file = new File(path, map.name + Constants.MAP_EXT);
+                if (file.exists()) {
+                    FileInputStream inS = null;
+                    Bitmap image = null;
+                    try {
+                        inS = new FileInputStream(relativePath + map.name + Constants.MAP_EXT);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
-                }).start();
-/*
-            else {
-                URL url = NetUtils.buildMapURL(region, variable, Integer.valueOf(forecast));
-                data = getLiveForecastMap(url);
+                    image = BitmapFactory.decodeStream(inS);
+                    data.postValue(image);
+                }
+                else {
+                    URL url = NetUtils.buildMapURL(region, variable, Integer.valueOf(map.name));
+                    data.postValue(openVolleyConnection(url));
+                }
+
             }
-*/
+        });
         return data;
     }
 
     public void lazyLoadingMode(final String region, final String variable) {
-        new Thread(new Runnable() {
+        mThreadManager.addRunnable(new Runnable() {
             @Override
             public void run() {
                 int [] forecastHours = WeatherUtils.getForecastHours(variable);
@@ -161,11 +173,35 @@ public class MapRepository {
                 }
                 mapDao.insertMaps(maps);
             }
-        }).start();
+        });
+    }
+
+    public MapLabel [] getForecastMapLabels(String region, String variable) {
+        Future data = mThreadManager.addCallable(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                return mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
+            }
+        });
+        MapLabel [] labels = null;
+        try {
+            labels =(MapLabel[]) data.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return labels;
+    }
+
+    // Todo (98) move this to the thread executor
+    public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {
+        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
+        return dir.listFiles();
     }
 
 /*
-    public MutableLiveData<Bitmap> getLiveForecastMap2(URL url) {
+    public MutableLiveData<Bitmap> getLiveForecastMapGluide(URL url) {
         Request request =  new Request.Builder()
                 .url(url)
                 .build();
@@ -188,18 +224,6 @@ public class MapRepository {
 */
 
 /*
-    public LiveData<List<Bitmap>> getForecastMaps(List<URL> urls) {
-        List<Bitmap> bitmapList = new ArrayList<>();
-        for(URL u : urls) {
-            bitmapList.add(getForecastMap(u.toString()));
-        }
-        MutableLiveData<List<Bitmap>> list = new MutableLiveData<>();
-        list.setValue(bitmapList);
-        return list;
-    }
-*/
-
-/*
     public LiveData<String> getForecastMapJSON(String region, String variable) {
         final MutableLiveData<String> data = new MutableLiveData<>();
         ws.getMapJSON(region, variable).enqueue(new Callback<String>() {
@@ -216,14 +240,5 @@ public class MapRepository {
         return data;
     }
 */
-
-    public MapLabel [] getForecastMapLabels(String region, String variable) {
-        return mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
-    }
-
-    public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {
-        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
-        return dir.listFiles();
-    }
 
 }
