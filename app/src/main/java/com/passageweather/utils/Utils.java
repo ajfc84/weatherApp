@@ -74,7 +74,7 @@ public class Utils {
         return playTask;
     }
 
-    public static void saveForecastMap(Bitmap image, URL url) {
+    public static boolean saveForecastMap(Bitmap image, URL url) {
         Context context = MyApp.getAppContext();
         OutputStream outS = null;
         File file = null;
@@ -94,35 +94,7 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static String [] getForecastFilesLabels(MapViewModel model) {
-        String [] fileNames = model.getForecastMapsNames();
-        int [] forecastHours = WeatherUtils.getForecastHours(model.getVariable().getValue());
-        String [] labels = new String[fileNames.length];
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
-        Date date = new Date();
-        for (int i = 0; i < fileNames.length; i++) {
-            if(forecastHours[i] == 0 && i > 0) {
-                date.setTime(date.getTime() + 86400000); // add one day
-            }
-            labels[i] = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
-        }
-        return labels;
-    }
-
-    public static String [] getForecastMapsLabels(MapViewModel model) {
-        int [] forecastHours = WeatherUtils.getForecastHours(model.getVariable().getValue());
-        String [] labels = new String[forecastHours.length];
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
-        Date date = new Date();
-        for (int i = 0; i < forecastHours.length; i++) {
-            if(forecastHours[i] == 0 && i > 0) {
-                date.setTime(date.getTime() + 86400000); // add one day
-            }
-            labels[i] = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
-        }
-        return labels;
+        return true;
     }
 
     @Deprecated

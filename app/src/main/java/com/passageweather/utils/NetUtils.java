@@ -69,7 +69,7 @@ public class NetUtils {
     /**
      * Converts a Map Url to an array of map information values
      * @param url The url of the map
-     * @return returns an array with the region, the variable and the filename of the map
+     * @return returns an array with the region, the variable and the name of the map
      */
 
     public static String [] parseMapsPath(URL url) {

@@ -14,11 +14,6 @@ public class WeatherUtils {
      * @return Array with the Forecast Hours for the selected forecast variable
      */
 
-    public static int [] getForecastNumbers(MapViewModel model) {
-        String variable = model.getVariable().getValue();
-        return getForecastNumbers(variable);
-    }
-
     public static int [] getForecastNumbers(String variable) {
         switch (variable) {
             case Constants.VAR_WIND_GFS:
@@ -44,6 +39,17 @@ public class WeatherUtils {
         }
         return null;
     }
+
+    public static int [] getForecastNumbers(MapViewModel model) {
+        String variable = model.getVariable().getValue();
+        return getForecastNumbers(variable);
+    }
+
+    /**
+     * makes a forecast hour for each and every forecast number
+     * @param variable forecast variable
+     * @return returns the hours in UTC of each forecast
+     */
 
     public static int [] getForecastHours(String variable) {
         int startIndex = getForecastStartIndex();
@@ -100,7 +106,7 @@ public class WeatherUtils {
     }
 
     /**
-     * converts the filename to forecast number by removing the file extension
+     * converts the name to forecast number by removing the file extension
      * @param filename name of the forecast map file
      * @return returns the forecast number
      */

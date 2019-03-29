@@ -2,6 +2,7 @@ package com.passageweather.modelview;
 
 import android.graphics.Bitmap;
 
+import com.passageweather.model.MapLabel;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
 
@@ -109,12 +110,21 @@ public class MapViewModel extends ViewModel {
         return forecastMap;
     }
 
-    public String [] getForecastMapsNames() {
-        return MapRepository.getForecastMapNamesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
-    }
-
     public File[] getForecastMaps() {
         return MapRepository.getForecastMapFilesByRegionAndVariable(getRegion().getValue(), getVariable().getValue());
+    }
+
+    public String [] getForecastMapsLabels() {
+        MapLabel [] maps = repo.getForecastMapLabels(getRegion().getValue(), getVariable().getValue());
+        String [] labels = new String[maps.length];
+        for (int i = 0; i < maps.length; i++) {
+            labels[i] = maps[i].forecastDate;
+        }
+        return labels;
+    }
+
+    public void startLazyMapMode() {
+        repo.lazyLoadingMode(getRegion().getValue(), getVariable().getValue());
     }
 
 }

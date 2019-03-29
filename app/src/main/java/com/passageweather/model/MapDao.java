@@ -20,9 +20,21 @@ public interface MapDao {
 
     @Query(
             "SELECT * FROM maps " +
-            "WHERE region LIKE :region AND variable LIKE :variable AND forecast_time LIKE :date"
+            "WHERE region LIKE :region AND variable LIKE :variable"
+    )
+    public Map [] getMapsByRegionAndVariable(String region, String variable);
+
+    @Query(
+            "SELECT * FROM maps " +
+                    "WHERE region LIKE :region AND variable LIKE :variable AND forecast_date LIKE :date"
     )
     public Map getMapByRegionAndVariableAndDate(String region, String variable, String date);
+
+    @Query(
+            "SELECT maps.forecast_date FROM maps " +
+                    "WHERE region LIKE :region AND variable LIKE :variable"
+    )
+    public MapLabel [] getMapForecastDatesByRegionAndVariable(String region, String variable);
 
 /*
     @Query(

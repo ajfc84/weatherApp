@@ -12,6 +12,7 @@ import com.passageweather.config.MyApp;
 import com.passageweather.model.AppDatabase;
 import com.passageweather.model.Map;
 import com.passageweather.model.MapDao;
+import com.passageweather.model.MapLabel;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.MapClient;
 import com.passageweather.utils.NetUtils;
@@ -23,6 +24,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import androidx.lifecycle.MutableLiveData;
 import okhttp3.OkHttpClient;
@@ -53,6 +56,7 @@ public class MapRepository {
         return instance;
     }
 
+    // TODO (3) This is running on the UiThread, move everything to a BgThread
     public MutableLiveData<Bitmap> getLiveForecastMap(URL url) {
         MutableLiveData<Bitmap> data = new MutableLiveData<>();
         RequestQueue queue = MapClient.getInstance(MyApp.getAppContext()).getRequestQueue();
@@ -62,14 +66,14 @@ public class MapRepository {
                     @Override
                     public void onResponse(Bitmap response) {
                         data.postValue(response);
-                        Utils.saveForecastMap(response, url);
                         String [] mapInfo = NetUtils.parseMapsPath(url);
                         Map map = new Map();
-                        map.filename = mapInfo[2];
+                        map.onDisk = Utils.saveForecastMap(response, url);
+                        map.name = mapInfo[2];
                         map.region = mapInfo[0];
                         map.variable = mapInfo[1];
-                        int forecastNumber = Integer.valueOf(map.filename.substring(0, map.filename.length() - 4));
-                        map.forecastTime = WeatherUtils.convertForecastNumber2Date(map.variable, forecastNumber);
+                        int forecastNumber = Integer.valueOf(map.name.substring(0, map.name.length() - 4));
+                        map.forecastDate = WeatherUtils.convertForecastNumber2Date(map.variable, forecastNumber);
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -106,8 +110,8 @@ public class MapRepository {
                         String forecast = null;
                         File file = null;
                         if (map != null) {//        else forecast = WeatherUtils.convertDate2ForecastNumber(label);
-                            forecast = WeatherUtils.convertMapName2ForecastNumber(map.filename);
-                            file = new File(path, map.filename);
+                            forecast = WeatherUtils.convertMapName2ForecastNumber(map.name);
+                            file = new File(path, map.name);
                             if (file.exists()) {
                                 final String forecastNumber = forecast;
                                 FileInputStream inS = null;
@@ -130,6 +134,34 @@ public class MapRepository {
             }
 */
         return data;
+    }
+
+    public void lazyLoadingMode(final String region, final String variable) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int [] forecastHours = WeatherUtils.getForecastHours(variable);
+                int [] forecastNumbers = WeatherUtils.getForecastNumbers(variable);
+                String [] labels = new String[forecastHours.length];
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
+                Date date = new Date();
+                Map map = null;
+                Map [] maps = new Map[forecastHours.length];
+                for (int i = 0; i < forecastHours.length; i++) {
+                    if(forecastHours[i] == 0 && i > 0) {
+                        date.setTime(date.getTime() + 86400000); // add one day
+                    }
+                    map = new Map();
+                    map.onDisk = false;
+                    map.region = region;
+                    map.variable = variable;
+                    map.name = String.format("%03d", forecastNumbers[i]);
+                    map.forecastDate = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
+                    maps[i] = map;
+                }
+                mapDao.insertMaps(maps);
+            }
+        }).start();
     }
 
 /*
@@ -185,9 +217,8 @@ public class MapRepository {
     }
 */
 
-    public static String [] getForecastMapNamesByRegionAndVariable(String region, String variable) {
-        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
-        return dir.list();
+    public MapLabel [] getForecastMapLabels(String region, String variable) {
+        return mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
     }
 
     public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {

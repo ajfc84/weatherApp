@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,9 +38,11 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         Intent intent = getIntent();
         fm = getSupportFragmentManager();
         if (intent != null && intent.hasExtra(Constants.INTENT_REGION_KEY)) {
+            // MapViewModel initialization
             model = ViewModelProviders.of(this).get(MapViewModel.class);
             model.getRegion().setValue(intent.getStringExtra(Constants.INTENT_REGION_KEY));
             menu_index = intent.getIntExtra(Constants.INTENT_OPTION_KEY, 0);
+            model.startLazyMapMode();
             PagerFragment pagerFragment = PagerFragment.newInstance();
             fm.beginTransaction()
                     .add(R.id.fl_map,
@@ -109,10 +110,9 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         dialog.show(getSupportFragmentManager(), ShareMapsDialogFragment.class.getName());
     }
 
-    // This function stoped working correctly after upgrade, we need to associate labels with filenames
     public void showTimeMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        String [] fileLabels = Utils.getForecastFilesLabels(model); // TODO (1) change back to MapsLabels
+        String [] fileLabels = model.getForecastMapsLabels();
         for(String n : fileLabels) {
             popup.getMenu().add(n);
         }

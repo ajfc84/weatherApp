@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1a7a3e25b6e1cf2ecb1b16110d170120",
+    "identityHash": "616235fe57b63b4ce2f0d6e6c4ac88ab",
     "entities": [
       {
         "tableName": "maps",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `filename` TEXT, `forecast_time` TEXT NOT NULL, `region` TEXT NOT NULL, `variable` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `forecast_date` TEXT NOT NULL, `region` TEXT NOT NULL, `variable` TEXT NOT NULL, `on_disk` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,14 +15,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "filename",
-            "columnName": "filename",
+            "fieldPath": "name",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "forecastTime",
-            "columnName": "forecast_time",
+            "fieldPath": "forecastDate",
+            "columnName": "forecast_date",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -36,6 +36,12 @@
             "fieldPath": "variable",
             "columnName": "variable",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "onDisk",
+            "columnName": "on_disk",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -56,12 +62,12 @@
             "createSql": "CREATE UNIQUE INDEX `index_maps_region_variable` ON `${TABLE_NAME}` (`region`, `variable`)"
           },
           {
-            "name": "index_maps_filename",
+            "name": "index_maps_name",
             "unique": false,
             "columnNames": [
-              "filename"
+              "name"
             ],
-            "createSql": "CREATE  INDEX `index_maps_filename` ON `${TABLE_NAME}` (`filename`)"
+            "createSql": "CREATE  INDEX `index_maps_name` ON `${TABLE_NAME}` (`name`)"
           }
         ],
         "foreignKeys": []
@@ -70,7 +76,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"1a7a3e25b6e1cf2ecb1b16110d170120\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"616235fe57b63b4ce2f0d6e6c4ac88ab\")"
     ]
   }
 }

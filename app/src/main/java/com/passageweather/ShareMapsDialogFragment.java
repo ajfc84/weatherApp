@@ -30,7 +30,7 @@ public class ShareMapsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         model = ViewModelProviders.of(getActivity()).get(MapViewModel.class);
-        String [] fileLabels = Utils.getForecastFilesLabels(model); // TODO (71) Migrate this to getForecastMapsLabels
+        String [] fileLabels = model.getForecastMapsLabels();
         List<Integer> selectedItems = new ArrayList<>();
         builder.setTitle(R.string.share_maps_dialog_title)
                 .setMultiChoiceItems(fileLabels, null, new DialogInterface.OnMultiChoiceClickListener() {
