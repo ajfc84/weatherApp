@@ -1,47 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    >
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fl_map"
         android:layout_width="460dp"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/colorPrimary"
         android:gravity="center_vertical|center_horizontal"
-        >
+        android:orientation="vertical">
+
         <ImageButton
             android:id="@+id/menu_button1"
-            android:onClick="play"
-            android:src="@drawable/ic_play_arrow_white_24dp"
             style="@style/NavMapButton"
-            />
+            android:onClick="play"
+            android:src="@drawable/ic_play_arrow_white_24dp" />
+
         <ImageButton
             android:id="@+id/menu_button2"
-            android:onClick="share"
-            android:src="@drawable/ic_share_white_24dp"
             style="@style/NavMapButton"
-            />
+            android:onClick="share"
+            android:src="@drawable/ic_share_white_24dp" />
+
         <ImageButton
             android:id="@+id/menu_button3"
-            android:onClick="showTimeMenu"
-            android:src="@drawable/ic_access_time_white_24dp"
             style="@style/NavMapButton"
-            />
+            android:onClick="showTimeMenu"
+            android:src="@drawable/ic_access_time_white_24dp" />
+
         <ImageButton
             android:id="@+id/menu_button4"
-            android:onClick="showVarMenu"
-            android:src="@drawable/ic_wind"
             style="@style/NavMapButton"
-            />
+            android:onClick="showVarMenu"
+            android:src="@drawable/ic_wind" />
     </LinearLayout>
 </LinearLayout>
 

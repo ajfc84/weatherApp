@@ -26,6 +26,7 @@ public class MapViewModel extends ViewModel {
     private MutableLiveData<Boolean> isPlaying;
 
     private LiveData<List<Bitmap>> forecastMaps;
+    private LiveData<MapLabel []> labels;
 
 /*
     @Inject

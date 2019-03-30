@@ -32,6 +32,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Wrapper;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Callable;
@@ -146,7 +147,6 @@ public class MapRepository {
                 String relativePath = NetUtils.buildMapsRelativePath(region, variable);
                 File path = new File(MyApp.getAppContext().getFilesDir(), relativePath);
                 String forecast = WeatherUtils.convertForecastNumber2MapName(forecastNumber);
-//                Map map = mapDao.getMapByRegionAndVariableAndName(region, variable, forecast);
                 File file = new File(path, forecast + Constants.MAP_EXT);
                 if (file.exists()) {
                     FileInputStream inS = null;
@@ -157,15 +157,13 @@ public class MapRepository {
                         e.printStackTrace();
                     }
                     image = BitmapFactory.decodeStream(inS);
-//                    data.obj = new MutableLiveData<>();
                     data.postValue(image);
                 }
                 else {
                     URL url = NetUtils.buildMapURL(region, variable, Integer.valueOf(forecast));
-//                    MutableLiveData img = openVolleyConnection(url);
                     Bitmap image = openHttpConnection(url);
                     if(image != null) {
-                        data.postValue( image);
+                        data.postValue(image);
                         insertMap(image, url);
                     }
                     else {
@@ -213,8 +211,15 @@ public class MapRepository {
                 }
                 else {
                     URL url = NetUtils.buildMapURL(region, variable, Integer.valueOf(map.name));
-//                    data.obj = openVolleyConnection(url);
-                   data.postValue(openHttpConnection(url));
+                    Bitmap image = openHttpConnection(url);
+                    if(image != null) {
+                        data.postValue(image);
+                        map.onDisk = true;
+                        mapDao.updateMaps(map);
+                    }
+                    else {
+                        Log.e(this.getClass().getName(), "getForecastMap: Loading image error");
+                    }
                 }
 
             }
@@ -250,22 +255,19 @@ public class MapRepository {
         });
     }
 
+    private class Wrapper<T> {
+        T [] obj;
+    }
+
     public MapLabel [] getForecastMapLabels(String region, String variable) {
-        Future data = mThreadManager.addCallable(new Callable() {
+        final Wrapper<MapLabel> data = new Wrapper<>();
+        mThreadManager.addRunnable(new Runnable() {
             @Override
-            public Object call() throws Exception {
-                return mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
+            public void run() {
+                data.obj = mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
             }
         });
-        MapLabel [] labels = null;
-        try {
-            labels =(MapLabel[]) data.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return labels;
+        return data.obj;
     }
 
     // Todo (98) move this to the thread executor

@@ -18,9 +18,31 @@
     </style>
     <style name="NavMapButton">
         <item name="android:background">@drawable/button_shape</item>
+    </style>
+    <style name="NavMapButtonAny" parent="NavMapButton">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">60dp</item>
         <item name="android:layout_margin">4dp</item>
+    </style>
+    <style name="NavMapButtonSw320dp" parent="NavMapButton">
+        <item name="android:layout_width">@dimen/ib_map_nav_sw_320_dp_width_height</item>
+        <item name="android:layout_height">@dimen/ib_map_nav_sw_320_dp_width_height</item>
+        <item name="android:layout_margin">@dimen/ib_map_nav_sw_320_dp_margin</item>
+    </style>
+    <style name="NavMapButtonSw480dp" parent="NavMapButton">
+        <item name="android:layout_width">@dimen/ib_map_nav_sw_480_dp_width_height</item>
+        <item name="android:layout_height">@dimen/ib_map_nav_sw_480_dp_width_height</item>
+        <item name="android:layout_margin">@dimen/ib_map_nav_sw_480_dp_margin</item>
+    </style>
+    <style name="NavMapButtonSw600dp" parent="NavMapButton">
+        <item name="android:layout_width">@dimen/ib_map_nav_sw_600_dp_width_height</item>
+        <item name="android:layout_height">@dimen/ib_map_nav_sw_600_dp_width_height</item>
+        <item name="android:layout_margin">@dimen/ib_map_nav_sw_600_dp_margin</item>
+    </style>
+    <style name="NavMapButtonSw720dp" parent="NavMapButton">
+        <item name="android:layout_width">@dimen/ib_map_nav_sw_720_dp_width_height</item>
+        <item name="android:layout_height">@dimen/ib_map_nav_sw_720_dp_width_height</item>
+        <item name="android:layout_margin">@dimen/ib_map_nav_sw_480_dp_margin</item>
     </style>
     <style name="NavOptionButton" parent="NavButton">
         <item name="android:onClick">onClickOption</item>

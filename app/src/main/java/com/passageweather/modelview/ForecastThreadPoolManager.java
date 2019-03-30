@@ -1,5 +1,6 @@
 package com.passageweather.modelview;
 
+import android.graphics.Bitmap;
 import android.os.Process;
 import android.util.Log;
 
