@@ -41,26 +41,6 @@ public class PlayMapFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_play_map, container, false);
-        /* Do not observe Region or we will have duplicate internet calls
-        everytime a fragment starts, instead destroy MapActivity and create the
-        new activity with the new chosen region
-        */
-//        Fragment fragment = this;
-/*
-        model.getVariable().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String variable) {
-//                NetUtils.showMap2(fragment);
-                NetUtils.showMap(getContext(),
-                        view.findViewById(R.id.iv_map),
-                        NetUtils.buildMapURL(
-                                model,
-                                getArguments().getInt(Constants.INTENT_FORECAST_KEY)
-                        )
-                );
-            }
-        });
-*/
         return view;
     }
 

@@ -31,12 +31,12 @@ public final class Constants {
 
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
-    // Forecast hours(a: 7h10-10h30, b: 10h30-16h30, c: 16h30-22h, d: 22h45-23h50)
+    // Forecast hours(a: 5h05-10h30, b: 10h30-16h30, c: 16h30-22h, d: 22h45-23h50)
     // GFS, Surface Pressure
     public static final int [] GFS_PRESSURE_FIRST_FORECAST_HOUR = {
             0, 6, 12, 18 // UTC - GFS 000
     };
-    // Forecast hours(a: 7h10-10h45, b: 10h45-16h15, c: 16h35-22h, d: 22h45-23h50)
+    // Forecast hours(a: 5h05-10h45, b: 10h45-16h15, c: 16h35-22h, d: 22h45-23h50)
     public static final int [] VISIBILITY_FIRST_FORECAST_HOUR = {
             3, 9, 15, 21 // UTC - GFS 003
     };
@@ -44,13 +44,14 @@ public final class Constants {
     public static final int [] PRECIPITATON_FIRST_CLOUDS_FORECAST_HOUR = {
             3, 9, 15, 21 // UTC - GFS 003
     };
+    // *12, 12, 12, 12
     public static final int [] COAMPS_FIRST_FORECAST_HOUR = {
             0, 0, 12, 12 // UTC - COAMPS 000
     };
     public static final int [] NAM_FIRST_FORECAST_HOUR = {
             0, 6, 12, 18 // UTC - NAM 000
     };
-    // Forecast hours(a: 7h10-13h10, b: 12h-16h15, c: 16h35-22h, d: 22h45-23h50)
+    // Forecast hours(a: 5h05-13h10, b: 12h-16h15, c: 16h35-22h, d: 22h45-23h50)
     public static final int [] WRF_FIRST_FORECAST_HOUR = {
             18, 6, 18, 6 // UTC - WRF 006
     };

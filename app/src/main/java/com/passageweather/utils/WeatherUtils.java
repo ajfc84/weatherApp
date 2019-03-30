@@ -9,6 +9,41 @@ import java.util.Date;
 public class WeatherUtils {
 
     /**
+     * Get forecast number by variable and index
+     * @param variable forecast variable
+     * @param index index of the forecast
+     * @return returns a forecast number from the forecast variable list
+     * in the position given by the index
+     */
+
+    public static int getForecastNumber(String variable, int index) {
+        switch (variable) {
+            case Constants.VAR_WIND_GFS:
+                return Constants.GFS_PRESSURE_FORECAST_NUMBERS[index];
+            case Constants.VAR_WIND_COAMPS:
+                return Constants.COAMPS_FORECAST_NUMBERS[index];
+            case Constants.VAR_WIND_WRF:
+                return Constants.WRF_FORECAST_NUMBERS[index];
+            case Constants.VAR_WIND_NAM:
+                return Constants.NAM_FORECAST_NUMBERS[index];
+            case Constants.VAR_SURFACE_PRESSURE:
+                return Constants.GFS_PRESSURE_FORECAST_NUMBERS[index];
+            case Constants.VAR_WAVES:
+                return Constants.WAVES_FORECAST_NUMBERS[index];
+            case Constants.VAR_VISIBILITY:
+                return Constants.VISIBILITY_FORECAST_NUMBERS[index];
+            case Constants.VAR_PRECIPITATION:
+                return Constants.PRECIPITATION_CLOUDS_FORECAST_NUMBERS[index];
+            case Constants.VAR_CLOUD_COVER:
+                return Constants.PRECIPITATION_CLOUDS_FORECAST_NUMBERS[index];
+            case Constants.VAR_GULF_STREAM:
+                return Constants.RTOFS_GULF_STREAM_FORECAST_NUMBERS[index];
+        }
+        return -1;
+    }
+
+
+    /**
      * Get the Forecast Hours
      * @param model - ViewModel of the Maps that contains the current forecast variable
      * @return Array with the Forecast Hours for the selected forecast variable
@@ -113,6 +148,16 @@ public class WeatherUtils {
 
     public static String convertMapName2ForecastNumber(String filename) {
         return filename.substring(0, filename.length() - 4);
+    }
+
+    /**
+     * converts the forecast number to name by padding with zeros
+     * @param forecastNumber number of the forecast variable
+     * @return returns the forecast number in the format "%03d"
+     */
+
+    public static String convertForecastNumber2MapName(int forecastNumber) {
+        return String.format("%03d", forecastNumber);
     }
 
     /**

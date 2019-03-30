@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -31,6 +32,12 @@ public interface MapDao {
     public Map getMapByRegionAndVariableAndDate(String region, String variable, String date);
 
     @Query(
+            "SELECT * FROM maps " +
+                    "WHERE region LIKE :region AND variable LIKE :variable AND name LIKE :name"
+    )
+    public Map getMapByRegionAndVariableAndName(String region, String variable, String name);
+
+    @Query(
             "SELECT maps.forecast_date FROM maps " +
                     "WHERE region LIKE :region AND variable LIKE :variable"
     )
@@ -45,8 +52,8 @@ public interface MapDao {
     public List<MapForecasts> getMapsByRegionsandVariables(String [] regions, String [] variables);
 */
 
-    @Insert(onConflict = IGNORE)
-    public void insertMaps(Map... maps);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public long [] insertMaps(Map... maps);
 
     @Update(onConflict = REPLACE)
     public int updateMaps(Map... maps);

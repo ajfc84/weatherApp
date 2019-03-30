@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.passageweather.model.MapLabel;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
+import com.passageweather.utils.WeatherUtils;
 
 import java.io.File;
 import java.net.URL;
@@ -34,7 +35,7 @@ public class MapViewModel extends ViewModel {
 */
 
     public void init() {
-        currentForecastMap = repo.getLiveForecastMap(NetUtils.buildMapURL(this, currentForecast));
+//        currentForecastMap = repo.getLiveForecastMap(NetUtils.buildMapURL(this, currentForecast));
 /*
         List<URL> urlList = new ArrayList<>();
         for(int i = 0; i < WeatherUtils.getNumberOfForecasts(mVariable.getValue()); i++)
@@ -46,11 +47,15 @@ public class MapViewModel extends ViewModel {
     // Look out: currentForecast is updated by Map_Fragment before this
     // so call getLiveForecastMap always before returning the map
     public LiveData<Bitmap> getCurrentForecastMap() {
+/*
         URL url = NetUtils.buildMapURL(this, currentForecast);
         currentForecastMap = repo.getLiveForecastMap(url);
+*/
+        currentForecastMap = repo.getForecastMap(getRegion().getValue(), getVariable().getValue(), WeatherUtils.getForecastNumber(getVariable().getValue(), currentForecast));
         return currentForecastMap;
     }
 
+/*
     public void nextForecast() {
         URL url = NetUtils.buildMapURL(this, ++currentForecast);
         currentForecastMap = repo.getLiveForecastMap(url);
@@ -60,6 +65,7 @@ public class MapViewModel extends ViewModel {
         URL url = NetUtils.buildMapURL(this, --currentForecast);
         currentForecastMap = repo.getLiveForecastMap(url);
     }
+*/
 
 /*
     public LiveData<List<Bitmap>> getForecastMaps() {
