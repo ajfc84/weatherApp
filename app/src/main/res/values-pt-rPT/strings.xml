@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Passage Weather</string>
+
+    <string name="map_icon_description">Icon do mapa</string>
+
+    <string name="welcome_message">Por favor escolha uma região!</string>
+
+    <string name="share_map">Compartilhar o mapa com...</string>
+    <string name="share_maps_dialog_title">Quais mapas gostaria de compartilhar?</string>
+    <string name="cancel">Cancelar</string>
+
+    /* Shared preferences */
+    <string name="app_settings">Configurações</string>
+    <string name="sp_auto_download_title">Autorizar downloads automáticos</string>
+    <string name="sp_auto_download_key" translatable="false">auto_download</string>
+    <string name="pc_variable_key" translatable="false">variable_category</string>
+    <string name="pc_variable_title">Variáveis</string>
+    <string name="mp_wind_key" translatable="false">wind</string>
+
+    /* Menu items */
+    <string name="play">Play</string>
+    <string name="share">Compartilhar</string>
+    <string name="wind">Vento</string>
+    <string name="gfs">GFS</string>
+    <string name="coamps">COAMPS</string>
+    <string name="wrf">WRF</string>
+    <string name="nam">NAM</string>
+    <string name="pressure">Pressão Atmosférica</string>
+    <string name="waves">Ondulação</string>
+    <string name="visibility">Visibilidade</string>
+    <string name="precipitation">Precipitação</string>
+    <string name="clouds">Nebulosidade</string>
+    <string name="gulfstream">Corrente do Golfo</string>
+
+    <string name="med">Mediterraneo</string>
+    <string name="west">Caraíbas</string>
+    <string name="natl">Atlántico Norte</string>
+    <string name="satl">Atlántico Sul</string>
+    <string name="npac">Pacífico Norte</string>
+    <string name="spac">Pacífico Sul</string>
+    <string name="ioce">Oceano Índico</string>
+    <string name="rr">Regatas e competições</string>
+
+    <string name="meds">Mar Mediterrâneo</string>
+    <string name="westmed">Mediterrâneo Ocidental</string>
+    <string name="ctlmed">Mediterrâneo Central</string>
+    <string name="eastmed">Mediterrâneo Oriental</string>
+    <string name="blksea">Mar Negro</string>
+    <string name="adriatic">Mar Adriático e Egeu</string>
+    <string name="straitgbt">Estreito de Gibraltar</string>
+    <string name="baleares">Ilhas Baleares</string>
+    <string name="ligurians">Mar da Ligúria</string>
+    <string name="corsar">Córsega e Sardenha</string>
+    <string name="straitbfc">Estreito de Bonifácio</string>
+    <string name="smalta">Sicília e Malta</string>
+
+    <string name="bertoind">Bermuda até ás Caraíbas</string>
+    <string name="sflorida">Sul da Flórida</string>
+    <string name="flortoind">Florida até ás Caraíbas</string>
+    <string name="gulfmex">Golfo do México</string>
+    <string name="caribsea">Mar das Caríbas</string>
+    <string name="virgtodom">Ilhas virgens até Dominica</string>
+    <string name="leeward">Ilhas de Sotavento</string>
+    <string name="windw">ilhas de Barlavento</string>
+    <string name="appnma">Aproximação ao Panamá</string>
+
+    <string name="natlantic">Oceano Atlántico Norte</string>
+    <string name="tropatlantic">Ocenao Tropical Atlántico</string>
+    <string name="transatlantic">Transatlántico Norte</string>
+    <string name="stransat">Transatlántico Sul</string>
+    <string name="medtocarib">Mediterrãneo até ás Caraíbas</string>
+    <string name="azores">" Açores até ao Mediterrâneo"</string>
+    <string name="neurope">Norte da Europa até Islândia</string>
+    <string name="baltic">Mar Báltico</string>
+    <string name="northsea">Mar do Norte</string>
+    <string name="britisles">Ilhas Britãnicas</string>
+    <string name="IreltoEngl">Irelanda até Canal da Mancha</string>
+    <string name="engchannel">Canal da Mancha</string>
+    <string name="biscay">Baía da Biscaia</string>
+    <string name="gibraltar">Portugal até Gibraltar</string>
+    <string name="canary">Ilhas Canárias</string>
+    <string name="labrador">Labrador até Gronelãndia</string>
+    <string name="novascotia">Nova Escócia até Terra Nova</string>
+    <string name="newengland">Nova Inglaterra</string>
+    <string name="chesdel">Chesapeake e Delaware</string>
+    <string name="hatteras">Cabo Hatteras até Florida</string>
+    <string name="nportober">Newport até Bermuda</string>
+    <string name="sflor">Sul da Florida</string>
+    <string name="greatlks">Grandes Lagos</string>
+
+    <string name="lsup">Lago Superior</string>
+    <string name="lmichigan">Lago Michingan e Huron</string>
+    <string name="lontario">Lago Ontario e Erie</string>
+
+    <string name="satlantic">Oceano Atlántico Sul</string>
+    <string name="atlantocean">Oceano Tropical Atlântico</string>
+    <string name="caperj">Cidade do Cabo até Rio de Janeiro</string>
+    <string name="bario">B. Aires até Rio de Janiero</string>
+    <string name="drakepass">Passagem de Drake</string>
+    <string name="safrictoseyc">África do Sul até Seychelles</string>
+
+    <string name="npacific">Oceano Pacífico Norte</string>
+    <string name="alaska">Golfo do Alaska</string>
+    <string name="caltohaw">California até Havai</string>
+    <string name="hawaii">Havai</string>
+    <string name="usawest">Costa Oeste dos EUA</string>
+    <string name="straitjf">Estreio de Juan de Fuca</string>
+    <string name="socal">Califórnia do Sul</string>
+    <string name="mex">Califórnia do México</string>
+    <string name="baja">Baja Califórnia</string>
+    <string name="mextopan">Mexico até Panama</string>
+    <string name="pantogala">Panama até Ilhas Galápagos</string>
+    <string name="amertopol">America do Norte até Polinésia</string>
+    <string name="japan">Mar do Japão</string>
+    <string name="micronesia">Japão até Micronésia</string>
+    <string name="malacca">Estreito de Maláca</string>
+    <string name="chinasea">Mar do Sul da China</string>
+
+    <string name="spacific">Oceano Pacífico Sul</string>
+    <string name="oceania">Oceania</string>
+    <string name="fijtomarq">Fiji até Marquesas</string>
+    <string name="austcoral">Nordeste da Austrália até Mar de Coral</string>
+    <string name="seaust">Sudeste da Austrália</string>
+    <string name="swaust">Sudoeste Austrália</string>
+    <string name="tasman">Mar da Tasmánia</string>
+    <string name="newzealand">Nova Zelândia</string>
+
+    <string name="indian">Oceano Índico Norte</string>
+    <string name="sindian">Oceano Índico Sul</string>
+    <string name="safrica">África do Sul até Seychelles</string>
+    <string name="arabian">Mar Vermelho e Arábico</string>
+    <string name="leeuwin">Sudoeste da Austrélia</string>
+
+    <string name="atlantr">Rally Atlántico (ARC)</string>
+    <string name="cabosl">Regata Cabo de San Lucas</string>
+    <string name="rjrc">Regata Cabo até Rio</string>
+    <string name="chinarc">Regata Mar da China</string>
+    <string name="giragliarc">Regata Giraglia</string>
+    <string name="bermudarc">Regata Marion-Bermuda</string>
+    <string name="middlerc">Regata Middle Sea</string>
+    <string name="montegorc">Regata Baía de Montego</string>
+    <string name="npbermudarc">Regata Newport Bermuda</string>
+    <string name="mpaccup">Taça MPacific</string>
+    <string name="fastnetrc">Regata Rolex Fastnet</string>
+    <string name="caribrc">RORC Caribbean 600</string>
+    <string name="transatrc">RORC Regata Transatlãntica</string>
+    <string name="sydneyrc">Regata Sydney Hobart</string>
+    <string name="transatlantrc">Regata Transatlãntica</string>
+    <string name="transparc">Regata Transpac</string>
+
+    <string name="menu">MENU</string>
+
+    <string name="map_description">Mapa da área</string>
+
+</resources>

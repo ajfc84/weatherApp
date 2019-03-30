@@ -3,17 +3,17 @@
 
     <dimen name="fl_map_sw_320dp_width">460dp</dimen>
     <dimen name="fl_map_sw_480dp_width">720dp</dimen>
-    <dimen name="fl_map_sw_600dp_width">880dp</dimen>
-    <dimen name="fl_map_sw_720dp_width">1200dp</dimen>
+    <dimen name="fl_map_sw_600dp_width">850dp</dimen>
+    <dimen name="fl_map_sw_720dp_width">1135dp</dimen>
 
     <dimen name="ib_map_nav_sw_320_dp_width_height">60dp</dimen>
     <dimen name="ib_map_nav_sw_320_dp_margin">4dp</dimen>
     <dimen name="ib_map_nav_sw_480_dp_width_height">60dp</dimen>
     <dimen name="ib_map_nav_sw_480_dp_margin">4dp</dimen>
-    <dimen name="ib_map_nav_sw_600_dp_width_height">60dp</dimen>
+    <dimen name="ib_map_nav_sw_600_dp_width_height">80dp</dimen>
     <dimen name="ib_map_nav_sw_600_dp_margin">4dp</dimen>
-    <dimen name="ib_map_nav_sw_720_dp_width_height">60dp</dimen>
-    <dimen name="ib_map_nav_sw_720_dp_margin">4dp</dimen>
+    <dimen name="ib_map_nav_sw_720_dp_width_height">100dp</dimen>
+    <dimen name="ib_map_nav_sw_720_dp_margin">9dp</dimen>
 
 
 </resources>
