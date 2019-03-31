@@ -40,7 +40,7 @@
             android:id="@+id/menu_button4"
             android:onClick="showVarMenu"
             android:src="@drawable/ic_wind"
-            style="@style/NavMapButtonSw320dp"
+            style="@style/NavMapVariableButtonSw320dp"
             />
     </LinearLayout>
 </LinearLayout>
