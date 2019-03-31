@@ -57,10 +57,10 @@ public class ImageClient {
 */
                     }
                 },
-                800, // TODO (99) Startup values - Recheck this image values
-                600, // <-
-                ImageView.ScaleType.CENTER, // <-
-                Bitmap.Config.ARGB_8888, // <-
+                800,
+                600,
+                ImageView.ScaleType.CENTER,
+                Bitmap.Config.ARGB_8888,
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -84,10 +84,10 @@ public class ImageClient {
                         imageView.setImageBitmap(image);
                     }
                 },
-                800, // TODO (99) Startup values - Recheck this image values
-                600, // <-
-                ImageView.ScaleType.CENTER, // <-
-                Bitmap.Config.ARGB_8888, // <-
+                800,
+                600,
+                ImageView.ScaleType.CENTER,
+                Bitmap.Config.ARGB_8888,
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {

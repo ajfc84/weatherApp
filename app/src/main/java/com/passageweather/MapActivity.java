@@ -170,7 +170,6 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 }
                 break;
             case Constants.OPTION_NORTH_ATLANTIC_INDEX:
-                // TODO (90) Check Great Lakes menu functionality
                 popup.getMenuInflater().inflate(R.menu.menu_north_atlantic, menu);
                 if(region.equals(Constants.REGION_BALTIC_SEA) ||
                         region.equals(Constants.REGION_NORTH_SEA) ||
@@ -260,7 +259,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         switch (variable) {
             case Constants.VAR_WIND_GFS:
                 variableSelected = menu.findItem(R.id.gfs);
-                if(variableSelected == null) variableSelected = menu.findItem(R.id.wind); // gfs is wind when standalone -> TODO (88) remove R.id.gfs and always use R.id.wind can save lote of code
+                if(variableSelected == null) variableSelected = menu.findItem(R.id.wind);
                 variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WIND_COAMPS:

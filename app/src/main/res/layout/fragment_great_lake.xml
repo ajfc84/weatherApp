@@ -16,25 +16,25 @@
 
 
         <Button
-            android:id="@+id/region3"
+            android:id="@+id/region1"
             android:text="@string/greatlks"
             android:drawableLeft="@drawable/greatlakes"
             style="@style/NavRegionButton"
             />
         <Button
-            android:id="@+id/region4"
+            android:id="@+id/region2"
             android:text="@string/lsup"
             android:drawableLeft="@drawable/superior"
             style="@style/NavRegionButton"
             />
         <Button
-            android:id="@+id/region5"
+            android:id="@+id/region3"
             android:text="@string/lmichigan"
             android:drawableLeft="@drawable/michuron"
             style="@style/NavRegionButton"
             />
         <Button
-            android:id="@+id/region6"
+            android:id="@+id/region4"
             android:text="@string/lontario"
             android:drawableLeft="@drawable/onterie"
             style="@style/NavRegionButton"

@@ -44,6 +44,12 @@ public interface MapDao {
     )
     public String [] getMapForecastDatesByRegionAndVariable(String region, String variable);
 
+    @Query(
+            "SELECT maps.forecast_date FROM maps " +
+                    "WHERE region LIKE :region AND variable LIKE :variable AND on_disk = 1"
+    )
+    public String [] getMapForecastDatesFilesByRegionAndVariable(String region, String variable);
+
 /*
     @Query(
             "SELECT maps.forecast_time, maps.name, regions.name, variables.name FROM maps " +

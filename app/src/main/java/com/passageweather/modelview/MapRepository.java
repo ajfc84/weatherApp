@@ -270,7 +270,24 @@ public class MapRepository {
         return data;
     }
 
-    // Todo (98) move this to the thread executor
+    public String [] getForecastFileLabels(String region, String variable) {
+        Future future = mThreadManager.addCallable(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                return mapDao.getMapForecastDatesFilesByRegionAndVariable(region, variable);
+            }
+        });
+        String [] data = new String[0];
+        try {
+            data = (String [])future.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
     public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {
         File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
         return dir.listFiles();

@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.welcome_message, Toast.LENGTH_SHORT).show();
     }
 
+    //TODO (10) Implement Settings
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
         setTitle(R.string.app_settings);
     }
+*/
 
     public void onClickOption(View view) {
         NavMenuFragment regionFragment = null;
@@ -187,6 +190,23 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.region9:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_APPROACHES_TO_PANAMA);
+                    break;
+            }
+        } // great lake must come before north atlantic
+        else if(findViewById(R.id.ll_great_lake) != null) {
+            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_ATLANTIC_INDEX);
+            switch (v.getId()) {
+                case R.id.region1:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GREAT_LAKES);
+                    break;
+                case R.id.region2:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_SUPERIOR);
+                    break;
+                case R.id.region3:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_MICHIGAN_AND_HURON);
+                    break;
+                case R.id.region4:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_ONTARIO_AND_ERIE);
                     break;
             }
         }
@@ -457,23 +477,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.region16:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSPAC_RACE);
-                    break;
-            }
-        }
-        else if(findViewById(R.id.ll_great_lake) != null) {
-            intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_ATLANTIC_INDEX);
-            switch (v.getId()) {
-                case R.id.region1:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GREAT_LAKES);
-                    break;
-                case R.id.region2:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_SUPERIOR);
-                    break;
-                case R.id.region3:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_MICHIGAN_AND_HURON);
-                    break;
-                case R.id.region4:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_LAKE_ONTARIO_AND_ERIE);
                     break;
             }
         }

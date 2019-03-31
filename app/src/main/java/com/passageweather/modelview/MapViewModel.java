@@ -125,6 +125,10 @@ public class MapViewModel extends ViewModel {
         return repo.getForecastMapLabels(getRegion().getValue(), getVariable().getValue());
     }
 
+    public String [] getForecastFileLabels() {
+        return repo.getForecastFileLabels(getRegion().getValue(), getVariable().getValue());
+    }
+
     public void lazyMapMode() {
         repo.lazyLoadingMode(getRegion().getValue(), getVariable().getValue());
     }

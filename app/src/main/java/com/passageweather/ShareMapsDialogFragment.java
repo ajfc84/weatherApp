@@ -30,7 +30,7 @@ public class ShareMapsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         model = ViewModelProviders.of(getActivity()).get(MapViewModel.class);
-        String [] fileLabels = model.getForecastMapsLabels();
+        String [] fileLabels = model.getForecastFileLabels();
         List<Integer> selectedItems = new ArrayList<>();
         builder.setTitle(R.string.share_maps_dialog_title)
                 .setMultiChoiceItems(fileLabels, null, new DialogInterface.OnMultiChoiceClickListener() {
@@ -52,7 +52,7 @@ public class ShareMapsDialogFragment extends DialogFragment {
                         Context ctx = MyApp.getAppContext();
                         File file = null;
                         ArrayList<Uri> mapsToShare = new ArrayList<>();
-                        File [] files = model.getForecastMaps(); // TODO (70) Upgrade getForecastMaps to download maps when they dont exist in the filesystem
+                        File [] files = model.getForecastMaps();
                         for(Integer i : selectedItems) {
                             mapsToShare.add(FileProvider.getUriForFile(ctx, "com.passageweather.fileprovider", files[i]));
                         }
