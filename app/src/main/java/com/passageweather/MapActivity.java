@@ -42,7 +42,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
             model = ViewModelProviders.of(this).get(MapViewModel.class);
             model.getRegion().setValue(intent.getStringExtra(Constants.INTENT_REGION_KEY));
             menu_index = intent.getIntExtra(Constants.INTENT_OPTION_KEY, 0);
-            model.startLazyMapMode();
+            model.lazyMapMode();
             PagerFragment pagerFragment = PagerFragment.newInstance();
             fm.beginTransaction()
                     .add(R.id.fl_map,

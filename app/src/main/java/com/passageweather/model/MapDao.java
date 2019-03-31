@@ -10,6 +10,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import static androidx.room.OnConflictStrategy.FAIL;
 import static androidx.room.OnConflictStrategy.IGNORE;
 import static androidx.room.OnConflictStrategy.REPLACE;
 
@@ -41,7 +42,7 @@ public interface MapDao {
             "SELECT maps.forecast_date FROM maps " +
                     "WHERE region LIKE :region AND variable LIKE :variable"
     )
-    public MapLabel [] getMapForecastDatesByRegionAndVariable(String region, String variable);
+    public String [] getMapForecastDatesByRegionAndVariable(String region, String variable);
 
 /*
     @Query(
@@ -52,7 +53,7 @@ public interface MapDao {
     public List<MapForecasts> getMapsByRegionsandVariables(String [] regions, String [] variables);
 */
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = IGNORE)
     public long [] insertMaps(Map... maps);
 
     @Update(onConflict = REPLACE)

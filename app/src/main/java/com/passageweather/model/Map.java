@@ -12,12 +12,13 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "maps",
-        indices = {@Index(value = {"region", "variable"}, unique = true), @Index("name")} // TODO (4) region and variable and name need to be unique, is it possible?
+        indices = {@Index(value = {"region", "variable", "name"}, unique = true)}
         )
 public class Map {
 
-    @PrimaryKey(autoGenerate = true)
+    @NonNull
     @ColumnInfo(name = "mid")
+    @PrimaryKey(autoGenerate = true)
     public int id;
     public String name;
     @NonNull

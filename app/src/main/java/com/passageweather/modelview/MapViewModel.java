@@ -122,16 +122,15 @@ public class MapViewModel extends ViewModel {
     }
 
     public String [] getForecastMapsLabels() {
-        MapLabel [] maps = repo.getForecastMapLabels(getRegion().getValue(), getVariable().getValue());
-        String [] labels = new String[maps.length];
-        for (int i = 0; i < maps.length; i++) {
-            labels[i] = maps[i].forecastDate;
-        }
-        return labels;
+        return repo.getForecastMapLabels(getRegion().getValue(), getVariable().getValue());
+    }
+
+    public void lazyMapMode() {
+        repo.lazyLoadingMode(getRegion().getValue(), getVariable().getValue());
     }
 
     public void startLazyMapMode() {
-        repo.lazyLoadingMode(getRegion().getValue(), getVariable().getValue());
+        repo.lazyLoadingMode(Constants.REGION_MEDITERRANEAN_SEA, Constants.VAR_WIND_GFS);
     }
 
 }

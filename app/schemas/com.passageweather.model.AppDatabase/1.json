@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "616235fe57b63b4ce2f0d6e6c4ac88ab",
+    "identityHash": "0b9547f0d1b19cfbd0dad0e615de0b42",
     "entities": [
       {
         "tableName": "maps",
@@ -53,21 +53,14 @@
         },
         "indices": [
           {
-            "name": "index_maps_region_variable",
+            "name": "index_maps_region_variable_name",
             "unique": true,
             "columnNames": [
               "region",
-              "variable"
-            ],
-            "createSql": "CREATE UNIQUE INDEX `index_maps_region_variable` ON `${TABLE_NAME}` (`region`, `variable`)"
-          },
-          {
-            "name": "index_maps_name",
-            "unique": false,
-            "columnNames": [
+              "variable",
               "name"
             ],
-            "createSql": "CREATE  INDEX `index_maps_name` ON `${TABLE_NAME}` (`name`)"
+            "createSql": "CREATE UNIQUE INDEX `index_maps_region_variable_name` ON `${TABLE_NAME}` (`region`, `variable`, `name`)"
           }
         ],
         "foreignKeys": []
@@ -76,7 +69,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"616235fe57b63b4ce2f0d6e6c4ac88ab\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0b9547f0d1b19cfbd0dad0e615de0b42\")"
     ]
   }
 }
