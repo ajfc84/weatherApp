@@ -20,7 +20,7 @@
             <solid android:color="@color/colorPrimaryDark" />
             <stroke
                 android:width="10dip"
-                android:color="@color/colorSecondary" />
+                android:color="@color/colorPrimary" />
             <padding
                 android:bottom="4dp"
                 android:left="4dp"
