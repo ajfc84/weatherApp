@@ -122,7 +122,6 @@ public class MapRepository {
         mThreadManager.addRunnable(new Runnable() {
             @Override
             public void run() {
-//                data.obj = openVolleyConnection(url);
                 Bitmap image = openHttpConnection(url);
                 data.postValue(image);
                 String [] mapInfo = NetUtils.parseMapsPath(url);
@@ -139,9 +138,148 @@ public class MapRepository {
         return data;
     }
 
+    /**
+     * get the forecast Map for the views in the fragments. Retrieve the
+     * file in the filesystem, if it doesn't exist get it from the server.
+     * @param region region of the map
+     * @param variable variable
+     * @param forecastNumber forecast number
+     * @return A forecast map as a Bitmap object
+     */
+
     public LiveData<Bitmap> getForecastMap(String region, String variable, int forecastNumber) {
+        MutableLiveData<Bitmap> data = new MutableLiveData<>();
+        mThreadManager.addRunnable(new Runnable() {
+            @Override
+            public void run() {
+                String mapName = WeatherUtils.convertForecastNumber2MapName(forecastNumber);
+                Map m = mapDao.getMapByRegionAndVariableAndName(region, variable, mapName);
+                if(m == null) {
+                    m = new Map();
+                    m.region = region;
+                    m.variable = variable;
+                    m.name = mapName;
+                    m.onDisk = false;
+                    mapDao.insertMaps(m);
+                }
+                getMap(m);
+                data.postValue(m.image);
+            }
+        });
+        return data;
+    }
+
+    /**
+     * Get the forecast maps for the forecast time chooser or sharer. Retrieve the
+     * file in the filesystem, if it doesn't exist get it from the server.
+     * @param region region fo the map
+     * @param variable variable (wind, precipitation, etc)
+     * @param forecastDate map forecast date and time label
+     * @return returns a map in the form of a Bitmap
+     */
+
+    public LiveData<Bitmap> getForecastMap(String region, String variable, String forecastDate) {
+        MutableLiveData<Bitmap> data = new MutableLiveData<>();
+        mThreadManager.addRunnable(new Runnable() {
+            @Override
+            public void run() {
+                Map m = mapDao.getMapByRegionAndVariableAndDate(region, variable, forecastDate);
+                getMap(m);
+                data.postValue(m.image);
+            }
+        });
+        return data;
+    }
+
+    public void getMap(Map m) {
+        if (m.onDisk) getFileSysMap(m);
+        else getNetSrvMap(m);
+    }
+
+    private void getNetSrvMap(Map m) {
+        URL url = NetUtils.buildMapURL(m.region, m.variable, Integer.valueOf(m.name));
+        m.image = openHttpConnection(url);
+        if(m.image != null) m.onDisk = Utils.saveForecastMap(m.image, url);
+        else Log.e(MapRepository.class.getName(), "Download image empty");
+        mapDao.updateMaps(m);
+    }
+
+    private void getFileSysMap(Map m) {
+        String relativePath = NetUtils.buildMapsRelativePath(m.region, m.variable);
+        File path = new File(MyApp.getAppContext().getFilesDir(), relativePath);
+        File file = new File(path, m.name + Constants.MAP_EXT);
+        if (file.exists()) {
+            FileInputStream inS = null;
+            try {
+                inS = new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            m.image = BitmapFactory.decodeStream(inS);
+        }
+    }
+
+    /**
+     * Loads the forecast map data into the db but doesn't fetch the forecast map image
+     * @param region map region(mediterranean, Atlantic, etc.)
+     * @param variable map variable(wind, precipitation, etc.)
+     */
+
+    public void lazyLoadingMode(final String region, final String variable) {
+        mThreadManager.addRunnable(new Runnable() {
+            @Override
+            public void run() {
+                int [] forecastHours = WeatherUtils.getForecastHours(variable);
+                int [] forecastNumbers = WeatherUtils.getForecastNumbers(variable);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
+                Date date = new Date();
+                Map map = null;
+                Map [] maps = new Map[forecastHours.length];
+                for (int i = 0; i < forecastHours.length; i++) {
+                    if(forecastHours[i] == 0 && i > 0) {
+                        date.setTime(date.getTime() + 86400000); // add one day
+                    }
+                    map = new Map();
+                    map.onDisk = false;
+                    map.region = region;
+                    map.variable = variable;
+                    map.name = WeatherUtils.convertForecastNumber2MapName(forecastNumbers[i]);
+                    map.forecastDate = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
+                    maps[i] = map;
+                }
+                mapDao.insertMaps(maps);
+            }
+        });
+    }
+
+    public String [] getForecastMapLabels(String region, String variable) {
+        Future future = mThreadManager.addCallable(new Callable() {
+            @Override
+            public Object call() throws Exception {
+                return mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
+            }
+        });
+        String [] data = new String[0];
+        try {
+            data = (String [])future.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    // Todo (98) move this to the thread executor
+    public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {
+        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
+        return dir.listFiles();
+    }
+
+    @Deprecated
+    public LiveData<Bitmap> getForecastMap2(String region, String variable, int forecastNumber) {
         final MutableLiveData<Bitmap> data = new MutableLiveData<>();
-         mThreadManager.addRunnable(new Runnable() {
+        mThreadManager.addRunnable(new Runnable() {
             @Override
             public void run() {
                 String relativePath = NetUtils.buildMapsRelativePath(region, variable);
@@ -177,11 +315,12 @@ public class MapRepository {
         return data;
     }
 
+    @Deprecated
     private void insertMap(Bitmap image, URL url) {
         String [] mapInfo = NetUtils.parseMapsPath(url);
         Map map = new Map();
         map.onDisk = Utils.saveForecastMap(image, url);
-        map.name = mapInfo[2];
+        map.name = WeatherUtils.convertMapName2ForecastNumber(mapInfo[2]);
         map.region = mapInfo[0];
         map.variable = mapInfo[1];
         int forecastNumber = Integer.valueOf(map.name.substring(0, map.name.length() - 4));
@@ -189,7 +328,8 @@ public class MapRepository {
         mapDao.insertMaps(map);
     }
 
-    public MutableLiveData<Bitmap> getForecastMap(String region, String variable, String label) {
+    @Deprecated
+    public MutableLiveData<Bitmap> getForecastMap2(String region, String variable, String label) {
         final MutableLiveData<Bitmap> data = new MutableLiveData<>();
         mThreadManager.addRunnable(new Runnable() {
             @Override
@@ -227,54 +367,7 @@ public class MapRepository {
         return data;
     }
 
-    public void lazyLoadingMode(final String region, final String variable) {
-        mThreadManager.addRunnable(new Runnable() {
-            @Override
-            public void run() {
-                int [] forecastHours = WeatherUtils.getForecastHours(variable);
-                int [] forecastNumbers = WeatherUtils.getForecastNumbers(variable);
-                String [] labels = new String[forecastHours.length];
-                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd MMM");
-                Date date = new Date();
-                Map map = null;
-                Map [] maps = new Map[forecastHours.length];
-                for (int i = 0; i < forecastHours.length; i++) {
-                    if(forecastHours[i] == 0 && i > 0) {
-                        date.setTime(date.getTime() + 86400000); // add one day
-                    }
-                    map = new Map();
-                    map.onDisk = false;
-                    map.region = region;
-                    map.variable = variable;
-                    map.name = WeatherUtils.convertForecastNumber2MapName(forecastNumbers[i]);
-                    map.forecastDate = dateFormat.format(date) + " - " + String.format("%02d00", forecastHours[i]) + " UTC";
-                    maps[i] = map;
-                }
-                mapDao.insertMaps(maps);
-            }
-        });
-    }
 
-    private class Wrapper<T> {
-        T [] obj;
-    }
-
-    public MapLabel [] getForecastMapLabels(String region, String variable) {
-        final Wrapper<MapLabel> data = new Wrapper<>();
-        mThreadManager.addRunnable(new Runnable() {
-            @Override
-            public void run() {
-                data.obj = mapDao.getMapForecastDatesByRegionAndVariable(region, variable);
-            }
-        });
-        return data.obj;
-    }
-
-    // Todo (98) move this to the thread executor
-    public static File [] getForecastMapFilesByRegionAndVariable(String region, String variable) {
-        File dir = new File(MyApp.getAppContext().getFilesDir(), NetUtils.buildMapsRelativePath(region, variable));
-        return dir.listFiles();
-    }
 
 /*
     public MutableLiveData<Bitmap> getLiveForecastMapGluide(URL url) {
