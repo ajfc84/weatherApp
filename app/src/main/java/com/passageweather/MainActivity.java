@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.welcome_message, Toast.LENGTH_SHORT).show();
     }
 
-    //TODO (10) Implement Settings
+    // Implement Settings
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,45 +73,57 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickOption(View view) {
         NavMenuFragment regionFragment = null;
+        String TAG = "";
         switch (view.getId()) {
             case R.id.option1:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_MEDITERRANEAN_INDEX);
+                TAG = Constants.TAG_FRAGMENT_MEDITERRANEAN;
                 break;
             case R.id.option2:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_WEST_INDIES_INDEX);
+                TAG = Constants.TAG_FRAGMENT_WEST_INDIES;
                 break;
             case R.id.option3:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_ATLANTIC_INDEX);
+                TAG = Constants.TAG_FRAGMENT_NORTH_ATLANTIC;
                 break;
             case R.id.option4:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_ATLANTIC_INDEX);
+                TAG = Constants.TAG_FRAGMENT_SOUTH_ATLANTIC;
                 break;
             case R.id.option5:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_NORTH_PACIFIC_INDEX);
+                TAG = Constants.TAG_FRAGMENT_NORTH_PACIFIC;
                 break;
             case R.id.option6:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_SOUTH_PACIFIC_INDEX);
+                TAG = Constants.TAG_FRAGMENT_SOUTH_PACIFIC;
                 break;
             case R.id.option7:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_INDIAN_INDEX);
+                TAG = Constants.TAG_FRAGMENT_INDIAN_OCEAN;
                 break;
             case R.id.option8:
                 regionFragment = NavMenuFragment.newInstance(Constants.OPTION_REGATTA_INDEX);
+                TAG = Constants.TAG_FRAGMENT_RACES_AND_REGATTAS;
                 break;
             case R.id.option11:
                 regionFragment = NavMenuFragment.newInstance(Constants.REGION_GREAT_LAKES);
+                TAG = Constants.TAG_FRAGMENT_GREAT_LAKES;
                 break;
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.fl_fragment_main,
-                        regionFragment)
+                        regionFragment,
+                        TAG
+                        )
                 .addToBackStack(null)
                 .commit();
     }
 
     public void onClickRegion(View v) {
         Intent intent = new Intent(this, MapActivity.class);
-        if(findViewById(R.id.ll_mediterranean) != null) {
+        if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_MEDITERRANEAN) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_MEDITERRANEAN_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -152,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_west_indies) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_WEST_INDIES) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_WEST_INDIES_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -184,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         } // great lake must come before north atlantic
-        else if(findViewById(R.id.ll_great_lake) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_GREAT_LAKES) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_ATLANTIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -201,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_north_atlantic) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_NORTH_ATLANTIC) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_ATLANTIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -278,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_south_atlantic) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_SOUTH_ATLANTIC) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_SOUTH_ATLANTIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -301,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_north_pacific) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_NORTH_PACIFIC) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_NORTH_PACIFIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -354,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_south_pacific) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_SOUTH_PACIFIC) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_SOUTH_PACIFIC_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -392,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_indian) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_INDIAN_OCEAN) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_INDIAN_INDEX);
             switch (v.getId()) {
                 case R.id.region1:
@@ -418,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        else if(findViewById(R.id.ll_race_regatta) != null) {
+        else if(fragmentManager.findFragmentByTag(Constants.TAG_FRAGMENT_RACES_AND_REGATTAS) != null) {
             intent.putExtra(Constants.INTENT_OPTION_KEY, Constants.OPTION_REGATTA_INDEX);
             switch (v.getId()) {
                 case R.id.region1:

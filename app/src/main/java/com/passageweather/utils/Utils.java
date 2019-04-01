@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -27,10 +28,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
 
 public class Utils {
 
     public static void createForecastAlarm() {
+        // TODO (55) Check that an old alarm exists and delete it
         Context context = MyApp.getAppContext();
         ComponentName receiver = new ComponentName(context, BootReceiver.class);
         PackageManager pm = context.getPackageManager();
@@ -43,13 +46,33 @@ public class Utils {
                 Constants.FORECAST_RECEIVER_INTENT_REQUEST_CODE,
                 intent,
                 0);
-        // passageweather forecast update hours, set the forecast alarm to 4h30m and repeat it every 6hs
+        Context ctx = MyApp.getAppContext();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 4);
-        calendar.set(Calendar.MINUTE, 30);
-        manager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 6 * 60 * 60 * 1000, alarmIntent);
-
+        // RTC and calendar in the future for lazy_mode, and RTC_WAKEUP and calendar in the past for automatic mode
+        if(preferences.getBoolean(ctx.getString(R.string.sp_auto_download_key), ctx.getResources().getBoolean(R.bool.auto_download_default))) {
+            calendar.set(Calendar.HOUR_OF_DAY, 4);
+            calendar.set(Calendar.MINUTE, 30);
+            if(System.currentTimeMillis() < calendar.getTimeInMillis()) {
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
+                calendar.set(Calendar.HOUR_OF_DAY, 22);
+                calendar.set(Calendar.MINUTE, 30);
+            }
+            // passageweather forecast update hours, set the forecast alarm to 4h30m and repeat it every 6hs
+            manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 6 * 60 * 60 * 1000, alarmIntent);
+        }
+        else {
+            calendar.set(Calendar.HOUR_OF_DAY, 22);
+            calendar.set(Calendar.MINUTE, 30);
+            if(System.currentTimeMillis() > calendar.getTimeInMillis()) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                calendar.set(Calendar.HOUR_OF_DAY, 4);
+                calendar.set(Calendar.MINUTE, 30);
+            }
+            // passageweather forecast update hours, set the forecast alarm to 4h30m and repeat it every 6hs
+            manager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 6 * 60 * 60 * 1000, alarmIntent);
+        }
     }
 
     public static void removeForecastAlarm() {

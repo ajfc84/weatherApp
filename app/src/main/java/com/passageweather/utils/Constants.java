@@ -29,6 +29,18 @@ public final class Constants {
     public static final String STATE_VARIABLE_KEY = "variable";
     public static final String STATE_FORECAST_KEY = "forecast";
 
+    /* Fragments TAG */
+    public static final String TAG_FRAGMENT_MEDITERRANEAN = "md";
+    public static final String TAG_FRAGMENT_WEST_INDIES = "wi";
+    public static final String TAG_FRAGMENT_NORTH_ATLANTIC = "na";
+    public static final String TAG_FRAGMENT_SOUTH_ATLANTIC = "sa";
+    public static final String TAG_FRAGMENT_NORTH_PACIFIC = "np";
+    public static final String TAG_FRAGMENT_SOUTH_PACIFIC = "sp";
+    public static final String TAG_FRAGMENT_INDIAN_OCEAN = "io";
+    public static final String TAG_FRAGMENT_RACES_AND_REGATTAS = "rr";
+    public static final String TAG_FRAGMENT_GREAT_LAKES = "gl";
+
+
     /* passageWeather */
     public static final String BASE_URL = "https://www.passageweather.com/maps/";
     // Forecast hours(a: 5h05-10h30, b: 10h30-16h30, c: 16h30-22h, d: 22h45-23h50)
