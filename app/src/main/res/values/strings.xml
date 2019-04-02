@@ -21,10 +21,10 @@
     <string name="play">Play</string>
     <string name="share">Share</string>
     <string name="wind">Wind</string>
-    <string name="gfs">GFS</string>
-    <string name="coamps">COAMPS</string>
-    <string name="wrf">WRF</string>
-    <string name="nam">NAM</string>
+    <string name="gfs">Wind (GFS)</string>
+    <string name="coamps">Wind (COAMPS)</string>
+    <string name="wrf">Wind (WRF)</string>
+    <string name="nam">Wind (NAM)</string>
     <string name="pressure">Surface Pressure</string>
     <string name="waves">Waves</string>
     <string name="visibility">Visibility</string>
@@ -140,7 +140,7 @@
     <string name="middlerc">Middle Sea Race</string>
     <string name="montegorc">Montego Bay Race</string>
     <string name="npbermudarc">Newport Bermuda Race</string>
-    <string name="mpaccup">MPacific Cup</string>
+    <string name="paccup">Pacific Cup</string>
     <string name="fastnetrc">Rolex Fastnet Race</string>
     <string name="caribrc">RORC Caribbean 600</string>
     <string name="transatrc">RORC Transatlantic Race</string>

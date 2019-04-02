@@ -271,21 +271,24 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NOVA_SCOTIA_AND_NEWFOUNDLAND);
                     break;
                 case R.id.region19:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CHESAPEAKE_AND_DELAWERE);
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEW_ENGLAND);
                     break;
                 case R.id.region20:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_HATTERAS_TO_FLORIDA);
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CHESAPEAKE_AND_DELAWERE);
                     break;
                 case R.id.region21:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEWPORT_TO_BERMUDA);
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_CAPE_HATTERAS_TO_FLORIDA);
                     break;
                 case R.id.region22:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BERMUDA_TO_WEST_INDIES);
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NEWPORT_TO_BERMUDA);
                     break;
                 case R.id.region23:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_FLORIDA);
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_BERMUDA_TO_WEST_INDIES);
                     break;
                 case R.id.region24:
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_FLORIDA);
+                    break;
+                case R.id.region25:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_GULF_OF_MEXICO);
                     break;
             }
@@ -352,16 +355,16 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.region12:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_NORTH_AMERICA_TO_POLYNESIA);
                     break;
-                case R.id.region14:
+                case R.id.region13:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SEA_OF_JAPAN);
                     break;
-                case R.id.region15:
+                case R.id.region14:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_JAPAN_TO_MICRONESIA);
                     break;
-                case R.id.region16:
+                case R.id.region15:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_STRAIT_OF_MALACCA);
                     break;
-                case R.id.region17:
+                case R.id.region16:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SOUTH_CHINA_SEA);
                     break;
             }
@@ -470,7 +473,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_RORC_CARIBBEAN_600);
                     break;
                 case R.id.region13:
-                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_TRANSATLANTIC_RACE);
+                    intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_RORC_TRANSATLANTIC_RACE);
                     break;
                 case R.id.region14:
                     intent.putExtra(Constants.INTENT_REGION_KEY, Constants.REGION_SYDNEY_HOBART_RACE);

@@ -22,10 +22,10 @@
     <string name="play">Play</string>
     <string name="share">Compartilhar</string>
     <string name="wind">Vento</string>
-    <string name="gfs">GFS</string>
-    <string name="coamps">COAMPS</string>
-    <string name="wrf">WRF</string>
-    <string name="nam">NAM</string>
+    <string name="gfs">Vento (GFS)</string>
+    <string name="coamps">Vento (COAMPS)</string>
+    <string name="wrf">Vento (WRF)</string>
+    <string name="nam">Vento (NAM)</string>
     <string name="pressure">Pressão Atmosférica</string>
     <string name="waves">Ondulação</string>
     <string name="visibility">Visibilidade</string>
@@ -141,7 +141,7 @@
     <string name="middlerc">Regata Middle Sea</string>
     <string name="montegorc">Regata Baía de Montego</string>
     <string name="npbermudarc">Regata Newport Bermuda</string>
-    <string name="mpaccup">Taça MPacific</string>
+    <string name="paccup">Taça Pacífico</string>
     <string name="fastnetrc">Regata Rolex Fastnet</string>
     <string name="caribrc">RORC Caribbean 600</string>
     <string name="transatrc">RORC Regata Transatlãntica</string>

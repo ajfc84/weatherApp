@@ -144,7 +144,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
             case Constants.OPTION_WEST_INDIES_INDEX:
                 popup.getMenuInflater().inflate(R.menu.menu_west_indies, menu);
                 if(region.equals(Constants.REGION_BERMUDA_TO_WEST_INDIES)) {
-                    menu.findItem(R.id.windvarious).setVisible(false);
+                    menu.setGroupVisible(R.id.windvarious, false);
                 }
                 else if(region.equals(Constants.REGION_SOUTH_FLORIDA) ||
                         region.equals(Constants.REGION_GULF_OF_MEXICO)){
@@ -158,7 +158,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                 }
                 else if(region.equals(Constants.REGION_CARIBBEAN_SEA) ||
                         region.equals(Constants.REGION_APPROACHES_TO_PANAMA)){
-                    menu.findItem(R.id.windvarious).setVisible(false);
+                    menu.setGroupVisible(R.id.windvarious, false);
                     menu.findItem(R.id.gulfstream).setVisible(false);
                 }
                 else if(region.equals(Constants.REGION_VERGIN_ISLANDS_TO_DOMINICA) ||
@@ -180,7 +180,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                         region.equals(Constants.REGION_PORTUGAL_TO_GIBRALTAR) ||
                         region.equals(Constants.REGION_STRAIT_OF_GIBRALTAR)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                     menu.findItem(R.id.nam).setVisible(false);
                 }
                 else if(region.equals(Constants.REGION_NEW_ENGLAND) ||
@@ -190,7 +190,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                         region.equals(Constants.REGION_LAKE_MICHIGAN_AND_HURON) ||
                         region.equals(Constants.REGION_LAKE_ONTARIO_AND_ERIE)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                     menu.findItem(R.id.wrf).setVisible(false);
                     menu.findItem(R.id.coamps).setVisible(false);
                 }
@@ -199,7 +199,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                         region.equals(Constants.REGION_SOUTH_FLORIDA) ||
                         region.equals(Constants.REGION_GULF_OF_MEXICO)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                     menu.findItem(R.id.wrf).setVisible(false);
                     menu.findItem(R.id.coamps).setVisible(false);
                     menu.findItem(R.id.gulfstream).setVisible(true);
@@ -219,7 +219,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                         region.equals(Constants.REGION_CALIFORNIA_TO_MEXICO) ||
                         region.equals(Constants.REGION_BAJA_CALIFORNIA)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                 }
                 break;
             case Constants.OPTION_SOUTH_PACIFIC_INDEX:
@@ -234,7 +234,7 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                         region.equals(Constants.REGION_MONTEGO_BAY_RACE) ||
                         region.equals(Constants.REGION_RORC_CARIBBEAN_600)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                     menu.findItem(R.id.wrf).setVisible(false);
                     menu.findItem(R.id.coamps).setVisible(false);
                 }
@@ -242,13 +242,13 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
                         region.equals(Constants.REGION_MIDDLE_SEA_RACE) ||
                         region.equals(Constants.REGION_ROLEX_FASTNET_RACE)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                     menu.findItem(R.id.nam).setVisible(false);
                 }
                 else if(region.equals(Constants.REGION_MARION_BERMUDA_RACE) ||
                         region.equals(Constants.REGION_NEWPORT_TO_BERMUDA)) {
                     menu.findItem(R.id.wind).setVisible(false);
-                    menu.findItem(R.id.windvarious).setVisible(true);
+                    menu.setGroupVisible(R.id.windvarious, true);
                     menu.findItem(R.id.wrf).setVisible(false);
                     menu.findItem(R.id.coamps).setVisible(false);
                     menu.findItem(R.id.gulfstream).setVisible(true);
@@ -258,8 +258,10 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         String variable = model.getVariable().getValue();
         switch (variable) {
             case Constants.VAR_WIND_GFS:
-                variableSelected = menu.findItem(R.id.gfs);
-                if(variableSelected == null) variableSelected = menu.findItem(R.id.wind);
+                if(menu.findItem(R.id.wind) != null && menu.findItem(R.id.wind).isVisible())
+                    variableSelected = menu.findItem(R.id.wind);
+                else
+                    variableSelected = menu.findItem(R.id.gfs);
                 variableSelected.setEnabled(false); // Set "selected" variable on menu
                 break;
             case Constants.VAR_WIND_COAMPS:

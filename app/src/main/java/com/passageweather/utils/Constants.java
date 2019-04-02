@@ -187,7 +187,7 @@ public final class Constants {
     public static final String REGION_SOUTH_FLORIDA = "florida";
     public static final String REGION_FLORIDA_TO_WEST_INDIES = "bahamas";
     public static final String REGION_GULF_OF_MEXICO = "gulfmexico";
-    public static final String REGION_CARIBBEAN_SEA = "florida";
+    public static final String REGION_CARIBBEAN_SEA = "caribbean";
     public static final String REGION_VERGIN_ISLANDS_TO_DOMINICA = "carib600";
     public static final String REGION_LEEWARD_ISLANDS = "leeward";
     public static final String REGION_WINDWARD_ISLANDS = "windward";
@@ -226,7 +226,7 @@ public final class Constants {
     public static final String REGION_GULF_OF_ALASKA = "alaska";
     public static final String REGION_CALIFORNIA_TO_HAWAII = "transpac";
     public static final String REGION_HAWAII = "hawaii";
-    public static final String REGION_USA_WEST_COAST = "westcoast";
+    public static final String REGION_USA_WEST_COAST = "usawest";
     public static final String REGION_STRAIT_OF_JUAN_DE_FUCA = "puget";
     public static final String REGION_SOUTHERN_CALIFORNIA = "socal";
     public static final String REGION_CALIFORNIA_TO_MEXICO = "mexico";
@@ -258,7 +258,7 @@ public final class Constants {
     public static final String REGION_MIDDLE_SEA_RACE = "middlesea";
     public static final String REGION_MONTEGO_BAY_RACE = "bahamas";
     public static final String REGION_NEWPORT_BERMUDA_RACE = "bermuda";
-    public static final String REGION_PACIFIC_CUP = "trasnpac";
+    public static final String REGION_PACIFIC_CUP = "transpac";
     public static final String REGION_ROLEX_FASTNET_RACE = "fastnet";
     public static final String REGION_RORC_CARIBBEAN_600 = "carib600";
     public static final String REGION_RORC_TRANSATLANTIC_RACE = "arc";

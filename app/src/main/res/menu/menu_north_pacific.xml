@@ -8,6 +8,21 @@
         android:title="@string/wind"
         app:showAsAction="never"
         />
+    <group
+        android:id="@+id/windvarious"
+        android:visible="false"
+        >
+        <item
+            android:id="@+id/gfs"
+            android:title="@string/gfs"
+            app:showAsAction="never"
+            />
+        <item
+            android:id="@+id/nam"
+            android:title="@string/nam"
+            app:showAsAction="never"
+            />
+    </group>
     <item
         android:id="@+id/pressure"
         android:title="@string/pressure"

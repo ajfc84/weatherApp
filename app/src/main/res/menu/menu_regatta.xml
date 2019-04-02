@@ -8,34 +8,31 @@
         android:title="@string/wind"
         app:showAsAction="never"
         />
-    <item
+    <group
         android:id="@+id/windvarious"
-        android:title="@string/wind"
-        app:showAsAction="never"
+        android:visible="false"
         >
-        <menu>
-            <item
-                android:id="@+id/gfs"
-                android:title="@string/gfs"
-                app:showAsAction="never"
-                />
-            <item
-                android:id="@+id/coamps"
-                android:title="@string/coamps"
-                app:showAsAction="never"
-                />
-            <item
-                android:id="@+id/wrf"
-                android:title="@string/wrf"
-                app:showAsAction="never"
-                />
-            <item
-                android:id="@+id/nam"
-                android:title="@string/nam"
-                app:showAsAction="never"
-                />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/gfs"
+            android:title="@string/gfs"
+            app:showAsAction="never"
+            />
+        <item
+            android:id="@+id/coamps"
+            android:title="@string/coamps"
+            app:showAsAction="never"
+            />
+        <item
+            android:id="@+id/wrf"
+            android:title="@string/wrf"
+            app:showAsAction="never"
+            />
+        <item
+            android:id="@+id/nam"
+            android:title="@string/nam"
+            app:showAsAction="never"
+            />
+    </group>
     <item
         android:id="@+id/pressure"
         android:title="@string/pressure"
@@ -65,6 +62,6 @@
         android:id="@+id/gulfstream"
         android:title="@string/gulfstream"
         app:showAsAction="never"
-        android:enabled="false"
+        android:visible="false"
         />
 </menu>

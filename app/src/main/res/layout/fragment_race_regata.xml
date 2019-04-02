@@ -70,7 +70,7 @@
             />
         <Button
             android:id="@+id/region10"
-            android:text="@string/mpaccup"
+            android:text="@string/paccup"
             android:drawableLeft="@drawable/transpac"
             style="@style/NavRegionButton"
             />
