@@ -11,6 +11,7 @@
 
     /* Shared preferences */
     <string name="app_settings">Settings</string>
+    <string name="running_first_time_key" translatable="false">running_first_time</string>
     <string name="sp_auto_download_title">Allow automatic downloads</string>
     <string name="sp_auto_download_key" translatable="false">auto_download</string>
     <string name="pc_variable_key" translatable="false">variable_category</string>

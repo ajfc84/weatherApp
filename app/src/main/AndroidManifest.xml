@@ -57,6 +57,8 @@
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+                <action android:name="com.passageweather.AUTO_MODE"/>
+                <action android:name="com.passageweather.LAZY_MODE"/>
             </intent-filter>
         </receiver>
     </application>

@@ -23,6 +23,8 @@ public final class Constants {
     public static final String INTENT_SUBREGION_KEY = "subregion";
     public static final String INTENT_VARIABLE_KEY = "variable";
     public static final String INTENT_FORECAST_KEY = "forecast";
+    public static final String INTENT_LAZY_MODE = "com.forecastweather.LAZY_MODE";
+    public static final String INTENT_AUTO_MODE = "com.forecastweather.AUTO_MODE";
 
     /* Instance State */
     public static final String STATE_REGION_KEY = "region";

@@ -4,6 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
+    <Preference
+        android:key="@string/running_first_time_key"
+        android:defaultValue="@bool/running_first_time"
+        />
+
     <SwitchPreference
         android:key="@string/sp_auto_download_key"
         android:title="@string/sp_auto_download_title"

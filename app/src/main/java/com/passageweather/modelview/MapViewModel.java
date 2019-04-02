@@ -4,11 +4,9 @@ import android.graphics.Bitmap;
 
 import com.passageweather.model.MapLabel;
 import com.passageweather.utils.Constants;
-import com.passageweather.utils.NetUtils;
 import com.passageweather.utils.WeatherUtils;
 
 import java.io.File;
-import java.net.URL;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -129,12 +127,12 @@ public class MapViewModel extends ViewModel {
         return repo.getForecastFileLabels(getRegion().getValue(), getVariable().getValue());
     }
 
-    public void lazyMapMode() {
-        repo.lazyLoadingMode(getRegion().getValue(), getVariable().getValue());
+    public void startLazyMapMode() {
+        repo.loadLazyMaps(getRegion().getValue(), getVariable().getValue());
     }
 
-    public void startLazyMapMode() {
-        repo.lazyLoadingMode(Constants.REGION_MEDITERRANEAN_SEA, Constants.VAR_WIND_GFS);
+    public void updateLazyMapMode() {
+        repo.updateLazyMaps();
     }
 
 }

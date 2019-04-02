@@ -3,5 +3,7 @@
 
     /* Shared Preferences - Settings */
     <bool name="auto_download_default">false</bool>
+    <bool name="running_first_time">true</bool>
+    <bool name="not_running_first_time">false</bool>
 
 </resources>

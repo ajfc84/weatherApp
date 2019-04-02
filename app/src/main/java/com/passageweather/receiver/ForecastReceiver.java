@@ -4,9 +4,14 @@ import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 
+import com.passageweather.R;
+import com.passageweather.config.MyApp;
+import com.passageweather.model.Map;
+import com.passageweather.modelview.MapRepository;
 import com.passageweather.utils.Constants;
 import com.passageweather.utils.NetUtils;
 
@@ -19,6 +24,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import androidx.core.content.FileProvider;
+import androidx.preference.PreferenceManager;
 
 public class ForecastReceiver extends BroadcastReceiver {
 
@@ -60,7 +66,7 @@ public class ForecastReceiver extends BroadcastReceiver {
                 e.printStackTrace();
             }
         }
-        else {
+        else if(action.equals(Constants.INTENT_AUTO_MODE)) {
             DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = null;
             String region = Constants.REGION_MEDITERRANEAN_SEA;
@@ -77,6 +83,17 @@ public class ForecastReceiver extends BroadcastReceiver {
 
                 manager.enqueue(request);
             }
+        }
+        else if (action.equals(Constants.INTENT_LAZY_MODE)) {
+            Context ctx = MyApp.getAppContext();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+            if(preferences.getBoolean(ctx.getString(R.string.running_first_time_key), ctx.getResources().getBoolean(R.bool.running_first_time))) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean(ctx.getString(R.string.running_first_time_key), ctx.getResources().getBoolean(R.bool.not_running_first_time));
+                editor.commit();
+                // startLazingMode in MapActivity, just set first time to false, next Alarm will updateLazyMaps
+            }
+            else MapRepository.newInstance().updateLazyMaps();
         }
     }
 
