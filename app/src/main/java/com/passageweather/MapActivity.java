@@ -110,6 +110,16 @@ public class MapActivity extends FragmentActivity implements PopupMenu.OnMenuIte
         dialog.show(getSupportFragmentManager(), ShareMapsDialogFragment.class.getName());
     }
 
+    public void showVarMenu2(View v) {
+        View var_menu = findViewById(R.id.ll_var_menu);
+        var_menu.setAlpha(0f);
+        var_menu.setVisibility(View.VISIBLE);
+        var_menu.animate()
+                .alpha(0.85f)
+                .setDuration(200)
+                .setListener(null);
+    }
+
     public void showTimeMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         String [] fileLabels = model.getForecastMapsLabels();

@@ -13,6 +13,71 @@
         android:layout_height="match_parent"
         tools:src="@drawable/mapexample"
         />
+    <!--
+    <LinearLayout
+        android:id="@+id/ll_var_menu"
+        android:orientation="vertical"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center_vertical|center_horizontal"
+        android:visibility="gone"
+        >
+        <Button
+            android:id="@+id/bt_var_wind"
+            android:text="@string/wind"
+            android:drawableLeft="@drawable/ic_wind"
+            android:background="@color/colorPrimaryLight"
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/bt_var_pressure"
+            android:text="@string/pressure"
+            android:drawableLeft="@drawable/ic_thermometer"
+            android:background="@color/colorPrimaryLight"
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/bt_var_waves"
+            android:text="@string/waves"
+            android:drawableLeft="@drawable/ic_waves"
+            android:background="@color/colorPrimaryLight"
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/bt_var_visibility"
+            android:text="@string/visibility"
+            android:drawableLeft="@drawable/ic_visibility"
+            android:background="@color/colorPrimaryLight"
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/bt_var_precipitation"
+            android:text="@string/precipitation"
+            android:drawableLeft="@drawable/ic_precipitation"
+            android:background="@color/colorPrimaryLight"
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/bt_var_clouds"
+            android:text="@string/clouds"
+            android:drawableLeft="@drawable/ic_cloud_cover"
+            android:background="@color/colorPrimaryLight"
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout> -->
     <ProgressBar
         android:id="@+id/pb_map_loading"
         android:layout_width="match_parent"
